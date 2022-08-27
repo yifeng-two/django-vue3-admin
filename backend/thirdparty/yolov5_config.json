@@ -1,0 +1,21 @@
+{
+	"source":"data/images/correct",
+	"weights": "runs/train/exp6/weights/best.pt",
+	"data": "data/MyVOC.yaml",
+	"save_dir":"D:/develop/django-vue/images/detected",
+	"device": "cpu",
+	"imgsz": 640,
+	"conf_thres": 0.35,
+	"iou_thres": 0.45,
+	"agnostic_nms":false,
+	"max_det":300,
+	"augment": false,
+	"save_img": true,
+	"save_txt":false,
+	"save_conf":false,
+	"half": false,
+	"dnn": false,
+	"view_img":false,
+	"hide_labels":false,
+	"hide_conf":false
+}
