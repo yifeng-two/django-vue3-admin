@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from system.models import DetectImage
+from detect.models import DetectImage
 
 
 class DetectImageModelSerializer(serializers.ModelSerializer):

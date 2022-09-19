@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,22 +26,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_comment_migrate",
+    "django_filters",
     'rest_framework',
     'corsheaders',
+    "captcha",
+    "drf_yasg",
     'channels',
     'apps.system',
     'apps.monitor',
-    'apps.detect'
+    'apps.detect',
 ]
 
 MIDDLEWARE = [
@@ -56,8 +58,15 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 # 跨域配置
+# 允许全部来源
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True 
+# 添加访问白名单
+# CORS_ORIGIN_WHITELIST  =  [
+#     "https://www.example.com",
+#     "http：// localhost：8080",
+#     "http://127.0.0.1:7000"
+# ]
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = (
     'GET',
@@ -102,7 +111,6 @@ TEMPLATES = [
 # WSGI_APPLICATION = 'backend.wsgi.application'
 ASGI_APPLICATION = 'backend.asgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -121,6 +129,8 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "system.User"
+USERNAME_FIELD = "username"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -140,7 +150,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -152,8 +161,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
-
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -163,4 +171,115 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# ================================================= #
+# *************** REST_FRAMEWORK配置 *************** #
+# ================================================= #
+
+REST_FRAMEWORK = {
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",  # 日期时间格式配置
+    "DATE_FORMAT": "%Y-%m-%d",
+    "DEFAULT_FILTER_BACKENDS": (
+        # 'django_filters.rest_framework.DjangoFilterBackend',
+        # "dvadmin.utils.filters.CustomDjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
+        "rest_framework.filters.OrderingFilter",
+    ),
+    # "DEFAULT_PAGINATION_CLASS": "dvadmin.utils.pagination.CustomPagination",  # 自定义分页
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",  # 只有经过身份认证确定用户身份才能访问
+        # 'rest_framework.permissions.IsAdminUser', # is_staff=True才能访问 —— 管理员(员工)权限
+        # 'rest_framework.permissions.AllowAny', # 允许所有
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # 有身份 或者 只读访问(self.list,self.retrieve)
+    ],
+    # "EXCEPTION_HANDLER": "dvadmin.utils.exception.CustomExceptionHandler",  # 自定义的异常处理
+}
+# ================================================= #
+# ******************** 登录方式配置 ******************** #
+# ================================================= #
+
+AUTHENTICATION_BACKENDS = ["backend.utils.backends.CustomBackend"]
+
+# ================================================= #
+# ****************** simplejwt配置 ***************** #
+# ================================================= #
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    # token有效时长
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
+    # token刷新后的有效时间
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    # 设置前缀
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "ROTATE_REFRESH_TOKENS": True,
+}
+
+# =========================================#
+# ****************swagger*****************#
+# =========================================#
+SWAGGER_SETTINGS = {
+    # 基础样式
+    "SECURITY_DEFINITIONS": {
+        "basic": {
+            "type": "basic"
+        }
+    },
+    # 如果需要登录才能够查看接口文档, 登录的链接使用restframework自带的.
+    "LOGIN_URL": "apiLogin/",
+    # 'LOGIN_URL': 'rest_framework:login',
+    "LOGOUT_URL": "rest_framework:logout",
+
+    # 'DOC_EXPANSION': None,
+    # 'SHOW_REQUEST_HEADERS':True,
+    # 'USE_SESSION_AUTH': True,
+    # 'DOC_EXPANSION': 'list',
+    # 接口文档中方法列表以首字母升序排列
+    "APIS_SORTER": "alpha",
+    # 如果支持json提交, 则接口文档中包含json输入框
+    "JSON_EDITOR": True,
+    # 方法列表字母排序
+    "OPERATIONS_SORTER": "alpha",
+    "VALIDATOR_URL": None,
+    "AUTO_SCHEMA_TYPE": 2,  # 分组根据url层级分，0、1 或 2 层
+    "DEFAULT_AUTO_SCHEMA_CLASS": "backend.utils.swagger.CustomSwaggerAutoSchema",
+}
+
+
+# ================================================= #
+# **************** 验证码配置  ******************* #
+# ================================================= #
+CAPTCHA_IMAGE_SIZE = (160, 60)  # 设置 captcha 图片大小
+CAPTCHA_LENGTH = 4  # 字符个数
+CAPTCHA_TIMEOUT = 1  # 超时(minutes)
+CAPTCHA_OUTPUT_FORMAT = "%(image)s %(text_field)s %(hidden_field)s "
+CAPTCHA_FONT_SIZE = 40  # 字体大小
+CAPTCHA_FOREGROUND_COLOR = "#64DAAA"  # 前景色
+CAPTCHA_BACKGROUND_COLOR = "#F5F7F4"  # 背景色
+CAPTCHA_NOISE_FUNCTIONS = (
+    "captcha.helpers.noise_arcs",  # 线
+    # "captcha.helpers.noise_dots",  # 点
+)
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge' #字母验证码
+CAPTCHA_CHALLENGE_FUNCT = "captcha.helpers.math_challenge"  # 加减乘除验证码
+
+
+# ================================================= #
+# ******************** 其他配置 ******************** #
+# ================================================= #
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 初始化需要执行的列表，用来初始化后执行
+INITIALIZE_LIST = []
+INITIALIZE_RESET_LIST = []
+
+# 系统配置
+SYSTEM_CONFIG = {}
+# 字典配置
+DICTIONARY_CONFIG = {}
