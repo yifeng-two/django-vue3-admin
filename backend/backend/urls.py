@@ -42,9 +42,9 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    # permission_classes=(permissions.AllowAny, ),
+    permission_classes=(permissions.AllowAny, ),
     # 登录后才可以访问API文档，登录路径“/apiLogin”
-    permission_classes=(permissions.IsAuthenticated, ),
+    # permission_classes=(permissions.IsAuthenticated, ),
     # generator_class=CustomOpenAPISchemaGenerator,
 )
 # =========== swagger api 配置 =================

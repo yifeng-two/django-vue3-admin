@@ -1,8 +1,8 @@
 <!--
  * @Author: yifeng
- * @Date: 2022-09-15 20:28:24
+ * @Date: 2022-09-27 22:52:07
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 21:15:23
+ * @LastEditTime: 2022-09-28 20:59:41
  * @Description: 
 -->
 <template>
@@ -11,19 +11,24 @@
         </fs-crud>
     </fs-page>
 </template>
-    
+
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive } from "vue";
+import { defineComponent, ref, onMounted, watch } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
-import useDictStore from '@/stores/system-dict'
-
 export default defineComponent({
-    name: "userForm",
-    setup() {
-        const dictStore = useDictStore()
-        dictStore.load()
+    name: "subDictionary",
+    props: {
+        // 容器样式
+        catagoryDict: {
+            type: Object,
+            required: true,
+            default: {}
+        },
+    },
+    // emits: ["update:dictionaryRow"],
+    setup(props, ctx) {
         // crud组件的ref
         const crudRef = ref();
         // crud 配置的ref
@@ -31,7 +36,7 @@ export default defineComponent({
         // 暴露的方法
         const { expose } = useExpose({ crudRef, crudBinding });
         // 你的crud配置
-        const { crudOptions } = createCrudOptions({ expose });
+        const { crudOptions } = createCrudOptions({ expose, props, ctx });
         // 初始化crud配置
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
         const { resetCrudOptions } = useCrud({ expose, crudOptions });
@@ -41,25 +46,24 @@ export default defineComponent({
         onMounted(() => {
             expose.doRefresh();
         });
-
-        // 授权
-        // const rolePermissionShow = ref(false)
-        // const createPermission = (scope: { row: any; }) => {
-        //     roleObj = scope.row
-        //     rolePermissionShow.value = true
-        //     // this.$router.push({
-        //     //   name: 'rolePermission',
-        //     //   params: { id: scope.row.id }
-        //     // })
-        // }
-
+        // 字典配置
+        //你的业务代码
+        watch(
+            () => props.catagoryDict,
+            (currentValue, prevValue) => {
+                /* ... */
+                // console.log(currentValue, prevValue);
+                expose.doRefresh();
+            },
+            //深度监听
+            { deep: true }
+        )
         return {
             crudBinding,
             crudRef,
-            // rolePermissionShow,
-            // createPermission
+            // setSearchFormData: expose.setSearchFormData,
+            // doRefresh: expose.doRefresh
         };
-
     }
 });
 </script>

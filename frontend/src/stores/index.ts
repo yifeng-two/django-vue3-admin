@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-06 21:18:11
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-18 22:10:43
+ * @LastEditTime: 2022-09-25 13:47:09
  * @Description: 
  */
 import { createPinia } from "pinia";
@@ -32,14 +32,14 @@ export const registerStore = () => {
 
 };
 
-// function install(app, options: any = {}) {
-//   app.use(createPinia());
-//   const dictStore =useDictStore()
-//   dictStore.load()
-// }
+function install(app, options: any = {}) {
+  app.use(createPinia());
+  const dictStore =useDictStore()
+  dictStore.load()
+}
 
-// export default {
-//   install
-// }
+export default {
+  install
+}
 
 // export default appStore;

@@ -70,10 +70,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = (
     'GET',
-    'OPTIONS',
-    'PATCH',
+    'PUT',
     'POST',
-    'VIEW',
+    'DELETE',
+    'OPTIONS',
 )
 
 CORS_ALLOW_HEADERS = (
@@ -180,11 +180,11 @@ REST_FRAMEWORK = {
     "DATE_FORMAT": "%Y-%m-%d",
     "DEFAULT_FILTER_BACKENDS": (
         # 'django_filters.rest_framework.DjangoFilterBackend',
-        # "dvadmin.utils.filters.CustomDjangoFilterBackend",
+        "backend.utils.filters.CustomDjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ),
-    # "DEFAULT_PAGINATION_CLASS": "dvadmin.utils.pagination.CustomPagination",  # 自定义分页
+    "DEFAULT_PAGINATION_CLASS": "backend.utils.pagination.CustomPagination",  # 自定义分页
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",

@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-10 20:56:03
 LastEditors: yifeng
-LastEditTime: 2022-09-02 23:02:26
+LastEditTime: 2022-09-26 22:55:21
 Description: 
 '''
 from django.urls import path, include
@@ -40,5 +40,6 @@ urlpatterns = [
          SystemConfigViewSet.as_view({'get': 'get_table_data'})),
     path('system_config/get_relation_info/',
          SystemConfigViewSet.as_view({'get': 'get_relation_info'})),
+    path('dept_lazy_tree/', DeptViewSet.as_view({'get': 'dept_lazy_tree'})),
 ]
 urlpatterns += system_router.urls

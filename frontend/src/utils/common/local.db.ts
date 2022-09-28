@@ -2,55 +2,13 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:44:38
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 20:53:55
+ * @LastEditTime: 2022-09-25 13:51:45
  * @Description: 
  */
 import { LocalStorage, Low, LowSync } from 'lowdb'
 import cookies from './cookies'
 import lodash, { cloneDeep } from 'lodash'
 import { dbAcceptParma, DbSchema } from './structInterface'
-
-//#region 
-// create an interface
-// interface userInfo {
-//   name: String,
-//   user_id: String,
-//   avatar: String,
-// }
-// interface settingInit {
-//   base:{
-//     captcha_state: true,
-//     default_password: String,
-//   },
-//   login:{
-//     site_name: String,
-//     site_logo: null,
-//     login_background: null,
-//     copyright: String,
-//     keep_record: String,
-//     help_url: String,
-//     privacy_url: String,
-//     clause_url: String
-//   }
-// }
-// interface settingMenu {
-//   name: String,
-//   user_id: String,
-//   avatar: String,
-// }
-// interface DbSchema {
-//   sys: {
-//     user: {
-//       info: userInfo[];
-//     }
-//     settings: {
-//       init: settingInit[];
-//       menut: settingMenu[];
-//     }
-//   },
-//   database: {}
-// }
-//#endregion
 
 // Extend Low class with a new `chain` field
 class LowWithLodash<T> extends LowSync<T> {
@@ -82,7 +40,7 @@ export function pathInit({
   dbName = 'database',
   path = '',
   user = true,
-  validator = (value) => true,
+  validator = (value: any) => true,
   defaultValue = {}
 }) {
   const uuid = cookies.get('uuid') || 'ghost-uuid'
@@ -142,7 +100,7 @@ export function database({
   dbName = 'database',
   path = '',
   user = false,
-  validator = (value) => true,
+  validator = (value: any) => true,
   defaultValue = {}
 } = {}) {
   return db.chain.get(pathInit({

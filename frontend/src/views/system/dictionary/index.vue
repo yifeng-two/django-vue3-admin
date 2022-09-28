@@ -2,31 +2,49 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:24:56
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-18 13:05:47
+ * @LastEditTime: 2022-09-28 21:13:04
  * @Description: 
 -->
 <template>
     <fs-page>
         <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
-            <template #actionbar-left>
+            <!-- <template #actionbar-left>
                 <el-button size="default" type="primary" @click="addRow">
                     <el-icon :size="size" :color="color">
                         <Plus />
                     </el-icon>
                     新增
                 </el-button>
+            </template> -->
+            <template #cell-rowHandle-right="scope">
+                <el-button class="row-handle-btn" type="success" :title="scope.row.id"
+                    @click="editDictbyCatagory(scope)">
+                    <el-icon>
+                        <EditPen />
+                    </el-icon>字典配置
+                </el-button>
             </template>
+            <el-drawer v-model="drawerStatus" title="字典配置" :with-header="false" append-to-body="true"
+                size="50%">
+                <div slot="title">
+                    <span>字典列表</span>
+                    <el-tag  style="margin-left: 10px" type="success">{{dictionaryRow.data.label}}</el-tag>
+                </div>
+                <sub-dictionary style="margin-top: 80px; padding-right: 20px;" :catagory-dict="dictionaryRow.data" />
+            </el-drawer>
         </fs-crud>
     </fs-page>
 </template>
   
-<script>
-import { defineComponent, ref, onMounted } from "vue";
+<script lang="ts">
+import { defineComponent, ref, onMounted, reactive } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
+import subDictionary from "./subDictionary/index.vue"
 export default defineComponent({
-    name: "FormLayoutFlex",
+    name: "dictionary",
+    components: { subDictionary },
     setup() {
         // crud组件的ref
         const crudRef = ref();
@@ -45,9 +63,21 @@ export default defineComponent({
         onMounted(() => {
             expose.doRefresh();
         });
+        // 字典配置
+        const drawerStatus = ref(false)
+        let  dictionaryRow = reactive<object>({data: {}});//Ts写法
+        const editDictbyCatagory = (scope: any) => {
+            dictionaryRow.data = scope.row
+            drawerStatus.value = true
+            // console.log(dictionaryRow);
+        }
+        
         return {
             crudBinding,
-            crudRef
+            crudRef,
+            drawerStatus,
+            dictionaryRow,
+            editDictbyCatagory
         };
     }
 });

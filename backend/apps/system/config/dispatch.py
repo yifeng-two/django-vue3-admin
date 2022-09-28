@@ -3,7 +3,7 @@
 Author: yifeng
 Date: 2022-08-31 20:21:20
 LastEditors: yifeng
-LastEditTime: 2022-09-08 22:47:38
+LastEditTime: 2022-09-20 21:54:14
 Description: 
 '''
 from django.conf import settings
@@ -22,7 +22,7 @@ def is_tenants_mode():
 # ******************** 初始化 ******************** #
 # ================================================= #
 def _get_all_dictionary():
-    from system.models import Dictionary
+    from apps.system.models import Dictionary
 
     queryset = Dictionary.objects.filter(status=True, is_value=False)
     data = []

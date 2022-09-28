@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:53:57
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-18 23:14:06
+ * @LastEditTime: 2022-09-20 19:43:29
  * @Description: 
  */
 
@@ -23,7 +23,7 @@ const useMenuStore = defineStore('system/menu', {
     }),
     actions: {
         //设置侧边栏收缩
-        async asideCollapseSet(collapse) {
+        async asideCollapseSet(collapse: boolean) {
             const dbStore = useDbStore()
             this.asideCollapse = collapse
             // 持久化

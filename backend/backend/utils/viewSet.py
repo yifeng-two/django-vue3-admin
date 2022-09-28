@@ -3,7 +3,7 @@
 Author: yifeng
 Date: 2022-08-29 21:59:51
 LastEditors: yifeng
-LastEditTime: 2022-09-17 23:35:25
+LastEditTime: 2022-09-27 21:43:21
 Description: 
 '''
 from drf_yasg import openapi
@@ -11,7 +11,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
 
-# from dvadmin.utils.filters import DataLevelPermissionsFilter
+from backend.utils.filters import DataLevelPermissionsFilter
 # from dvadmin.utils.import_export_mixin import ExportSerializerMixin, ImportSerializerMixin
 from backend.utils.jsonResponse import SuccessResponse, ErrorResponse, DetailResponse
 from backend.utils.permission import CustomPermission
@@ -34,7 +34,7 @@ class CustomModelViewSet(ModelViewSet, QueryArgumentsMixin):
     update_serializer_class = None
     filter_fields = '__all__'
     search_fields = ()
-    # extra_filter_backends = [DataLevelPermissionsFilter]
+    extra_filter_backends = [DataLevelPermissionsFilter]
     extra_filter_backends = []
     permission_classes = []
     permission_classes = [CustomPermission]

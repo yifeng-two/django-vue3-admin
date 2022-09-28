@@ -2,14 +2,14 @@
 Author: yifeng
 Date: 2022-08-27 20:12:35
 LastEditors: yifeng
-LastEditTime: 2022-09-04 19:26:36
+LastEditTime: 2022-09-27 21:49:52
 Description: 
 '''
 import django.utils.timezone as timezone
 from django.db import models
 from django.apps import apps
 
-from backend.utils.softDeletManager import SoftDeleteManager
+from backend.utils.softDeleteManager import SoftDeleteManager
 from backend.settings import AUTH_USER_MODEL
 from backend import settings
 

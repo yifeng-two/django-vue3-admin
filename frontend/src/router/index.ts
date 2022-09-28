@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-07-30 22:21:45
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 22:01:18
+ * @LastEditTime: 2022-09-25 13:57:46
  * @Description: 
  */
 // 1. 从vue-router 中按需导入两个方法
@@ -14,6 +14,7 @@ import { checkRouter, getMenu, handleAsideMenu, handleRouter } from '@/utils/sys
 import useMenuStore from '@/stores/system-menu'
 import usePageStore from '@/stores/system-page'
 import routes from '@/router/staticRoutes'
+import useDictStore from '@/stores/system-dict'
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),
     routes,
@@ -53,6 +54,8 @@ router.beforeEach((to, from, next) => {
                 const aside = handleAsideMenu(ret.filter(value => value.visible === true))
                 // appStore.menuStore.asideSet(aside) // 设置侧边栏菜单
                 menuStore.asideSet(aside) // 设置侧边栏菜单
+                const dictStore = useDictStore()
+                dictStore.init()
 
                 // const menu = handleAsideMenu(ret)
                 // store.commit('d2admin/search/init', menu) // 设置搜索

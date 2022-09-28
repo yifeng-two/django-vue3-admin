@@ -2,14 +2,14 @@
  * @Author: yifeng
  * @Date: 2022-09-14 21:09:58
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-17 22:55:58
+ * @LastEditTime: 2022-09-20 20:08:37
  * @Description: 
  */
 import axiosInstance from '@/utils/axiosInstance'
 
 const userBaseUrl = "/api/system/user/";
 
-export function getUserList(query) {
+export function getUserList(query: any) {
   return axiosInstance({
     url: userBaseUrl,
     method: "get",
@@ -17,7 +17,7 @@ export function getUserList(query) {
   });
 }
 
-export function addUser(obj) {
+export function addUser(obj: any) {
   return axiosInstance({
     url: userBaseUrl,
     method: "post",
@@ -25,7 +25,7 @@ export function addUser(obj) {
   });
 }
 
-export function updateUser(obj) {
+export function updateUser(obj:any) {
   return axiosInstance({
     url: userBaseUrl + obj.id + '/',
     method: "put",
@@ -33,7 +33,7 @@ export function updateUser(obj) {
   });
 }
 
-export function deleteUser(id) {
+export function deleteUser(id: string) {
   return axiosInstance({
     url: userBaseUrl + id + '/',
     method: "delete",
@@ -41,7 +41,7 @@ export function deleteUser(id) {
   });
 }
 
-export function batchDeleteUser (keys) {
+export function batchDeleteUser (keys: any) {
     return axiosInstance({
       url: userBaseUrl + 'multiple_delete/',
       method: 'delete',
@@ -49,7 +49,7 @@ export function batchDeleteUser (keys) {
     })
   }
 
-export function getUser(id) {
+export function getUser(id: string) {
   return axiosInstance({
     url: userBaseUrl + id + '/',
     method: "get",
@@ -63,7 +63,7 @@ export function getUser(id) {
  * @returns {*}
  * @constructor
  */
- export function resetPassword (obj) {
+ export function resetPassword (obj: { id: string; }) {
     return axiosInstance({
       url: userBaseUrl + obj.id + '/reset_password/',
       method: 'put',

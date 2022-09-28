@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-28 18:55:45
 LastEditors: yifeng
-LastEditTime: 2022-09-17 23:49:17
+LastEditTime: 2022-09-20 20:07:11
 Description: 
 '''
 import hashlib
@@ -79,7 +79,7 @@ class UserCreateSerializer(CustomModelSerializer):
         data = super().save(**kwargs)
         data.dept_belong_id = data.dept_id
         data.save()
-        data.post.set(self.initial_data.get("post", []))
+        data.position.set(self.initial_data.get("post", []))
         return data
 
     class Meta:

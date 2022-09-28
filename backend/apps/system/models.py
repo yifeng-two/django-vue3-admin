@@ -162,33 +162,6 @@ class User(SoftModel, AbstractUser):
         return self.username
 
 
-# region
-# class Permission(SoftModel):
-#     """
-#     功能权限:目录,菜单,接口
-#     """
-#     name = models.CharField('名称', max_length=30)
-#     type = models.CharField('类型', max_length=20, choices=cfg.MENU_TYPE_CHOICES, default='接口')
-#     is_frame = models.BooleanField('外部链接', default=False)
-#     sort = models.IntegerField('排序标记', default=1)
-#     parent = models.ForeignKey('self',
-#                                null=True,
-#                                blank=True,
-#                                on_delete=models.SET_NULL,
-#                                verbose_name='父')
-#     method = models.CharField('方法/代号', max_length=50, null=True, blank=True)
-
-#     def __str__(self):
-#         return self.name
-
-#     class Meta:
-#         verbose_name = '功能权限表'
-#         verbose_name_plural = verbose_name
-#         ordering = ['sort']
-
-# endregion
-
-
 class Menu(SoftModel):
     parent = models.ForeignKey(
         to="Menu",
@@ -272,6 +245,24 @@ class MenuButton(SoftModel):
         verbose_name = "菜单权限表"
         verbose_name_plural = verbose_name
         ordering = ("-name", )
+
+
+class ApiWhiteList(SoftModel):
+    url = models.CharField(max_length=200, help_text="url地址", verbose_name="url")
+    METHOD_CHOICES = (
+        (0, "GET"),
+        (1, "POST"),
+        (2, "PUT"),
+        (3, "DELETE"),
+    )
+    method = models.IntegerField(default=0, verbose_name="接口请求方法", null=True, blank=True, help_text="接口请求方法")
+    enable_datasource = models.BooleanField(default=True, verbose_name="激活数据权限", help_text="激活数据权限", blank=True)
+
+    class Meta:
+        db_table = "api_white_list"
+        verbose_name = "接口白名单"
+        verbose_name_plural = verbose_name
+        ordering = ("-create_datetime",)
 
 
 class Dictionary(SoftModel):

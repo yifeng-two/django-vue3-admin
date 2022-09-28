@@ -2,19 +2,19 @@
  * @Author: yifeng
  * @Date: 2022-08-22 22:31:30
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-17 11:45:12
+ * @LastEditTime: 2022-09-22 22:39:42
  * @Description: 
 -->
 <template>
-  <el-form ref="loginForm" :model="loginUserRef" :rules="rules" label-width="100px" class="loginForm sign-in-form">
+  <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="100px" class="loginForm sign-in-form">
     <el-form-item label="用户名" prop="username">
-      <el-input v-model="loginUserRef.username" placeholder="请输入用户名..."></el-input>
+      <el-input v-model="loginForm.username" placeholder="请输入用户名..."></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
-      <el-input v-model="loginUserRef.password" type="password" placeholder="请输入密码..."></el-input>
+      <el-input v-model="loginForm.password" type="password" placeholder="请输入密码..."></el-input>
     </el-form-item>
     <el-form-item prop="captcha" v-show="captchaState" :rules="{ required: false, message: '请输入验证码', trigger: 'blur' }">
-      <el-input type="text" v-model="loginUserRef.captcha" placeholder="验证码" @keyup.enter.native="submit">
+      <el-input type="text" v-model="loginForm.captcha" placeholder="验证码" @keyup.enter.native="submit">
         <template v-slot:append>
           <img class="login-code" style="cursor: pointer;" height="33px" width="200px" slot="suffix" :src="image_base"
             @click="getCaptcha" />
@@ -23,7 +23,7 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button @click="handleLogin(loginForm)" type="primary" class="submit-btn">提交</el-button>
+      <el-button @click="handleLogin(loginFormRef)" type="primary" class="submit-btn">提交</el-button>
     </el-form-item>
     <!-- 快速选择用户登录（限dev环境） -->
     <el-form-item>
@@ -33,7 +33,7 @@
       <el-dialog title="快速选择用户" v-model="selectUsersDialogVisible" width="400px" append-to-body>
         <el-row :gutter="10" style="margin: -20px 0px -10px 0px">
           <el-col v-for="(user, index) in users" :key="index" :span="8">
-            <el-button type="primary" @click="handleFastLogin(user,loginForm)">{{ user.name }}</el-button>
+            <el-button type="primary" @click="handleFastLogin(user,loginFormRef)">{{ user.name }}</el-button>
           </el-col>
         </el-row>
       </el-dialog>
@@ -65,11 +65,11 @@ export default {
       required: true,
     },
   },
-  setup(props) {
+  setup(props:any) {
 
-    const loginUserRef = reactive(props.loginUser)
+    const loginForm = reactive(props.loginUser)
     type FormInstance = InstanceType<typeof ElForm> //  ElForm,来自element-plus，官方文档中这样用
-    const loginForm = ref<FormInstance>()
+    const loginFormRef = ref<FormInstance>()
     // @ts-ignore
     // const { proxy } = getCurrentInstance();
 
@@ -123,11 +123,11 @@ export default {
       }
     ])
     const selectUsersDialogVisible = ref(false)
-    const handleFastLogin = function (user, loginForm) {
-      loginUserRef.username = user.username
-      loginUserRef.password = user.password
+    const handleFastLogin = function (user: { username: any; password: any; }, loginFormRef: any) {
+      loginForm.username = user.username
+      loginForm.password = user.password
       if (!props.captchaState) {
-        handleLogin(loginForm)
+        handleLogin(loginFormRef)
       }
     }
     // 忘记密码
@@ -139,7 +139,7 @@ export default {
     return {
       captchaState,
       loginForm,
-      loginUserRef,
+      loginFormRef,
       getCaptcha,
       handleLogin,
       handleForgot,

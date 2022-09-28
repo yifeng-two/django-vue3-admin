@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 22:33:44
+ * @LastEditTime: 2022-09-26 22:29:11
  * @Description: 
  */
 import * as api from "@/apis";
@@ -10,16 +10,16 @@ import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
 // md5加密
 import md5 from 'js-md5'
+import axiosInstance from '@/utils/axiosInstance'
 
 export default function ({ expose }) {
-    console.log("start expose");
     const dictStore = useDictStore()
+    // dictStore.load()
     // const remoteDict = dict({
     //     cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
     //     url: "/mock/dicts/OpenStatusEnum",
     //     immediate: false
     //   });
-    console.log(dictStore.dicts);
     const genderDict = dict({
         cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
         data: dictStore.dicts['gender']
@@ -28,11 +28,15 @@ export default function ({ expose }) {
         cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
         data: dictStore.dicts['user_type']
     })
+    const statusDict = dict({
+        cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
+        data: dictStore.dicts['button_status_bool']
+    })
 
     const pageRequest = async (query: any) => {
         return await api.getUserList(query);
     };
-    const editRequest = async ({form, row }) => {
+    const editRequest = async ({ form, row }) => {
         form.id = row.id;
         return await api.updateUser(form);
     };
@@ -43,7 +47,7 @@ export default function ({ expose }) {
     const addRequest = async ({ form }) => {
         return await api.addUser(form);
     };
-    
+
     return {
         crudOptions: {
             request: {
@@ -51,6 +55,25 @@ export default function ({ expose }) {
                 addRequest,
                 editRequest,
                 delRequest
+            },
+            rowHandle: {
+                width: 300,
+                // buttons: {
+                //     //自定义按钮，可以任意命名,任意数量
+                //     resetPassword: {
+                //         type: "danger",
+                //         text: '密码重置',
+                //         title: "重置",//鼠标停留显示的信息
+                //         icon: "RefreshLeft",
+                //         size: "default",
+                //         click(opts) {
+                //             console.log("自定义操作列按钮点击", opts);
+                //             selectResetDialogVisible.value = true
+                //             resetPwdForm.id = id
+                //         },
+                //         order: 5
+                //     }
+                // },
             },
             form: {
                 display: "flex"
@@ -102,9 +125,6 @@ export default function ({ expose }) {
                         component: {
                             placeholder: '请输入账号'
                         },
-                        itemProps: {
-                            class: { yxtInput: true }
-                        }
                     }
                 },
                 password: {
@@ -162,33 +182,48 @@ export default function ({ expose }) {
                 dept: {
                     title: "部门",
                     search: { show: true },
-                    type: 'tree-selector',
-                    // dict: {
-                    //     cache: false,
-                    //     isTree: true,
-                    //     url: deptPrefix,
-                    //     value: 'id', // 数据字典中value字段的属性名
-                    //     label: 'name' // 数据字典中label字段的属性名
-                    // },
+                    type: 'dict-tree',
                     column: {
                         minWidth: 140,
                     },
+                    dict: dict({
+                        // cache: false,
+                        isTree: true,
+                        url: '/api/system/dept/',
+                        value: "id", // 数据字典中value字段的属性名
+                        label: "name"// 数据字典中label字段的属性名
+                    }),
                     form: {
-                        rules: [ // 表单校验规则
-                            {
-                                required: true,
-                                message: '必填项'
-                            }
-                        ],
+                        // 表单校验规则
+                        rules: [{
+                            required: true,
+                            message: '必填项'
+                        }],
                         component: {
                             span: 12,
                             pagination: true,
-                            props: { multiple: false }
+                            pmultiple: false,
+                            select: {
+                                valueKey: "id"
+                            },
+                            tree: {
+                                valueKey: "id"
+                            },
+                            props: {
+                                props: {
+                                    // 为什么这里要写两层props
+                                    // 因为props属性名与fs的动态渲染的props命名冲突，所以要多写一层
+                                    label: "name",
+                                    key: "id",
+                                    value: "id",
+                                    valueKey: "id"
+                                }
+                            }
                         }
                     },
                     component: {
                         name: 'foreignKey',
-                        valueBinding: 'dept_name'
+                        vModel: 'dept_name'
                     }
                 },
                 mobile: {
@@ -196,9 +231,9 @@ export default function ({ expose }) {
                     search: {
                         disabled: true
                     },
-                    
+
                     type: 'input',
-                    coulmn:{
+                    coulmn: {
                         minWidth: 110,
                     },
                     form: {
@@ -239,43 +274,29 @@ export default function ({ expose }) {
                         }
                     }
                 },
-                gender: {
-                    title: "性别",
+                roles: {
+                    title: "角色",
                     type: "dict-select",
-                    dict: genderDict,
-                    column: {
-                        width: 70,
-                    },
-                    form: {
-                        // value: 1,
-                        component: {
-                            span: 12
+                    dict: dict({
+                        cache: false,
+                        url: '/api/system/role/',
+                        value: 'id', // 数据字典中value字段的属性名
+                        label: 'name', // 数据字典中label字段的属性名
+                        //本dict将会走此方法来获取远程字典数据
+                        async getData(dict: { url: any; }) {
+                            return axiosInstance({
+                                url: dict.url,
+                                params: {
+                                    page: 1,
+                                    limit: 10
+                                }
+                            }).then(res => {
+                                return res.data.data
+                            })
                         }
-                    },
-                    // component: { props: { color: 'auto' } } // 自动染色
-                },
-                user_type: {
-                    title: '用户类型',
-                    type: 'dict-select ',
-                    dict: userTypeDict,
+                    }),
                     column: {
-                        width: 145,
-                    },
-                    form: {
-                        // value: 0,
-                        component: {
-                            span: 12
-                        }
-                    }
-                },
-                role: {
-                    title: "角色名称",
-                    type: "text",
-                    show: false,
-                    search: { show: true },
-                    // dict:{},
-                    column: {
-                        minWidth: 130,
+                        minWidth: 120,
                     },
                     form: {
                         rules: [ // 表单校验规则
@@ -284,40 +305,58 @@ export default function ({ expose }) {
                                 message: '必填项'
                             }
                         ],
-                        itemProps: {
-                            class: { yxtInput: true }
-                        },
                         component: {
                             span: 12,
-                            pagination: true,
-                            props: { multiple: true },
-                            elProps: {
-                                columns: [
-                                    {
-                                        field: 'name',
-                                        title: '角色名称'
-                                    },
-                                    {
-                                        field: 'key',
-                                        title: '权限标识'
-                                    }
-                                ]
-                            }
+                            // pagination: true,
+                            multiple: true,
                         }
                     },
                     component: {
                         name: 'manyToMany',
-                        valueBinding: 'role_info',
+                        vModel: 'role_info',
                         children: 'name'
+                    }
+                },
+                gender: {
+                    title: "性别",
+                    type: "dict-select",
+                    // dict: genderDict,
+                    dict: dict({
+                        cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
+                        data: dictStore.dicts['gender']
+                    }),
+                    column: {
+                        width: 70,
+                    },
+                    form: {
+                        value: 0,
+                        component: {
+                            span: 12
+                        }
+                    },
+                },
+                user_type: {
+                    title: '用户类型',
+                    type: 'dict-select',
+                    // dict: userTypeDict,
+                    dict: dict({
+                        cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
+                        data: dictStore.dicts['user_type']
+                    }),
+                    column: {
+                        width: 145,
+                    },
+                    form: {
+                        value: 0,
+                        component: {
+                            span: 12
+                        }
                     }
                 },
                 is_active: {
                     title: "状态",
-                    type: "text",
-                    dict: dict({
-                        cloneable: false, // 关闭cloneable，任何情况下，都使用同一个dict
-                        data: dictStore.dicts['button_status_bool']
-                    }),
+                    type: 'dict-radio',
+                    dict: statusDict,
                     column: {
                         width: 70,
                     },
@@ -330,22 +369,22 @@ export default function ({ expose }) {
                 },
                 avatar: {
                     title: '头像',
-                    type: 'avatar-cropper',
+                    type: "cropper-uploader",
                     column: {
                         width: 60,
                         align: 'left',
+                        show: false,
                     },
                     form: {
-                        // component: {
-                        //     props: {
-                        //         elProps: { // 与el-uploader 配置一致
-                        //             multiple: false,
-                        //             limit: 1 // 限制5个文件
-                        //         },
-                        //         sizeLimit: 500 * 1024 // 不能超过限制
-                        //     },
-                        //     span: 24
-                        // },
+                        component: {
+                            // multiple: false,
+                            limit: 1,// 限制5个文件
+                            sizeLimit: 500 * 1024,// 不能超过限制
+                            // span: 24
+                            uploader: {
+                                type: "form"
+                            }
+                        },
                         helper: '限制文件大小不能超过500k'
                     }
                 },

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-18 11:50:27
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 22:22:55
+ * @LastEditTime: 2022-09-27 23:40:01
  * @Description: 
  */
 import axiosInstance from '@/utils/axiosInstance'
@@ -16,18 +16,18 @@ export function getInitDicts(query: any) {
     return axiosInstance({
         url: dictInitUrl,
         method: "get",
-        data: { ...query }
+        params: query,
     })
 }
 
-export function getDictList(query: { dictionary_key: string; }) {
+export function getDictList(query:any) {
     return axiosInstance({
         url: dictBaseUrl,
         method: "get",
-        data: { ...query }
+        params: query,
     }).then(res => {
         // 将列表数据转换为树形数据
-        res.data.data = XEUtils.toArrayTree(res.data.data, { parentKey: 'parent' })
+        res.data.data = XEUtils.toArrayTree(res.data.data, {  parentKey: 'parent' })
         return res
     })
 }
@@ -48,7 +48,7 @@ export function updateDict(obj: { id: string; }) {
     });
 }
 
-export function deleteDict(id) {
+export function deleteDict(id: string) {
     return axiosInstance({
         url: dictBaseUrl + id + '/',
         method: "delete",
@@ -56,7 +56,7 @@ export function deleteDict(id) {
     });
 }
 
-export function batchDeleteDict(keys) {
+export function batchDeleteDict(keys: any) {
     return axiosInstance({
         url: dictBaseUrl + 'multiple_delete/',
         method: 'delete',
@@ -64,7 +64,7 @@ export function batchDeleteDict(keys) {
     })
 }
 
-export function getDict(id) {
+export function getDict(id: string) {
     return axiosInstance({
         url: dictBaseUrl + id + '/',
         method: "get",

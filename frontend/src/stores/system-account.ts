@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:53:46
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-18 23:18:15
+ * @LastEditTime: 2022-09-25 00:05:46
  * @Description: 
  */
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -12,6 +12,7 @@ import { sysUserLogin, sysUserLogout } from '@/apis'
 import { defineStore } from 'pinia'
 import useUserStore from './system-user'
 import useMenuStore from './system-menu'
+import useDictStore from './system-dict'
 
 const useAccountStore = defineStore('system/account', {
   actions: {
@@ -120,8 +121,10 @@ const useAccountStore = defineStore('system/account', {
       //   await dispatch('d2admin/color/load', null, { root: true })
       const userStore = useUserStore()
       const menuStore = useMenuStore()
+      const dictStore = useDictStore()
       await userStore.load()
       await menuStore.asideLoad()
+      await dictStore.init()
     }
   }
 })

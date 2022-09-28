@@ -2,11 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-09-13 21:52:00
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 22:21:56
+ * @LastEditTime: 2022-09-25 13:41:33
  * @Description: 
  */
 import { defineStore } from "pinia";
 import { getDictList, getInitDicts } from '@/apis'
+import useDbStore from "./system-db";
 
 export const BUTTON_VALUE_TO_COLOR_MAPPING = {
     1: 'success',
@@ -20,7 +21,7 @@ export const BUTTON_VALUE_TO_COLOR_MAPPING = {
     Delete: 'danger' // 删除
 }
 
-export function getButtonSettings(objectSettings) {
+export function getButtonSettings(objectSettings: any[]) {
     return objectSettings.map(item => {
         return {
             label: item.label,
@@ -36,33 +37,81 @@ const useDictStore = defineStore('system/dictionary', {
     }),
     actions: {
         /**
-     * @description 本地加载配置
-     * @param {Object} context
-     * @param {String} key
-     */
-        async load(key: string = 'all') {
+         * @description 本地加载配置
+         * @param {Object} context
+         * @param {String} key
+         */
+        async init(key: string = 'all') {
             const query = { dictionary_key: key }
-            getDictList(query).then(async(res: { data: { data: any[]; }; }) => {
-                // store 赋值
-                const newData:any = {} 
-                if (key === 'all') {
-                    res.data.data.map(data => {
-                        data.children.map((children:any) => {
-                            switch (children.type) {
-                                case 1:
-                                    children.value = Number(children.value)
-                                    break
-                                case 6:
-                                    children.value = children.value === 'true'
-                                    break
-                            }
-                        })
-                        newData[data.value] = getButtonSettings(data.children)
+            // await getInitDicts(query).then((res: { data: { data: any[]; }; }) => {
+            //     // store 赋值
+            //     const newData: any = {}
+            //     if (key === 'all') {
+            //         res.data.data.map(data => {
+            //             data.children.map((children: any) => {
+            //                 switch (children.type) {
+            //                     case 1:
+            //                         children.value = Number(children.value)
+            //                         break
+            //                     case 6:
+            //                         children.value = children.value === 'true'
+            //                         break
+            //                 }
+            //             })
+            //             newData[data.value] = getButtonSettings(data.children)
+            //         })
+            //         this.dicts = newData
+            //         // 持久化
+            //          useDbStore().set({
+            //             dbName: 'sys',
+            //             path: 'dicts',
+            //             value: this.dicts,
+            //             user: true
+            //         })
+            //     } else {
+            //         this.dicts = res.data.data[key]
+            //     }
+            // })
+            const res = await getInitDicts(query)
+            // store 赋值
+            const newData: any = {}
+            if (key === 'all') {
+                res.data.data.map(data => {
+                    data.children.map((children: any) => {
+                        switch (children.type) {
+                            case 1:
+                                children.value = Number(children.value)
+                                break
+                            case 6:
+                                children.value = children.value === 'true'
+                                break
+                        }
                     })
-                    this.dicts = newData
-                } else {
-                    this.dicts = res.data.data[key]
-                }
+                    newData[data.value] = getButtonSettings(data.children)
+                })
+                this.dicts = newData
+                // 持久化
+                 useDbStore().set({
+                    dbName: 'sys',
+                    path: 'dicts',
+                    value: this.dicts,
+                    user: false
+                })
+            } else {
+                this.dicts = res.data.data[key]
+            }
+        },
+        /**
+         * @description 从数据库取用户数据
+         * @param {Object} context
+         */
+        async load() {
+            // store 赋值
+            this.dicts = await useDbStore().get({
+                dbName: 'sys',
+                path: 'dicts',
+                defaultValue: {},
+                user: false
             })
         },
         /**
