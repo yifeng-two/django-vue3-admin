@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:54:12
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-20 19:43:37
+ * @LastEditTime: 2022-10-04 12:59:44
  * @Description: 
  */
 import { defineStore } from "pinia";
@@ -21,10 +21,11 @@ const useUserStore = defineStore('system/user', {
      * @param {*} info info
      */
     async set(info: any) {
+      const dbStore = useDbStore()
       // store 赋值
       this.info = info
       // 持久化
-      await useDbStore().set({
+      await dbStore.set({
         dbName: 'sys',
         path: 'user.info',
         value: info,
@@ -36,8 +37,9 @@ const useUserStore = defineStore('system/user', {
      * @param {Object} context
      */
     async load() {
+      const dbStore = useDbStore()
       // store 赋值
-      this.info = await useDbStore().get({
+      this.info = await dbStore.get({
         dbName: 'sys',
         path: 'user.info',
         defaultValue: {},

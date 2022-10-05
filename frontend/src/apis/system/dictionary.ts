@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-18 11:50:27
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-27 23:40:01
+ * @LastEditTime: 2022-09-30 20:25:58
  * @Description: 
  */
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from 'xe-utils';
 
 const dictBaseUrl = "/api/system/dictionary/";

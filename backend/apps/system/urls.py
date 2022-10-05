@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-10 20:56:03
 LastEditors: yifeng
-LastEditTime: 2022-09-26 22:55:21
+LastEditTime: 2022-10-02 12:30:35
 Description: 
 '''
 from django.urls import path, include
@@ -14,6 +14,7 @@ from apps.system.views.roleViews import RoleViewSet
 from apps.system.views.userViews import UserViewSet
 from apps.system.views.dictionaryViews import DictionaryViewSet
 from apps.system.views.systemConfigViews import SystemConfigViewSet
+from apps.system.views.fileViews import FileViewSet
 
 # system_router = DefaultRouter()
 system_router = SimpleRouter()
@@ -26,7 +27,7 @@ system_router.register(r'dictionary', DictionaryViewSet)
 system_router.register(r'system_config', SystemConfigViewSet)
 # system_router.register(r'operation_log', OperationLogViewSet)
 # system_router.register(r'area', AreaViewSet)
-# system_router.register(r'file', FileViewSet)
+system_router.register(r'file', FileViewSet)
 # system_router.register(r'api_white_list', ApiWhiteListViewSet)
 # system_router.register(r'message_center',MessageCenterViewSet)
 

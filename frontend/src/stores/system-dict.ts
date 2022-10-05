@@ -2,12 +2,13 @@
  * @Author: yifeng
  * @Date: 2022-09-13 21:52:00
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 13:41:33
+ * @LastEditTime: 2022-10-04 13:01:23
  * @Description: 
  */
 import { defineStore } from "pinia";
 import { getDictList, getInitDicts } from '@/apis'
 import useDbStore from "./system-db";
+
 
 export const BUTTON_VALUE_TO_COLOR_MAPPING = {
     1: 'success',
@@ -21,14 +22,26 @@ export const BUTTON_VALUE_TO_COLOR_MAPPING = {
     Delete: 'danger' // 删除
 }
 
-export function getButtonSettings(objectSettings: any[]) {
-    return objectSettings.map(item => {
-        return {
-            label: item.label,
-            value: item.value,
-            color: item.color || BUTTON_VALUE_TO_COLOR_MAPPING[item.value]
-        }
-    })
+export function getButtonSettings(type, objectSettings: any[]) {
+    if (type === "system_button") {
+        return objectSettings.map(item => {
+            return {
+                label: item.label,
+                value: item.label,
+                permission: item.value,
+                color: item.color || BUTTON_VALUE_TO_COLOR_MAPPING[item.value]
+            }
+        })
+    } else {
+        return objectSettings.map(item => {
+            return {
+                label: item.label,
+                value: item.value,
+                color: item.color || BUTTON_VALUE_TO_COLOR_MAPPING[item.value]
+            }
+        })
+    }
+
 }
 
 const useDictStore = defineStore('system/dictionary', {
@@ -42,6 +55,7 @@ const useDictStore = defineStore('system/dictionary', {
          * @param {String} key
          */
         async init(key: string = 'all') {
+            const dbStore = useDbStore()
             const query = { dictionary_key: key }
             // await getInitDicts(query).then((res: { data: { data: any[]; }; }) => {
             //     // store 赋值
@@ -87,11 +101,11 @@ const useDictStore = defineStore('system/dictionary', {
                                 break
                         }
                     })
-                    newData[data.value] = getButtonSettings(data.children)
+                    newData[data.value] = getButtonSettings(data.value, data.children)
                 })
                 this.dicts = newData
                 // 持久化
-                 useDbStore().set({
+                dbStore.set({
                     dbName: 'sys',
                     path: 'dicts',
                     value: this.dicts,
@@ -106,8 +120,9 @@ const useDictStore = defineStore('system/dictionary', {
          * @param {Object} context
          */
         async load() {
+            const dbStore = useDbStore()
             // store 赋值
-            this.dicts = await useDbStore().get({
+            this.dicts = await dbStore.get({
                 dbName: 'sys',
                 path: 'dicts',
                 defaultValue: {},

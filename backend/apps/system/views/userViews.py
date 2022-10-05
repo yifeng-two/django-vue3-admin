@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-28 18:55:45
 LastEditors: yifeng
-LastEditTime: 2022-09-03 18:52:42
+LastEditTime: 2022-10-02 09:46:47
 Description: 
 '''
 from rest_framework.permissions import IsAuthenticated
@@ -124,9 +124,9 @@ class UserViewSet(CustomModelViewSet):
         """密码修改"""
         instance = User.objects.filter(id=kwargs.get("pk")).first()
         data = request.data
-        old_pwd = data.get("oldPassword")
-        new_pwd = data.get("newPassword")
-        new_pwd2 = data.get("newPassword2")
+        old_pwd = data.get("oldPwd")
+        new_pwd = data.get("newPwd")
+        new_pwd2 = data.get("newPwd2")
         if instance:
             if new_pwd != new_pwd2:
                 return ErrorResponse(msg="两次密码不匹配")

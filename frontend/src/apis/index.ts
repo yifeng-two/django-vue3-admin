@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-07-17 17:01:45
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 21:44:17
+ * @LastEditTime: 2022-10-05 14:59:23
  * @Description: 
  */
 // appfront/src/api/index.js
@@ -13,3 +13,8 @@ export * from './system/user'
 export * from './system/dictionary'
 export * from './system/role'
 export * from './system/dept'
+export * from './system/menu'
+export * from './system/menuButton'
+
+export * from './system/systemConfig'
+export * from './system/systemLog'

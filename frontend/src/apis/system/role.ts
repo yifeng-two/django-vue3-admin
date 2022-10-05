@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-20 22:15:59
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-20 22:18:25
+ * @LastEditTime: 2022-09-28 22:34:11
  * @Description: 
  */
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 
 export const roleBaseUrl = '/api/system/role/'
 

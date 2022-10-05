@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-22 22:10:39
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-11 13:35:49
+ * @LastEditTime: 2022-10-04 16:42:42
  * @Description: 
 -->
 <template>
@@ -11,10 +11,10 @@
     <div class="forms-container">
       <div class="signin-signup">
         <!-- 登录 -->
-        <login-form :loginUser="loginUser" :rules="rules"/>
+        <login-form :loginUser="loginUser" :rules="rules" />
 
         <!-- 注册 -->
-        <register-form :registerUser="registerUser" :registerRules="registerRules"/>
+        <register-form :registerUser="registerUser" :registerRules="registerRules" />
       </div>
     </div>
     <!-- 左右切换动画 -->
@@ -43,27 +43,13 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts" setup>
+
 import { ref } from "vue";
-import { loginUser, rules,registerUser, registerRules} from "@/utils";
+import { loginUser, rules, registerUser, registerRules } from "@/utils";
 import LoginForm from "@/views/system/loginRegister/components/LoginForm.vue";
 import RegisterForm from "@/views/system/loginRegister/components/RegisterForm.vue";
-export default {
-  name: "LoginRegister",
-  components: { LoginForm, RegisterForm },
-  setup() {
-    // @ts-ignore
-    // const { ctx } = getCurrentInstance();
-    const signUpMode = ref(false);
-    return {
-      signUpMode,
-      loginUser,
-      rules,
-      registerUser,
-      registerRules,
-    };
-  },
-};
+const signUpMode = ref(false);
 
 </script>
 <style scoped>

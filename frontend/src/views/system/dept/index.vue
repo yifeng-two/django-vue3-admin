@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:28:24
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 21:15:23
+ * @LastEditTime: 2022-09-28 22:27:55
  * @Description: 
 -->
 <template>
@@ -17,13 +17,10 @@ import { defineComponent, ref, onMounted, reactive } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
-import useDictStore from '@/stores/system-dict'
 
 export default defineComponent({
     name: "userForm",
     setup() {
-        const dictStore = useDictStore()
-        dictStore.load()
         // crud组件的ref
         const crudRef = ref();
         // crud 配置的ref

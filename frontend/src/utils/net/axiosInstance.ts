@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-07-17 17:01:36
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 21:05:53
+ * @LastEditTime: 2022-09-28 22:34:29
  * @Description: 
  */
 // appfront/src/api/api.js
@@ -11,10 +11,10 @@
 import { get } from 'lodash'
 import axios, { AxiosInstance } from 'axios';
 import qs from 'qs'
-import { AXIOS_BASE_URL } from '../configs';
-import cookies from './common/cookies';
+import { AXIOS_BASE_URL } from '../../configs';
+import cookies from '../common/cookies';
 import router from '@/router';
-import { dataNotFound, errorCreate } from './system/log';
+import { dataNotFound, errorCreate } from '../system/log';
 
 // export interface AxiosResponse<T = any> {
 //   data: T; // 服务端返回的数据

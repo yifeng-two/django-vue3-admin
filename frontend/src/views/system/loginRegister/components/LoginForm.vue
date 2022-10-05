@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-22 22:31:30
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-22 22:39:42
+ * @LastEditTime: 2022-10-04 16:55:23
  * @Description: 
 -->
 <template>
@@ -43,10 +43,13 @@
     <div class="tiparea">
       <p>忘记密码？ <a>立即找回</a></p>
     </div>
+    <div>
+      <system-info></system-info>
+    </div>
   </el-form>
 
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { useRouter } from 'vue-router';
 import type { ElForm } from 'element-plus';
@@ -54,101 +57,84 @@ import type { ElForm } from 'element-plus';
 import * as api from "@/apis/index";
 import useAccountStore from "@/stores/system-account";
 
-export default {
-  props: {
-    loginUser: {
-      type: Object,
-      required: true,
-    },
-    rules: {
-      type: Object,
-      required: true,
-    },
+import systemInfo from "./systemInfo.vue";
+
+const props = defineProps({
+  loginUser: {
+    type: Object,
+    required: true,
   },
-  setup(props:any) {
+  rules: {
+    type: Object,
+    required: true,
+  },
+})
+const loginForm = reactive(props.loginUser)
+type FormInstance = InstanceType<typeof ElForm> //  ElForm,来自element-plus，官方文档中这样用
+const loginFormRef = ref<FormInstance>()
 
-    const loginForm = reactive(props.loginUser)
-    type FormInstance = InstanceType<typeof ElForm> //  ElForm,来自element-plus，官方文档中这样用
-    const loginFormRef = ref<FormInstance>()
-    // @ts-ignore
-    // const { proxy } = getCurrentInstance();
+// 使用路由
+const router = useRouter()
+const accountStore = useAccountStore();
 
-    // 使用路由
-    const router = useRouter()
-    const accountStore = useAccountStore();
+// 获取验证码
+const getCaptcha = () => {
+  if (props.captchaState !== undefined && !props.captchaState) return
+  api.getCaptcha().then((ret) => {
+    props.loginUser.captcha = null
+    props.loginUser.captchaKey = ret.data.key
+    props.loginUser.image_base = ret.data.image_base
+  })
+}
 
-    // 获取验证码
-    const getCaptcha = () => {
-      if (props.captchaState !== undefined && !props.captchaState) return
-      api.getCaptcha().then((ret) => {
-        props.loginUser.captcha = null
-        props.loginUser.captchaKey = ret.data.key
-        props.loginUser.image_base = ret.data.image_base
-      })
-    }
-
-    // 触发登录方法
-    // 登录事件
-    const handleLogin = (formEL: FormInstance | undefined) => {
-      if (!formEL) {
-        return
+// 触发登录方法
+// 登录事件
+const handleLogin = (formEL: FormInstance | undefined) => {
+  if (!formEL) {
+    return
+  } else {
+    formEL.validate((valid) => {
+      if (valid) {
+        accountStore.login(props.loginUser)
+          .then(() => {
+            // 登录成功，存储token到本地存储
+            // 重定向至主页
+            router.push("index")
+          })
       } else {
-        formEL.validate((valid) => {
-          if (valid) {
-            accountStore.login(props.loginUser)
-              .then(() => {
-                // 登录成功，存储token到本地存储
-                // 重定向至主页
-                router.push("workbench")
-              })
-          } else {
-            return false
-          }
-        })
+        return false
       }
-    }
+    })
+  }
+}
 
-    // 快速登录事件
-    // 表单
-    const users = ref([
-      {
-        name: '超管',
-        username: 'superadmin',
-        password: 'admin123456'
-      },
-      {
-        name: '管理员',
-        username: 'admin',
-        password: 'admin123456'
-      }
-    ])
-    const selectUsersDialogVisible = ref(false)
-    const handleFastLogin = function (user: { username: any; password: any; }, loginFormRef: any) {
-      loginForm.username = user.username
-      loginForm.password = user.password
-      if (!props.captchaState) {
-        handleLogin(loginFormRef)
-      }
-    }
-    // 忘记密码
-    const handleForgot = () => {
-      router.push("/forgotpassword")
-    }
-    const captchaState = false
-
-    return {
-      captchaState,
-      loginForm,
-      loginFormRef,
-      getCaptcha,
-      handleLogin,
-      handleForgot,
-      users,
-      selectUsersDialogVisible,
-      handleFastLogin
-    }
+// 快速登录事件
+// 表单
+const users = ref([
+  {
+    name: '超管',
+    username: 'superadmin',
+    password: 'admin123456'
   },
-};
+  {
+    name: '管理员',
+    username: 'admin',
+    password: 'admin123456'
+  }
+])
+const selectUsersDialogVisible = ref(false)
+const handleFastLogin = function (user: { username: any; password: any; }, loginFormRef: any) {
+  loginForm.username = user.username
+  loginForm.password = user.password
+  if (!props.captchaState) {
+    handleLogin(loginFormRef)
+  }
+}
+// 忘记密码
+const handleForgot = () => {
+  router.push("/forgotpassword")
+}
+const captchaState = ref(false)
 </script>
 
 <style scoped>

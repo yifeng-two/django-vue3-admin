@@ -2,15 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-09-25 21:33:02
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-27 19:50:43
+ * @LastEditTime: 2022-09-30 23:25:09
  * @Description: 
  */
 import * as api from "@/apis";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
-// md5加密
-import md5 from 'js-md5'
-import axiosInstance from '@/utils/axiosInstance'
 
 export default function ({ expose }) {
     const dictStore = useDictStore()
@@ -38,12 +35,20 @@ export default function ({ expose }) {
                 editRequest,
                 delRequest
             },
+            table: { //表格配置，对应fs-table
+                // 对应 el-table / a-table的配置
+                border: true,
+                bordered: true,
+                height: "100%",
+                rowKey: 'id',
+                stripe: true,
+                defaultExpandAll:true,
+                slots: {}    // 对应el-table ,a-table的插槽
+            },
             form: {
                 display: "flex",
                 col: { span: 24 },
                 labelWidth: "100px", //
-                // labelCol: { span: 8},
-                // width: '35%'
             },
             rowHandle: {
                 width: 240
@@ -51,13 +56,15 @@ export default function ({ expose }) {
             columns: {
                 _index: {
                     title: "序号",
-                    form: { show: false },
+                    form: { 
+                        show: false,
+                     },
                     column: {
-                        // type: "index",
+                        type: "index",
                         align: "center",
                         width: "55px",
                         columnSetDisabled: true, //禁止在列设置中选择
-                        formatter: (context) => {
+                        formatter: (context:any) => {
                             //计算序号,你可以自定义计算规则，此处为翻页累加
                             const index = context.index ?? 1;
                             const pagination = expose.crudBinding.value.pagination;
@@ -81,7 +88,7 @@ export default function ({ expose }) {
                             const ret = await api.deptLazyLoad();
                             return ret.data;
                         },
-                        getNodes(scope) {
+                        getNodes(scope:any) {
                             // 配置行展示远程获取nodes
                             return new Promise((resolve, reject) => {
                                 const row = scope.row
@@ -113,9 +120,7 @@ export default function ({ expose }) {
                                 children: 'has_children',
                                 load(node, resolve) {
                                     // 懒加载
-                                    console.log(node.data.id);
                                     api.deptLazyLoad({ parent: node.data.id }).then((data) => {
-                                        console.log(node.data.id,data.data);
                                         resolve(data.data)
                                     })
                                 },
@@ -134,9 +139,9 @@ export default function ({ expose }) {
                 name: {
                     title: '部门名称',
                     type: 'input',
-                    sortable: true,
                     search: { show: true },
                     column: {
+                        sortable: true,
                         minWidth: 40,
                     },
                     form: {
@@ -155,7 +160,10 @@ export default function ({ expose }) {
                 },
                 owner: {
                     title: '负责人',
-                    sortable: true,
+                    search: { show: true },
+                    column:{
+                        sortable: true,
+                    },
                     form: {
                         component: {
                             span: 12,
@@ -168,7 +176,9 @@ export default function ({ expose }) {
                 },
                 phone: {
                     title: '联系电话',
-                    sortable: true,
+                    column:{
+                        sortable: true,
+                    },
                     form: {
                         component: {
                             span: 12,
@@ -181,7 +191,9 @@ export default function ({ expose }) {
                 },
                 email: {
                     title: '邮箱',
-                    sortable: true,
+                    column:{
+                        sortable: true,
+                    },
                     form: {
                         component: {
                             span: 12,
@@ -201,10 +213,10 @@ export default function ({ expose }) {
                 },
                 sort: {
                     title: '排序',
-                    sortable: true,
                     type: 'number',
                     column: {
-                        minWidth: 10,
+                        sortable: true,
+                        minWidth: 20,
                         align: 'center',
                     },
                     form: {
@@ -218,7 +230,6 @@ export default function ({ expose }) {
                 status: {
                     title: "状态",
                     type: 'dict-radio',
-                    sortable: true,
                     search: {
                         show: false
                     },
@@ -227,6 +238,7 @@ export default function ({ expose }) {
                         data: dictStore.dicts['button_status_bool']
                     }),
                     column: {
+                        sortable: true,
                         align: 'center',
                         minWidth: 16,
                     },

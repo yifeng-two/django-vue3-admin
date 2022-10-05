@@ -2,24 +2,40 @@
  * @Author: yifeng
  * @Date: 2022-09-17 00:21:03
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 19:56:05
+ * @LastEditTime: 2022-10-03 23:08:26
  * @Description: 
  */
-import layoutHeaderAside from '@/layout/main.vue'
+import layoutHeaderAside from '@/layout/layout.vue'
 const frameIn = [{
     path: '/',
-    redirect: { name: 'workbench' },
+    redirect: { name: 'index' },
     component: layoutHeaderAside,
     children: [
         // 控制台
         {
-            path: '/workbench',
-            name: 'workbench',
+            path: 'index',
+            name: 'index',
             meta: {
                 title: '工作台',
                 auth: true
             },
             component: import('@/views/dashboard/workbench/index.vue')
+        },
+        {
+            path: 'userInfo',
+            name: 'userInfo',
+            meta: {
+                title: '个人信息',
+                auth: true
+            },
+            component: () => import('@/layout/components/headerUser/userInfo.vue')
+        },
+        // 刷新页面 必须保留
+        {
+            path: 'refresh',
+            name: 'refresh',
+            hidden: true,
+            component: import('@/views/system/function/refresh.vue')
         },
         {
             path: '/home',

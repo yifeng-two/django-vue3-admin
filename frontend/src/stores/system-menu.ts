@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:53:57
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-20 19:43:29
+ * @LastEditTime: 2022-10-04 13:00:49
  * @Description: 
  */
 
@@ -52,8 +52,8 @@ const useMenuStore = defineStore('system/menu', {
         * @param {Object} context
         */
         async asideLoad() {
-            // store 赋值
             const dbStore = useDbStore()
+            // store 赋值
             const menu = await dbStore.get({
                 dbName: 'sys',
                 path: 'menu',

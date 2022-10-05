@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:53:46
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 00:05:46
+ * @LastEditTime: 2022-10-04 16:12:27
  * @Description: 
  */
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -13,6 +13,7 @@ import { defineStore } from 'pinia'
 import useUserStore from './system-user'
 import useMenuStore from './system-menu'
 import useDictStore from './system-dict'
+
 
 const useAccountStore = defineStore('system/account', {
   actions: {
@@ -29,6 +30,7 @@ const useAccountStore = defineStore('system/account', {
       captcha = '',
       captchaKey = ''
     }) {
+      const userStore = useUserStore()
       let res = await sysUserLogin({
         username,
         password,
@@ -45,14 +47,13 @@ const useAccountStore = defineStore('system/account', {
       cookies.set('token', res.access)
       cookies.set('refresh', res.refresh)
       // 设置 pinia 用户信息
-      const userStore = useUserStore()
-      userStore.set({
+      await userStore.set({
         name: res.name,
         user_id: res.userId,
         avatar: res.avatar
       })
       // 用户登录后从持久化数据加载一系列的设置
-      this.load()
+      await this.load()
     },
 
     /**
@@ -64,6 +65,8 @@ const useAccountStore = defineStore('system/account', {
       /**
        * @description 注销
        */
+      const userStore = useUserStore()
+      const menuStore = useMenuStore()
       async function logout() {
         await sysUserLogout({ refresh: cookies.get('refresh') }).then(() => {
           // 删除cookie
@@ -71,8 +74,9 @@ const useAccountStore = defineStore('system/account', {
           cookies.remove('uuid')
           cookies.remove('refresh')
         })
-        // 清空 vuex 用户信息
-        await useUserStore().set({})
+        // 清空用户信息
+        await userStore.set({})
+        menuStore.asideSet([]) // 设置侧边栏菜单
         // await dispatch('system/user/set', {}, { root: true })
         // store.commit('system/menu/asideSet', []) // 设置侧边栏菜单
         // store.commit('system/search/init', []) // 设置搜索
@@ -85,20 +89,20 @@ const useAccountStore = defineStore('system/account', {
         router.go(0)
       }
       // 判断是否需要确认
-      // if (confirm) {
-      //   commit('system/gray/set', true, { root: true })
-      //   ElMessageBox.confirm('确定要注销当前用户吗', '注销用户', { type: 'warning' })
-      //     .then(() => {
-      //       commit('system/gray/set', false, { root: true })
-      //       logout()
-      //     })
-      //     .catch(() => {
-      //       commit('system/gray/set', false, { root: true })
-      //       ElMessage({ message: '取消注销操作' })
-      //     })
-      // } else {
-      //   logout()
-      // }
+      if (confirm) {
+        // commit('system/gray/set', true, { root: true })
+        ElMessageBox.confirm('确定要注销当前用户吗', '注销用户', { type: 'warning' })
+          .then(() => {
+            // commit('system/gray/set', false, { root: true })
+            logout()
+          })
+          .catch(() => {
+            // commit('system/gray/set', false, { root: true })
+            ElMessage({ message: '取消注销操作' })
+          })
+      } else {
+        logout()
+      }
     },
     /**
      * @description 用户登录后从持久化数据加载一系列的设置

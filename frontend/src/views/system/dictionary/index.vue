@@ -2,20 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:24:56
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 21:13:04
+ * @LastEditTime: 2022-09-29 19:55:16
  * @Description: 
 -->
 <template>
     <fs-page>
         <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
-            <!-- <template #actionbar-left>
-                <el-button size="default" type="primary" @click="addRow">
-                    <el-icon :size="size" :color="color">
-                        <Plus />
-                    </el-icon>
-                    新增
-                </el-button>
-            </template> -->
             <template #cell-rowHandle-right="scope">
                 <el-button class="row-handle-btn" type="success" :title="scope.row.id"
                     @click="editDictbyCatagory(scope)">

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-18 10:15:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-27 22:03:30
+ * @LastEditTime: 2022-09-28 22:40:00
  * @Description: 
  */
 // 引入fast-crud
@@ -10,7 +10,7 @@ import { FastCrud } from "@fast-crud/fast-crud";
 import "@fast-crud/fast-crud/dist/style.css";
 // element 
 import UiElement from "@fast-crud/ui-element";
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from "xe-utils";
 // // 引入fast-crud
 

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-26 22:29:11
+ * @LastEditTime: 2022-09-28 22:34:03
  * @Description: 
  */
 import * as api from "@/apis";
@@ -10,7 +10,7 @@ import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
 // md5加密
 import md5 from 'js-md5'
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 
 export default function ({ expose }) {
     const dictStore = useDictStore()

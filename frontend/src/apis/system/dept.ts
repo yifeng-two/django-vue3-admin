@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-25 21:33:19
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 22:34:29
+ * @LastEditTime: 2022-09-28 22:34:05
  * @Description: 
  */
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from 'xe-utils';
 
 const deptBaseUrl = "/api/system/dept/";

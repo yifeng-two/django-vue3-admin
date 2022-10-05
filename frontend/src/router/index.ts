@@ -2,14 +2,14 @@
  * @Author: yifeng
  * @Date: 2022-07-30 22:21:45
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 13:57:46
+ * @LastEditTime: 2022-10-04 12:28:11
  * @Description: 
  */
 // 1. 从vue-router 中按需导入两个方法
 // 2. createRouter 方法用于创建路由的实例对象
 // 3. createHashHistory 用于指定路由的工作模式（hash 模式）
 import cookies from '@/utils/common/cookies'
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { checkRouter, getMenu, handleAsideMenu, handleRouter } from '@/utils/system/menu'
 import useMenuStore from '@/stores/system-menu'
 import usePageStore from '@/stores/system-page'
@@ -91,12 +91,14 @@ router.beforeEach((to, from, next) => {
         }
     }
 })
-// router.afterEach(to => {
-//     // 进度条
-//     // NProgress.done()
-//     // 多页控制 打开新的页面
-//     store.dispatch('d2admin/page/open', to)
-//     // 更改标题
-//     util.title(to.meta.title)
-// })
+router.afterEach(to => {
+    // 进度条
+    // NProgress.done()
+    // 多页控制 打开新的页面
+    // store.dispatch('d2admin/page/open', to)
+    const pageStore = usePageStore()
+    pageStore.open(to)
+    // 更改标题
+    // util.title(to.meta.title)
+})
 export default router

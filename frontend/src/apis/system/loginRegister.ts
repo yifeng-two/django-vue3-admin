@@ -2,27 +2,26 @@
  * @Author: yifeng
  * @Date: 2022-09-06 20:14:42
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-15 19:59:03
+ * @LastEditTime: 2022-10-04 16:49:07
  * @Description: 
  */
-import axiosInstance from '@/utils/axiosInstance'
+import axiosInstance from '@/utils/net/axiosInstance'
 
 // 用户登录接口
 export function sysUserLogin(data) {
     return axiosInstance({
         url: "api/login/",
         method: 'post',
-        data
+        data:data
     })
 }
 
 // 用户登出接口
 export function sysUserLogout(data) {
-    // return axiosInstance.post("api/logout/", data)
     return axiosInstance({
         url: "api/logout/",
         method: 'post',
-        data
+        data:data
     })
 }
 

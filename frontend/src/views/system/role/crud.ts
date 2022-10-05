@@ -2,15 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-09-25 18:19:53
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 21:58:04
+ * @LastEditTime: 2022-09-30 23:25:56
  * @Description: 
  */
 import * as api from "@/apis";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
-// md5加密
-import md5 from 'js-md5'
-import axiosInstance from '@/utils/axiosInstance'
 
 export default function ({ expose }) {
     const dictStore = useDictStore()
@@ -123,9 +120,11 @@ export default function ({ expose }) {
                 },
                 sort: {
                     title: '排序',
-                    sortable: true,
-                    width: 80,
                     type: 'number',
+                    column:{
+                        sortable: true,
+                        width: 80,
+                    },
                     form: {
                         value: 1,
                         component: {

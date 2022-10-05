@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-04 22:30:57
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-15 21:17:00
+ * @LastEditTime: 2022-10-02 21:15:33
  * @Description: 
 -->
 <template>
@@ -11,52 +11,28 @@
             <el-icon class="icons" :size="25" @click="collapseMenu">
                 <component :is="iconAsideMenu ? Fold : Expand"></component>
             </el-icon>
-            <h3 style=" color : #fff">首页</h3>
         </div>
         <div class="r-content">
-            <el-dropdown trigger="click" size="mini">
-                <span style="margin-right: 8px; color: #fff;">
-                    <el-icon style="margin-right: 8px; color: #fff;">
-                        <setting />
-                    </el-icon>
-                </span>
-                <header-user/>
-                <!-- <HeaderUser/> -->
-            </el-dropdown>
+            <header-user />
         </div>
     </header>
 </template>
-<script>
+<script lang="ts" setup>
 import { computed } from 'vue';
-import { Fold, Expand} from "@element-plus/icons-vue";
-import HeaderUser from "../headerUser/index.vue"
+import { Fold, Expand } from "@element-plus/icons-vue";
+import headerUser from "@/layout/components/headerUser/headerUser.vue"
 import useMenuStore from '@/stores/system-menu'
 
-export default ({
-    name: 'HeaderBar',
-    component:{
-        HeaderUser
-    },
-    setup() {
-        // 控制左侧显示
-        const menuStore = useMenuStore();
-        const iconAsideMenu = computed(() => {
-            // 这里的数据就是从vuex取得
-            return menuStore.asideCollapse
-        })
-        //控制左侧菜单是否折叠
-        function collapseMenu() {
-            menuStore.asideCollapseToggle()
-        }
-        return {
-            collapseMenu,
-            iconAsideMenu,
-            Expand,
-            Fold
-        }
-    }
+// 控制左侧显示
+const menuStore = useMenuStore();
+const iconAsideMenu = computed(() => {
+    // 这里的数据就是从vuex取得
+    return menuStore.asideCollapse
 })
-
+//控制左侧菜单是否折叠
+const collapseMenu = () => {
+    menuStore.asideCollapseToggle()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -70,12 +46,14 @@ header {
 .l-content {
     display: flex;
     align-items: center;
+
     .el-icon {
         margin-right: 20px;
     }
-    .icons{
+    .icons {
         color: #fff;
     }
+
     // .el-button {
     //     margin-right: 20px;
     // }

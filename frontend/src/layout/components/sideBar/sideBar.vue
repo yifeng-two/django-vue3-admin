@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-04 22:12:49
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-17 17:36:16
+ * @LastEditTime: 2022-10-03 10:19:31
  * @Description: 
 -->
 <template>
@@ -56,101 +56,84 @@
     </el-menu>
 </template>
 
-<script lang="ts" >
+<script lang="ts" setup>
 import useMenuStore from '@/stores/system-menu'
-import { computed } from '@vue/reactivity'
-import { reactive } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Logo from "../logo/logo.vue"
+// const menus = reactive(
+//     [{
+//         path: '/',
+//         name: 'home',
+//         title: '首页',
+//         icon: 'HomeFilled',
+//         url: 'Home'
+//     },
+//     {
+//         path: '/workbench',
+//         name: 'workbench',
+//         title: '工作台',
+//         icon: 'HomeFilled',
+//         url: 'workbench'
+//     },
+//     {
+//         title: '数据管理',
+//         icon: 'DataBoard',
+//         children: [
+//             {
+//                 path: '/orginDataManage',
+//                 name: 'orginDataManage',
+//                 title: '原始数据',
+//                 icon: 'Folder',
+//                 url: 'dataManage/orginDataManage'
+//             },
+//             {
+//                 path: '/detectDataManage',
+//                 name: 'detectDataManage',
+//                 title: '检测数据',
+//                 icon: 'FolderChecked',
+//                 url: 'dataManage/detectDataManage'
+//             }]
+//     },
+//     {
+//         title: '用户管理',
+//         icon: 'user',
+//         children: [
+//             {
+//                 path: '/page1',
+//                 name: 'page1',
+//                 title: '页面1',
+//                 icon: 'setting',
+//                 url: 'Other/PageOne'
+//             },
+//             {
+//                 path: '/page2',
+//                 name: 'page2',
+//                 title: '页面2',
+//                 icon: 'setting',
+//                 url: 'Other/PageTwo'
+//             }]
+//     }]
+// )
+// const fmenu = menus.filter(function (item) {
+//     return !item.children
+// })
+// const smenu = menus.filter(function (item) {
+//     return item.children
+// })
+const menuStore = useMenuStore()
+const menus = menuStore.aside
 
-export default ({
-    name: 'SideBar',
-    components: {
-        Logo
-    },
-    setup() {
-        // const menus = reactive(
-        //     [{
-        //         path: '/',
-        //         name: 'home',
-        //         title: '首页',
-        //         icon: 'HomeFilled',
-        //         url: 'Home'
-        //     },
-        //     {
-        //         path: '/workbench',
-        //         name: 'workbench',
-        //         title: '工作台',
-        //         icon: 'HomeFilled',
-        //         url: 'workbench'
-        //     },
-        //     {
-        //         title: '数据管理',
-        //         icon: 'DataBoard',
-        //         children: [
-        //             {
-        //                 path: '/orginDataManage',
-        //                 name: 'orginDataManage',
-        //                 title: '原始数据',
-        //                 icon: 'Folder',
-        //                 url: 'dataManage/orginDataManage'
-        //             },
-        //             {
-        //                 path: '/detectDataManage',
-        //                 name: 'detectDataManage',
-        //                 title: '检测数据',
-        //                 icon: 'FolderChecked',
-        //                 url: 'dataManage/detectDataManage'
-        //             }]
-        //     },
-        //     {
-        //         title: '用户管理',
-        //         icon: 'user',
-        //         children: [
-        //             {
-        //                 path: '/page1',
-        //                 name: 'page1',
-        //                 title: '页面1',
-        //                 icon: 'setting',
-        //                 url: 'Other/PageOne'
-        //             },
-        //             {
-        //                 path: '/page2',
-        //                 name: 'page2',
-        //                 title: '页面2',
-        //                 icon: 'setting',
-        //                 url: 'Other/PageTwo'
-        //             }]
-        //     }]
-        // )
-        // const fmenu = menus.filter(function (item) {
-        //     return !item.children
-        // })
-        // const smenu = menus.filter(function (item) {
-        //     return item.children
-        // })
-        const menuStore = useMenuStore()
-        const menus = menuStore.aside
-
-        //跳转路由 根据名称跳转
-        const $router = useRouter();
-        function clickMenu(item) {
-            $router.push({ path: item.path })
-        }
-        // 控制左侧显示
-        const asideCollapse = computed(() => {
-            // 这里的数据就是从vuex取得
-            return menuStore.asideCollapse
-        })
-        return {
-            menus,
-            clickMenu,
-            asideCollapse,
-        }
-    }
-
+//跳转路由 根据名称跳转
+const router = useRouter();
+const clickMenu = (item)=> {
+    router.push({ path: item.path })
+}
+// 控制左侧显示
+const asideCollapse = computed(() => {
+    // 这里的数据就是从vuex取得
+    return menuStore.asideCollapse
 })
-
 </script>
 <style lang="scss" scoped>
 .logo {

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-14 21:09:16
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-19 22:12:20
+ * @LastEditTime: 2022-10-03 18:37:10
  * @Description: 
  */
 import XEUtils from 'xe-utils'
@@ -105,7 +105,7 @@ export const handleAsideMenu = function (menuData: any[]) {
         strict: true
     })
     const menu = [{
-        path: '/workbench',
+        path: 'workbench',
         title: '控制台',
         icon: 'HomeFilled'
     },

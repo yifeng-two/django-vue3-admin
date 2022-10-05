@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:29:51
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 19:35:32
+ * @LastEditTime: 2022-10-02 13:45:05
  * @Description: 
 -->
 <template>
@@ -10,9 +10,13 @@
     <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
       <template #cell-rowHandle-right="scope">
         <el-button class="row-handle-btn" type="danger" :title="scope.row.id" @click="resetPassword(scope.row.id)">
-          <el-icon><RefreshLeft /></el-icon>
-          密码重置</el-button>
-        <el-dialog title="密码重置" v-model="selectResetDialogVisible" :close-on-click-modal="false" width="30%" append-to-body="true">
+          <el-icon>
+            <RefreshLeft />
+          </el-icon>
+          密码重置
+        </el-button>
+        <el-dialog title="密码重置" v-model="selectResetDialogVisible" :close-on-click-modal="false" width="30%"
+          append-to-body="true">
           <el-form ref="resetPwdFormRef" :model="resetPwdForm" :rules="pwd2Rule" label-position="top">
             <el-form-item label="密码" prop="pwd">
               <el-input v-model="resetPwdForm.pwd" type="password" show-password clearable autocomplete="off">
@@ -103,14 +107,16 @@ export default defineComponent({
       }
     }
     const pwd2Rule = reactive({
-      pwd: [
-        { required: true, message: '必填项' },
-        { validator: validatePass, trigger: 'blur' }
+      pwd: [{
+        validator: validatePass,
+        trigger: 'blur'
+      }
       ],
       pwd2: [
-        { required: true, message: '必填项' },
-        { validator: validatePass2, trigger: 'blur' }
-      ]
+        {
+          validator: validatePass2,
+          trigger: 'blur'
+        }]
     })
     // 重置密码弹框
     const resetPassword = (id: string) => {

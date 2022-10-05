@@ -7,8 +7,8 @@ from django.db.models import QuerySet
 
 from system.serializers.systemConfigSerializer import SystemConfigInitSerializer
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings')
-django.setup()
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings')
+# django.setup()
 from django.core.management.base import BaseCommand
 
 from backend.backend.settings import BASE_DIR

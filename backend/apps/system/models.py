@@ -1,4 +1,5 @@
 import hashlib
+import os
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from backend.utils.softModel import SoftModel
@@ -102,7 +103,10 @@ class Role(SoftModel):
                                         verbose_name="关联菜单的接口按钮",
                                         db_constraint=False,
                                         help_text="关联菜单的接口按钮")
-    data_range = models.IntegerField(default=0, choices=cfg.DATASCOPE_CHOICES, verbose_name="数据权限范围", help_text="数据权限范围")
+    data_range = models.IntegerField(default=0,
+                                     choices=cfg.DATASCOPE_CHOICES,
+                                     verbose_name="数据权限范围",
+                                     help_text="数据权限范围")
 
     class Meta:
         db_table = "system_role"
@@ -118,9 +122,17 @@ class User(SoftModel, AbstractUser):
     """
     用户
     """
-    username = models.CharField(max_length=150, unique=True, db_index=True, verbose_name="用户账号", help_text="用户账号")
+    username = models.CharField(max_length=150,
+                                unique=True,
+                                db_index=True,
+                                verbose_name="用户账号",
+                                help_text="用户账号")
     name = models.CharField(max_length=40, verbose_name="姓名", help_text="姓名")
-    mobile = models.CharField(max_length=255, verbose_name="电话", null=True, blank=True, help_text="电话")
+    mobile = models.CharField(max_length=255,
+                              verbose_name="电话",
+                              null=True,
+                              blank=True,
+                              help_text="电话")
     email = models.EmailField(max_length=255,
                               verbose_name="邮箱",
                               null=True,
@@ -255,14 +267,21 @@ class ApiWhiteList(SoftModel):
         (2, "PUT"),
         (3, "DELETE"),
     )
-    method = models.IntegerField(default=0, verbose_name="接口请求方法", null=True, blank=True, help_text="接口请求方法")
-    enable_datasource = models.BooleanField(default=True, verbose_name="激活数据权限", help_text="激活数据权限", blank=True)
+    method = models.IntegerField(default=0,
+                                 verbose_name="接口请求方法",
+                                 null=True,
+                                 blank=True,
+                                 help_text="接口请求方法")
+    enable_datasource = models.BooleanField(default=True,
+                                            verbose_name="激活数据权限",
+                                            help_text="激活数据权限",
+                                            blank=True)
 
     class Meta:
         db_table = "api_white_list"
         verbose_name = "接口白名单"
         verbose_name_plural = verbose_name
-        ordering = ("-create_datetime",)
+        ordering = ("-create_datetime", )
 
 
 class Dictionary(SoftModel):
@@ -324,6 +343,32 @@ class Dictionary(SoftModel):
         res = super().delete(using, keep_parents)
         dispatch.refresh_dictionary()
         return res
+
+
+def media_file_name(instance, filename):
+    h = instance.md5sum
+    basename, ext = os.path.splitext(filename)
+    return os.path.join("files", h[0:1], h[1:2], h + ext.lower())
+
+
+class FileList(SoftModel):
+    name = models.CharField(max_length=50, null=True, blank=True, verbose_name="名称", help_text="名称")
+    url = models.FileField(upload_to=media_file_name)
+    md5sum = models.CharField(max_length=36, blank=True, verbose_name="文件md5", help_text="文件md5")
+
+    def save(self, *args, **kwargs):
+        if not self.md5sum:  # file is new
+            md5 = hashlib.md5()
+            for chunk in self.url.chunks():
+                md5.update(chunk)
+            self.md5sum = md5.hexdigest()
+        super(FileList, self).save(*args, **kwargs)
+
+    class Meta:
+        db_table = "system_file_list"
+        verbose_name = "文件管理"
+        verbose_name_plural = verbose_name
+        ordering = ("-create_datetime", )
 
 
 class SystemConfig(SoftModel):

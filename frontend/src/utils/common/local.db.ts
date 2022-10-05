@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:44:38
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-25 13:51:45
+ * @LastEditTime: 2022-10-04 16:43:10
  * @Description: 
  */
-import { LocalStorage, Low, LowSync } from 'lowdb'
+import { LocalStorage,LowSync } from 'lowdb'
 import cookies from './cookies'
 import lodash, { cloneDeep } from 'lodash'
 import { dbAcceptParma, DbSchema } from './structInterface'
@@ -61,7 +61,7 @@ export function pathInit({
  * @param {Object} payload value {*} 需要存储的值
  * @param {Object} payload user {Boolean} 是否区分用户
  */
-export function dbSet({dbName = 'database', path = '', value = '', user= false}:dbAcceptParma) {
+export function dbSet({ dbName = 'database', path = '', value = '', user = false }: dbAcceptParma) {
   db.chain.set(pathInit({
     dbName,
     path,

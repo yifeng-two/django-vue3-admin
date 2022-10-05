@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 '''
 Author: yifeng
 Date: 2022-08-31 20:21:20
 LastEditors: yifeng
-LastEditTime: 2022-09-20 21:54:14
+LastEditTime: 2022-10-04 18:39:02
 Description: 
 '''
 from django.conf import settings
@@ -84,7 +83,6 @@ def init_system_config():
     :return:
     """
     try:
-
         if is_tenants_mode():
             from django_tenants.utils import tenant_context, get_tenant_model
 

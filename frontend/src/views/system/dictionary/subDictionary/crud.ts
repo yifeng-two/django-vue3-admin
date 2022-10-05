@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 21:07:21
+ * @LastEditTime: 2022-09-30 20:44:48
  * @Description: 
  */
 import * as api from "@/apis";
@@ -31,15 +31,6 @@ export default function ({ expose, props, ctx }) {
     };
 
     return {
-        table: {
-            highlightCurrentRow: true,
-            // 监听 el-table的单行选中事件
-            // onCurrentChange(currentRow) {
-            //     console.log("选中行", currentRow);
-            //     asideTableRef.value.setSearchFormData({ form: { gradeId: props.catagoryDict.id } });
-            //     asideTableRef.value.doRefresh();
-            // }
-        },
         crudOptions: {
             request: {
                 pageRequest,
@@ -50,6 +41,7 @@ export default function ({ expose, props, ctx }) {
             form: {
                 col: { span: 24 },
                 display: "flex",
+                labelWidth: "100px", //
             },
             search: {        //查询框配置 ，对应fs-search组件
                 //查询表单配置 ，对应el-from, a-form配置    
@@ -64,6 +56,13 @@ export default function ({ expose, props, ctx }) {
                 height: "100%",
                 rowKey: 'id',
                 stripe: true,
+                highlightCurrentRow: true,
+                // 监听 el-table的单行选中事件
+                // onCurrentChange(currentRow) {
+                //     console.log("选中行", currentRow);
+                //     asideTableRef.value.setSearchFormData({ form: { gradeId: props.catagoryDict.id } });
+                //     asideTableRef.value.doRefresh();
+                // }
                 slots: {}    // 对应el-table ,a-table的插槽
             },
             rowHandle: {
