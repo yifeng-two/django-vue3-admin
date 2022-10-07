@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:27:56
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 15:20:47
+ * @LastEditTime: 2022-10-07 18:49:36
  * @Description: 
 -->
 <template>
@@ -15,7 +15,7 @@
 <script lang="ts">
 
 import { useCrud, useExpose } from '@fast-crud/fast-crud';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import createCrudOptions from "./crud";
 
 export default defineComponent({
@@ -34,7 +34,10 @@ export default defineComponent({
         const { resetCrudOptions } = useCrud({ expose, crudOptions });
         // 你可以调用此方法，重新初始化crud配置
         // resetCrudOptions(options)
-
+        // 页面打开后获取列表数据
+        onMounted(() => {
+            expose.doRefresh();
+        });
         return {
             crudBinding,
             crudRef,

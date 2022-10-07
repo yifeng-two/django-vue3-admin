@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-22 22:31:30
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:55:23
+ * @LastEditTime: 2022-10-07 17:31:25
  * @Description: 
 -->
 <template>
@@ -54,10 +54,21 @@ import { ref, reactive } from "vue";
 import { useRouter } from 'vue-router';
 import type { ElForm } from 'element-plus';
 
-import * as api from "@/apis/index";
+import * as api from "@/apis/system/index";
 import useAccountStore from "@/stores/system-account";
+import useSettingStore from "@/stores/system-setting";
 
 import systemInfo from "./systemInfo.vue";
+import useDbStore from "@/stores/system-db";
+
+// 使用路由
+const router = useRouter()
+const accountStore = useAccountStore();
+const settingStore = useSettingStore()
+const dbStore = useDbStore()
+
+settingStore.init()
+dbStore.databaseClear()
 
 const props = defineProps({
   loginUser: {
@@ -72,10 +83,6 @@ const props = defineProps({
 const loginForm = reactive(props.loginUser)
 type FormInstance = InstanceType<typeof ElForm> //  ElForm,来自element-plus，官方文档中这样用
 const loginFormRef = ref<FormInstance>()
-
-// 使用路由
-const router = useRouter()
-const accountStore = useAccountStore();
 
 // 获取验证码
 const getCaptcha = () => {

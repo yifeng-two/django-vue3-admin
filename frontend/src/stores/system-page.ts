@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-14 20:39:31
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 12:59:25
+ * @LastEditTime: 2022-10-06 15:54:40
  * @Description: 
  */
 import { defineStore } from "pinia";
@@ -76,7 +76,7 @@ const usePageStore = defineStore('system/page', {
          * @param {Object} state state
          * @param {String} name name
          */
-        keepAlivePush( name) {
+        keepAlivePush(name) {
             const keep = cloneDeep(this.keepAlive)
             keep.push(name)
             this.keepAlive = uniq(keep)
@@ -94,10 +94,21 @@ const usePageStore = defineStore('system/page', {
          * @param {Object} state state
          * @param {String} fullPath new fullPath
          */
-        currentSet( fullPath) {
+        currentSet(fullPath) {
             this.current = fullPath
         },
-
+        /**
+         * @description 确认已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
+         * @param {Object} context
+         */
+        isLoaded() {
+            if (this.openedLoaded) return Promise.resolve()
+            return new Promise(resolve => {
+                const timer = setInterval(() => {
+                    if (this.openedLoaded) resolve(clearInterval(timer))
+                }, 10)
+            })
+        },
         /**
          * @class opened
          * @description 从持久化数据载入标签页列表
@@ -189,7 +200,7 @@ const usePageStore = defineStore('system/page', {
          * @param {Object} context
          * @param {Object} payload new tag info
          */
-        async add({tag, params, query, fullPath }) {
+        async add({ tag, params, query, fullPath }) {
             // 设置新的 tag 在新打开一个以前没打开过的页面时使用
             const newTag = tag
             newTag.params = params || newTag.params
@@ -289,7 +300,7 @@ const usePageStore = defineStore('system/page', {
          * @param {Object} context
          * @param {Object} payload { pageSelect: 当前选中的tagName }
          */
-        async closeLeft( { pageSelect } = {}) {
+        async closeLeft({ pageSelect } = {}) {
             const pageAim = pageSelect || this.current
             // console.log('pageAim',pageAim);
             let currentIndex = 0
@@ -344,7 +355,7 @@ const usePageStore = defineStore('system/page', {
          * @param {Object} context
          * @param {Object} payload { pageSelect: 当前选中的tagName }
          */
-        async closeOther( { pageSelect } = {}) {
+        async closeOther({ pageSelect } = {}) {
             const pageAim = pageSelect || this.current
             let currentIndex = 0
             this.opened.forEach((page, index) => {

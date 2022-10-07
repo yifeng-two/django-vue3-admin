@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-10-05 15:20:55
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 16:31:35
+ * @LastEditTime: 2022-10-07 18:46:11
  * @Description: 
  */
-import * as api from "@/apis";
+import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
 
@@ -14,7 +14,7 @@ export default function ({ expose }) {
     const dictStore = useDictStore()
 
     const pageRequest = async (query: any) => {
-        const ret = await api.getSystemLogList(query);
+        const ret = await api.getOperationLogList(query);
         return ret
     };
 

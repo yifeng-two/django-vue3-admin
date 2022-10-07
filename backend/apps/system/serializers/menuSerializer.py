@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-28 19:25:41
 LastEditors: yifeng
-LastEditTime: 2022-09-14 21:23:31
+LastEditTime: 2022-10-06 21:26:01
 Description: 
 '''
 from rest_framework import serializers
@@ -123,7 +123,7 @@ class WebRouterSerializer(CustomModelSerializer):
             return instance.menuPermission.values_list('value', flat=True)
         else:
             # 根据当前角色获取权限按钮id集合
-            permissionIds = self.request.user.role.values_list('permission', flat=True)
+            permissionIds = self.request.user.roles.values_list('permission', flat=True)
             queryset = instance.menuPermission.filter(id__in=permissionIds,
                                                       menu=instance.id).values_list('value',
                                                                                     flat=True)

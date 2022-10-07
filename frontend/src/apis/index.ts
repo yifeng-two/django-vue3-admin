@@ -1,20 +1,21 @@
 /*
  * @Author: yifeng
- * @Date: 2022-07-17 17:01:45
+ * @Date: 2022-10-07 17:32:33
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 14:59:23
+ * @LastEditTime: 2022-10-07 17:48:56
  * @Description: 
  */
-// appfront/src/api/index.js
-// import Vue from 'vue'
+import { assign, map } from 'lodash'
+// import faker from 'faker/locale/zh_CN'
+import { axiosService, axiosInstance } from '@/utils/net/axiosInstance'
+import * as tools from '@/utils/system/tools'
 
-export * from './system/loginRegister'
-export * from './system/user'
-export * from './system/dictionary'
-export * from './system/role'
-export * from './system/dept'
-export * from './system/menu'
-export * from './system/menuButton'
+// const files = require.context('./modules', true, /\.api\.js$/)
+const files = import.meta.glob('/src/apis/system/*.ts')
+const generators = files.keys().map(key => files(key).default)
 
-export * from './system/systemConfig'
-export * from './system/systemLog'
+export default assign({}, ...map(generators, generator => generator({
+    axiosService,
+    axiosInstance,
+    tools
+})))

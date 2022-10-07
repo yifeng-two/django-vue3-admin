@@ -2,66 +2,71 @@
  * @Author: yifeng
  * @Date: 2022-10-04 22:06:40
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 23:21:15
+ * @LastEditTime: 2022-10-07 17:31:18
  * @Description: 
 -->
 <template>
     <div style="padding: 20px">
-        <el-form ref="formRef" :model="form" :rules="rules" label-width="80px">
+        <el-form ref="addContentFormRef" :model="addContentForm" :rules="addContentFormRules" label-width="80px">
             <el-form-item label="所属分组" prop="parent">
-                <el-select v-model="form.parent" placeholder="请选择分组" clearable>
-                    <el-option :label="item.title" :value="item.id" :key="index" v-for="(item,index) in parentOptions">
+                <el-select v-model="addContentForm.parent" placeholder="请选择分组" clearable>
+                    <el-option v-for="(item,index) in parentOptions" :key="index" :label="item.title" :value="item.id">
                     </el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="标题" prop="title">
-                <el-input v-model="form.title" placeholder="请输入" clearable></el-input>
+                <el-input v-model="addContentForm.title" placeholder="请输入" clearable></el-input>
             </el-form-item>
             <el-form-item label="key值" prop="key">
-                <el-input v-model="form.key" placeholder="请输入" clearable></el-input>
+                <el-input v-model="addContentForm.key" placeholder="请输入" clearable></el-input>
             </el-form-item>
             <el-form-item label="表单类型" prop="form_item_type">
-                <el-select v-model="form.form_item_type" placeholder="请选择" clearable>
-                    <el-option :label="item.label" :value="item.value" :key="index"
-                        v-for="(item,index) in dictionary('config_form_type')"></el-option>
+                <el-select v-model="addContentForm.form_item_type" placeholder="请选择" clearable>
+                    <el-option v-for="(item,index) in configFormType" :key="index" :label="item.label"
+                        :value="item.value"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item v-if="[4,5,6].indexOf(form.form_item_type)>-1" label="字典key" prop="setting"
+            <el-form-item v-if="[4,5,6].indexOf(addContentForm.form_item_type)>-1" label="字典key" prop="setting"
                 :rules="[{required: true,message: '不能为空'}]">
-                <el-input v-model="form.setting" placeholder="请输入dictionary中key值" clearable></el-input>
+                <el-input v-model="addContentForm.setting" placeholder="请输入dictionary中key值" clearable></el-input>
             </el-form-item>
-            <div v-if="[13,14].indexOf(form.form_item_type)>-1">
-                <associationTable ref="associationTable" v-model="form.setting" @updateVal="associationTableUpdate">
+            <div v-if="[13,14].indexOf(addContentForm.form_item_type)>-1">
+                <associationTable ref="associationTableForm" v-model="addContentForm.setting"
+                    @updateVal="associationTableUpdate">
                 </associationTable>
             </div>
             <el-form-item label="校验规则">
-                <el-select v-model="form.rule" multiple placeholder="请选择(可多选)" clearable>
+                <el-select v-model="addContentForm.rule" multiple placeholder="请选择(可多选)" clearable>
                     <el-option :label="item.label" :value="item.value" :key="index" v-for="(item,index) in ruleOptions">
                     </el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="提示信息" prop="placeholder">
-                <el-input v-model="form.placeholder" placeholder="请输入" clearable></el-input>
+                <el-input v-model="addContentForm.placeholder" placeholder="请输入" clearable></el-input>
             </el-form-item>
             <el-form-item label="排序" prop="sort">
-                <el-input-number v-model="form.sort" :min="0" :max="99"></el-input-number>
+                <el-input-number v-model="addContentForm.sort" :min="0" :max="99"></el-input-number>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button type="primary" @click="onSubmit(addContentFormRef)">立即创建</el-button>
             </el-form-item>
         </el-form>
     </div>
 </template>
   
 <script lang="ts" setup>
-import * as api from '@/apis'
-import { reactive, ref } from 'vue';
-import { FormInstance } from 'element-plus';
-// import associationTable from './components/associationTable'
+import * as api from '@/apis/system'
+import { onMounted, reactive, ref } from 'vue';
+import { ElMessage, FormInstance, FormRules } from 'element-plus'
+import associationTable from './associationTable.vue'
+import useDictStore from '@/stores/system-dict';
+const dictStore = useDictStore()
+const configFormType = dictStore.dicts['config_form_type']
+
 // inject: ['refreshView'],
 
-const formRef = ref<FormInstance>()
-const form = ref({
+const addContentFormRef = ref<FormInstance>()
+const addContentForm = ref({
     parent: null,
     title: null,
     key: null,
@@ -69,7 +74,7 @@ const form = ref({
     rule: null,
     placeholder: null
 })
-const rules = reactive({
+const addContentFormRules = reactive<FormRules>({
     parent: [
         {
             required: true,
@@ -100,16 +105,20 @@ const rules = reactive({
     ]
 })
 // 父级内容
-const getParent = () => {
-    return api.getSysConfigList({
+const parentOptions =ref<any>()
+const getParent = async () => {
+    const res = await api.getSysConfigList({
         parent__isnull: true,
         limit: 999
-    }).then(res => {
-        const { data } = res.data
-        return data
-    })
+    });
+    const { data } = res.data;
+    parentOptions.value = data
+    return parentOptions
 }
-const parentOptions = reactive(getParent())
+onMounted(()=>{
+    getParent()
+})
+
 const ruleOptions = reactive([
     {
         label: '必填项',
@@ -126,20 +135,21 @@ const ruleOptions = reactive([
 ])
 
 // 提交
-const onSubmit = () => {
+const onSubmit = (formEl: FormInstance | undefined) => {
     associationTableUpdate().then(() => {
-        const form = JSON.parse(JSON.stringify(form))
+        const form = JSON.parse(JSON.stringify(addContentForm))
         const rules = []
         for (const item of form.rule) {
             const strToObj = JSON.parse(item)
             rules.push(strToObj)
         }
         form.rule = rules
-        that.$refs.form.validate((valid) => {
+        if (!formEl) return
+        formEl.validate((valid) => {
             if (valid) {
-                api.createObj(form).then(res => {
-                    this.$message.success('新增成功')
-                    this.refreshView()
+                api.createConfig(form).then(res => {
+                    ElMessage.success('新增成功')
+                    //    refreshView()
                 })
             } else {
                 console.log('error submit!!')
@@ -149,15 +159,16 @@ const onSubmit = () => {
     })
 }
 // 关联表数据更新
-const associationTableUpdate = ()=> {
+const associationTableForm = ref(null)
+const associationTableUpdate = () => {
     return new Promise(function (resolve, reject) {
-        if (that.$refs.associationTable) {
-            if (!that.$refs.associationTable.onSubmit()) {
+        if (associationTableForm) {
+            if (!associationTableForm.onSubmit()) {
                 // eslint-disable-next-line prefer-promise-reject-errors
                 return reject(false)
             }
-            const { formObj } = that.$refs.associationTable
-            that.form.setting = formObj
+            const { formObj } = associationTableForm
+            addContentForm.setting = formObj
             return resolve(true)
         } else {
             return resolve(true)

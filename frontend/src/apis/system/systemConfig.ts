@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-04 14:14:17
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:26:16
+ * @LastEditTime: 2022-10-05 23:02:39
  * @Description: 
  */
 import axiosInstance from '@/utils/net/axiosInstance'
@@ -26,7 +26,7 @@ export function getSysConfigList(query) {
     })
 }
 
-export function saveContent( data) {
+export function saveContent(id, data) {
     return axiosInstance({
         url: sysConfigBaseUrl + 'save_content/',
         method: 'put',

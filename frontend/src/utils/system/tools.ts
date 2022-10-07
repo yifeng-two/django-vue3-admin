@@ -2,12 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-09-17 16:44:14
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-17 17:35:36
+ * @LastEditTime: 2022-10-07 16:52:48
  * @Description: 
  */
 import useLogStore from '@/stores/system-log'
 import { ElMessage } from 'element-plus'
-import log from '../common/log.print'
+import Log from '../common/log.print'
 
 
 /**
@@ -73,7 +73,7 @@ export function errorLog (error) {
   })
   // 打印到控制台
   if (process.env.NODE_ENV === 'development') {
-    log.danger('>>>>>> Error >>>>>>')
+    Log.danger('>>>>>> Error >>>>>>')
     console.log(error)
   }
   // 显示提示

@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-30 20:02:29
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-30 23:23:19
+ * @LastEditTime: 2022-10-07 17:30:59
  * @Description: 
  */
-import * as api from "@/apis";
+import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import axiosInstance from "@/utils/net/axiosInstance";
 import { dict } from "@fast-crud/fast-crud";

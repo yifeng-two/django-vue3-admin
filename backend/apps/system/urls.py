@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-10 20:56:03
 LastEditors: yifeng
-LastEditTime: 2022-10-02 12:30:35
+LastEditTime: 2022-10-07 18:56:15
 Description: 
 '''
 from django.urls import path, include
@@ -15,6 +15,8 @@ from apps.system.views.userViews import UserViewSet
 from apps.system.views.dictionaryViews import DictionaryViewSet
 from apps.system.views.systemConfigViews import SystemConfigViewSet
 from apps.system.views.fileViews import FileViewSet
+from apps.system.views.loginLogViews import LoginLogViewSet
+from apps.system.views.operationLogViews import OperationLogViewSet
 
 # system_router = DefaultRouter()
 system_router = SimpleRouter()
@@ -25,7 +27,7 @@ system_router.register(r'dept', DeptViewSet)
 system_router.register(r'user', UserViewSet)
 system_router.register(r'dictionary', DictionaryViewSet)
 system_router.register(r'system_config', SystemConfigViewSet)
-# system_router.register(r'operation_log', OperationLogViewSet)
+system_router.register(r'operation_log', OperationLogViewSet)
 # system_router.register(r'area', AreaViewSet)
 system_router.register(r'file', FileViewSet)
 # system_router.register(r'api_white_list', ApiWhiteListViewSet)
@@ -41,6 +43,8 @@ urlpatterns = [
          SystemConfigViewSet.as_view({'get': 'get_table_data'})),
     path('system_config/get_relation_info/',
          SystemConfigViewSet.as_view({'get': 'get_relation_info'})),
+    path('login_log/', LoginLogViewSet.as_view({'get': 'list'})),
+    path('login_log/<int:pk>/', LoginLogViewSet.as_view({'get': 'retrieve'})),
     path('dept_lazy_tree/', DeptViewSet.as_view({'get': 'dept_lazy_tree'})),
 ]
 urlpatterns += system_router.urls

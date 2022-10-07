@@ -2,17 +2,18 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:53:46
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:12:27
+ * @LastEditTime: 2022-10-07 17:32:05
  * @Description: 
  */
 import { ElMessage, ElMessageBox } from 'element-plus'
 import cookies from '@/utils/common/cookies'
 import router from '@/router'
-import { sysUserLogin, sysUserLogout } from '@/apis'
+import { sysUserLogin, sysUserLogout } from '@/apis/system'
 import { defineStore } from 'pinia'
 import useUserStore from './system-user'
 import useMenuStore from './system-menu'
 import useDictStore from './system-dict'
+import usePageStore from './system-page'
 
 
 const useAccountStore = defineStore('system/account', {
@@ -126,9 +127,11 @@ const useAccountStore = defineStore('system/account', {
       const userStore = useUserStore()
       const menuStore = useMenuStore()
       const dictStore = useDictStore()
+      const pageStore = usePageStore()
       await userStore.load()
       await menuStore.asideLoad()
-      await dictStore.init()
+      await pageStore.openedLoad()
+      await dictStore.load()
     }
   }
 })

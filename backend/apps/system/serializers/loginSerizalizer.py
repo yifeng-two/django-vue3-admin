@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-09-04 18:07:35
 LastEditors: yifeng
-LastEditTime: 2022-09-04 18:34:45
+LastEditTime: 2022-10-07 20:49:37
 Description: 
 '''
 from datetime import datetime, timedelta
@@ -17,7 +17,7 @@ from django.conf import settings
 from apps.system.models import User
 from apps.system.serializers.customModelSerializer import CustomModelSerializer
 from apps.system.config import dispatch
-
+from backend.utils.requestUtils import save_login_log
 from backend.utils.validator import CustomValidationError
 
 
@@ -66,7 +66,7 @@ class LoginSerializer(TokenObtainPairSerializer):
         request = self.context.get("request")
         request.user = self.user
         # 记录登录日志
-        # save_login_log(request=request)
+        save_login_log(request=request)
         return {"code": 2000, "msg": "请求成功", "data": data}
 
 

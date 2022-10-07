@@ -1,0 +1,372 @@
+[2022-10-07 19:48:33,192][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 19:48:36,753][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 19:48:36,754][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 19:48:36,755][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 19:48:36,980][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:4586][0m
+[2022-10-07 19:48:36,983][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:36,985][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.04, 127.0.0.1:4587][0m
+[2022-10-07 19:48:37,001][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /token/refresh/ 200 [0.00, 127.0.0.1:4592][0m
+[2022-10-07 19:48:37,017][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:37,018][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4587][0m
+[2022-10-07 19:48:37,092][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:37,096][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:37,696][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:4588][0m
+[2022-10-07 19:48:37,700][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:37,703][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.04, 127.0.0.1:4599][0m
+[2022-10-07 19:48:37,871][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:37,873][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4588][0m
+[2022-10-07 19:48:38,066][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:38,082][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:38,119][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.08, 127.0.0.1:4602][0m
+[2022-10-07 19:48:38,133][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.10, 127.0.0.1:4588][0m
+[2022-10-07 19:48:38,138][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.10, 127.0.0.1:4599][0m
+[2022-10-07 19:48:38,765][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4602][0m
+[2022-10-07 19:48:38,775][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:38,814][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.06, 127.0.0.1:4599][0m
+[2022-10-07 19:48:38,886][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:38,889][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4599][0m
+[2022-10-07 19:48:38,994][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:38,997][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4602][0m
+[2022-10-07 19:48:39,000][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4599][0m
+[2022-10-07 19:48:39,010][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:39,012][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4588][0m
+[2022-10-07 19:48:39,836][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:39,858][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:4588][0m
+[2022-10-07 19:48:39,882][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.07, 127.0.0.1:4602][0m
+[2022-10-07 19:48:40,010][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:40,074][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.08, 127.0.0.1:4602][0m
+[2022-10-07 19:48:40,173][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:40,190][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4588][0m
+[2022-10-07 19:48:40,204][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:40,207][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.04, 127.0.0.1:4602][0m
+[2022-10-07 19:48:40,212][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4599][0m
+[2022-10-07 19:48:40,916][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4599][0m
+[2022-10-07 19:48:40,918][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:40,919][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.01, 127.0.0.1:4602][0m
+[2022-10-07 19:48:41,054][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:41,055][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4602][0m
+[2022-10-07 19:48:41,205][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:41,206][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4602][0m
+[2022-10-07 19:48:41,210][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:41,217][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.03, 127.0.0.1:4599][0m
+[2022-10-07 19:48:41,218][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:4588][0m
+[2022-10-07 19:48:41,913][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4588][0m
+[2022-10-07 19:48:41,914][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:41,919][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4599][0m
+[2022-10-07 19:48:42,054][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:42,066][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.04, 127.0.0.1:4588][0m
+[2022-10-07 19:48:42,194][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:42,196][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4599][0m
+[2022-10-07 19:48:42,198][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4588][0m
+[2022-10-07 19:48:42,204][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:42,785][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4625][0m
+[2022-10-07 19:48:42,787][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:42,793][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:43,033][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:43,049][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4626][0m
+[2022-10-07 19:48:43,146][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:43,163][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.05, 127.0.0.1:4626][0m
+[2022-10-07 19:48:43,167][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:4625][0m
+[2022-10-07 19:48:43,169][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:43,173][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.05, 127.0.0.1:4627][0m
+[2022-10-07 19:48:43,920][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4625][0m
+[2022-10-07 19:48:43,921][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:43,923][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:48:44,013][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:44,016][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4627][0m
+[2022-10-07 19:48:44,107][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:44,109][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:48:44,151][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:48:44,158][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:44,159][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.01, 127.0.0.1:4625][0m
+[2022-10-07 19:48:44,210][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:44,219][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4625][0m
+[2022-10-07 19:48:44,221][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:44,222][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4627][0m
+[2022-10-07 19:48:44,224][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:44,437][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:44,438][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4626][0m
+[2022-10-07 19:48:45,217][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:4626][0m
+[2022-10-07 19:48:45,229][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:45,236][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.05, 127.0.0.1:4627][0m
+[2022-10-07 19:48:45,412][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:45,414][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.01, 127.0.0.1:4626][0m
+[2022-10-07 19:48:45,542][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4627][0m
+[2022-10-07 19:48:45,543][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:45,547][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:45,553][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:45,554][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4625][0m
+[2022-10-07 19:48:46,255][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4625][0m
+[2022-10-07 19:48:46,258][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:46,259][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:46,373][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:46,394][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.04, 127.0.0.1:4626][0m
+[2022-10-07 19:48:46,521][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:46,532][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.03, 127.0.0.1:4626][0m
+[2022-10-07 19:48:46,600][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:46,603][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4625][0m
+[2022-10-07 19:48:46,612][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.03, 127.0.0.1:4626][0m
+[2022-10-07 19:48:46,772][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:46,774][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4625][0m
+[2022-10-07 19:48:46,781][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:46,786][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:46,825][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.06, 127.0.0.1:4627][0m
+[2022-10-07 19:48:46,829][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:47,586][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:48:47,587][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:47,588][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:47,757][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:47,758][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4626][0m
+[2022-10-07 19:48:47,874][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:47,876][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:4627][0m
+[2022-10-07 19:48:47,887][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:47,888][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.04, 127.0.0.1:4626][0m
+[2022-10-07 19:48:48,530][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:48:48,532][django.request.log_response():230] [WARNING] Unauthorized: /api/system/menu/web_router/
+[2022-10-07 19:48:48,533][django.channels.server.log_action():157] [WARNING] [31;1mHTTP GET /api/system/menu/web_router/ 401 [0.02, 127.0.0.1:4658][0m
+[2022-10-07 19:48:48,637][django.request.log_response():230] [WARNING] Unauthorized: /token/refresh/
+[2022-10-07 19:48:48,638][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 401 [0.02, 127.0.0.1:4658][0m
+[2022-10-07 19:48:48,795][django.request.log_response():230] [WARNING] Bad Request: /token/refresh/
+[2022-10-07 19:48:48,798][django.channels.server.log_action():157] [WARNING] [31;1mHTTP POST /token/refresh/ 400 [0.02, 127.0.0.1:4658][0m
+[2022-10-07 19:48:50,335][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:4658][0m
+[2022-10-07 19:48:56,801][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 19:48:57,381][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.59, 127.0.0.1:4658][0m
+[2022-10-07 19:48:57,435][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:4658][0m
+[2022-10-07 19:48:57,436][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.03, 127.0.0.1:4627][0m
+[2022-10-07 19:49:07,582][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.44, 127.0.0.1:4627][0m
+[2022-10-07 19:49:09,378][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:49:12,234][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.01, 127.0.0.1:4627][0m
+[2022-10-07 19:50:29,061][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\utils\apiLogMiddleware.py changed, reloading.
+[2022-10-07 19:50:31,057][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 19:51:24,379][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\settings.py changed, reloading.
+[2022-10-07 19:51:26,428][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 19:51:29,157][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 19:51:29,158][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 19:51:29,159][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 19:53:39,872][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.55, 127.0.0.1:5050][0m
+[2022-10-07 19:53:41,940][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.02, 127.0.0.1:5050][0m
+[2022-10-07 19:55:27,002][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\settings.py changed, reloading.
+[2022-10-07 19:55:29,108][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 19:55:32,200][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 19:55:32,201][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 19:55:32,202][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 19:55:34,455][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.04, 127.0.0.1:5174][0m
+[2022-10-07 19:55:35,000][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:5174][0m
+[2022-10-07 19:55:36,631][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:5174][0m
+[2022-10-07 19:55:38,049][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 19:55:38,755][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.72, 127.0.0.1:5174][0m
+[2022-10-07 19:55:38,818][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:5174][0m
+[2022-10-07 19:55:38,819][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:5192][0m
+[2022-10-07 19:55:44,560][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.40, 127.0.0.1:5192][0m
+[2022-10-07 19:55:46,802][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.02, 127.0.0.1:5192][0m
+[2022-10-07 19:55:50,708][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.01, 127.0.0.1:5192][0m
+[2022-10-07 20:07:11,530][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\settings.py changed, reloading.
+[2022-10-07 20:19:24,166][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:19:26,783][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:19:26,784][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:19:26,785][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:19:31,787][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.11, 127.0.0.1:6584][0m
+[2022-10-07 20:19:31,793][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.11, 127.0.0.1:6585][0m
+[2022-10-07 20:19:32,865][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.53, 127.0.0.1:6585][0m
+[2022-10-07 20:19:37,770][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:6585][0m
+[2022-10-07 20:19:38,214][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:6585][0m
+[2022-10-07 20:19:39,365][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:6585][0m
+[2022-10-07 20:19:40,599][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:19:41,193][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.60, 127.0.0.1:6585][0m
+[2022-10-07 20:19:41,249][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.03, 127.0.0.1:6585][0m
+[2022-10-07 20:19:41,251][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:6584][0m
+[2022-10-07 20:19:45,181][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.02, 127.0.0.1:6584][0m
+[2022-10-07 20:19:47,842][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.02, 127.0.0.1:6584][0m
+[2022-10-07 20:19:53,944][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.01, 127.0.0.1:6584][0m
+[2022-10-07 20:22:00,368][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:22:02,380][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:22:05,621][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:22:05,622][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:22:05,623][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:22:09,111][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.44, 127.0.0.1:6760][0m
+[2022-10-07 20:22:12,973][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.01, 127.0.0.1:6760][0m
+[2022-10-07 20:22:17,187][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:6760][0m
+[2022-10-07 20:22:17,666][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:6760][0m
+[2022-10-07 20:22:18,821][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:6760][0m
+[2022-10-07 20:22:20,095][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:22:20,684][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.60, 127.0.0.1:6760][0m
+[2022-10-07 20:22:20,752][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:6760][0m
+[2022-10-07 20:22:20,755][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.05, 127.0.0.1:6788][0m
+[2022-10-07 20:22:24,712][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.01, 127.0.0.1:6788][0m
+[2022-10-07 20:22:36,618][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:22:38,548][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:22:41,336][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:22:41,336][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:22:41,337][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:23:05,864][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:23:07,758][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:23:10,505][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:23:10,506][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:23:10,507][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:24:27,731][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.54, 127.0.0.1:6927][0m
+[2022-10-07 20:24:32,047][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/dictionary/?limit=20&page=1&is_value=0 200 [0.02, 127.0.0.1:6927][0m
+[2022-10-07 20:24:35,109][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.03, 127.0.0.1:6927][0m
+[2022-10-07 20:24:38,604][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.02, 127.0.0.1:6927][0m
+[2022-10-07 20:24:48,133][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/dictionary/?limit=20&page=1&is_value=0 200 [0.02, 127.0.0.1:6927][0m
+[2022-10-07 20:24:50,549][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.03, 127.0.0.1:6927][0m
+[2022-10-07 20:24:55,203][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:6927][0m
+[2022-10-07 20:24:55,731][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:6927][0m
+[2022-10-07 20:24:56,943][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.03, 127.0.0.1:6927][0m
+[2022-10-07 20:24:58,101][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:24:58,685][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.60, 127.0.0.1:6927][0m
+[2022-10-07 20:24:58,756][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:6927][0m
+[2022-10-07 20:24:58,758][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.05, 127.0.0.1:6975][0m
+[2022-10-07 20:25:03,722][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.03, 127.0.0.1:6975][0m
+[2022-10-07 20:26:04,830][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:26:06,705][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:26:09,387][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:26:09,387][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:26:09,388][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:26:17,209][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.47, 127.0.0.1:7064][0m
+[2022-10-07 20:26:21,426][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /api/logout/ 200 [0.00, 127.0.0.1:7068][0m
+[2022-10-07 20:26:21,449][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:7064][0m
+[2022-10-07 20:26:21,952][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /api/init/settings/ 200 [0.00, 127.0.0.1:7068][0m
+[2022-10-07 20:26:21,965][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:7064][0m
+[2022-10-07 20:26:23,144][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.02, 127.0.0.1:7064][0m
+[2022-10-07 20:26:24,561][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /api/login/ 200 [0.00, 127.0.0.1:7068][0m
+[2022-10-07 20:26:24,577][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:26:25,168][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.60, 127.0.0.1:7064][0m
+[2022-10-07 20:26:25,236][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:7064][0m
+[2022-10-07 20:26:25,237][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:7086][0m
+[2022-10-07 20:26:29,630][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.03, 127.0.0.1:7086][0m
+[2022-10-07 20:26:53,176][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\settings.py changed, reloading.
+[2022-10-07 20:26:55,288][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:26:58,453][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:26:58,453][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:26:58,454][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:26:59,172][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.03, 127.0.0.1:7126][0m
+[2022-10-07 20:26:59,688][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:7126][0m
+[2022-10-07 20:27:01,006][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.02, 127.0.0.1:7126][0m
+[2022-10-07 20:27:02,133][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:27:02,726][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.60, 127.0.0.1:7126][0m
+[2022-10-07 20:27:02,792][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:7126][0m
+[2022-10-07 20:27:02,795][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.05, 127.0.0.1:7150][0m
+[2022-10-07 20:27:08,134][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.41, 127.0.0.1:7150][0m
+[2022-10-07 20:27:13,192][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /api/system/login_log/?limit=20&page=1 200 [0.00, 127.0.0.1:7162][0m
+[2022-10-07 20:27:13,213][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.02, 127.0.0.1:7150][0m
+[2022-10-07 20:34:04,448][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\apps\system\views\loginViews.py changed, reloading.
+[2022-10-07 20:34:06,588][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:34:09,331][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:34:09,331][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:34:09,332][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:34:31,449][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\apps\system\views\loginViews.py changed, reloading.
+[2022-10-07 20:34:33,645][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:34:36,900][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:34:36,900][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:34:36,901][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:34:44,289][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:7592][0m
+[2022-10-07 20:34:44,787][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:7592][0m
+[2022-10-07 20:34:46,122][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:7592][0m
+[2022-10-07 20:34:47,529][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:34:48,110][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.59, 127.0.0.1:7592][0m
+[2022-10-07 20:34:48,173][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:7592][0m
+[2022-10-07 20:34:48,175][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:7613][0m
+[2022-10-07 20:34:53,533][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.39, 127.0.0.1:7613][0m
+[2022-10-07 20:35:21,585][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\apps\system\serializers\loginSerizalizer.py changed, reloading.
+[2022-10-07 20:35:23,426][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:35:26,399][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:35:26,400][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:35:26,402][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:35:30,273][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:7659][0m
+[2022-10-07 20:35:30,744][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:7659][0m
+[2022-10-07 20:35:32,210][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.03, 127.0.0.1:7659][0m
+[2022-10-07 20:35:35,940][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:35:36,772][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.84, 127.0.0.1:7659][0m
+[2022-10-07 20:35:36,840][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.05, 127.0.0.1:7659][0m
+[2022-10-07 20:35:36,842][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.05, 127.0.0.1:7683][0m
+[2022-10-07 20:35:41,377][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.42, 127.0.0.1:7683][0m
+[2022-10-07 20:35:44,255][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.02, 127.0.0.1:7683][0m
+[2022-10-07 20:43:17,906][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:43:19,977][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:43:22,981][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:43:22,981][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:43:22,982][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:43:23,021][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:8149][0m
+[2022-10-07 20:43:23,468][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8149][0m
+[2022-10-07 20:43:24,648][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8149][0m
+[2022-10-07 20:43:26,060][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:43:26,640][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.59, 127.0.0.1:8149][0m
+[2022-10-07 20:43:26,702][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:8149][0m
+[2022-10-07 20:43:26,704][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:8148][0m
+[2022-10-07 20:43:33,016][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.50, 127.0.0.1:8148][0m
+[2022-10-07 20:43:47,862][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:43:49,858][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:43:52,715][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:43:52,715][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:43:52,716][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:44:03,162][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:8211][0m
+[2022-10-07 20:44:03,653][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8211][0m
+[2022-10-07 20:44:05,300][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8211][0m
+[2022-10-07 20:45:05,460][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:45:07,291][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:45:10,243][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:45:10,244][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:45:10,245][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:45:36,555][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\apps\system\serializers\loginSerizalizer.py changed, reloading.
+[2022-10-07 20:45:38,882][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:45:41,737][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:45:41,737][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:45:41,738][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:45:41,933][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:45:42,514][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.59, 127.0.0.1:8332][0m
+[2022-10-07 20:45:42,571][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:8332][0m
+[2022-10-07 20:45:42,572][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:8333][0m
+[2022-10-07 20:45:47,559][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.45, 127.0.0.1:8333][0m
+[2022-10-07 20:47:51,102][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\utils\requestUtils.py changed, reloading.
+[2022-10-07 20:47:53,117][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:47:55,843][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:47:55,843][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:47:55,844][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:48:41,013][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\utils\requestUtils.py changed, reloading.
+[2022-10-07 20:48:43,038][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:48:45,892][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:48:45,893][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:48:45,894][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:49:20,398][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:49:22,249][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:49:25,357][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:49:25,357][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:49:25,358][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:49:38,139][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\apps\system\serializers\loginSerizalizer.py changed, reloading.
+[2022-10-07 20:49:40,283][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:49:43,213][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:49:43,214][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:49:43,215][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:49:43,350][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:8604][0m
+[2022-10-07 20:49:43,860][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8604][0m
+[2022-10-07 20:49:45,146][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.02, 127.0.0.1:8604][0m
+[2022-10-07 20:49:46,407][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:49:47,245][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.84, 127.0.0.1:8604][0m
+[2022-10-07 20:49:47,309][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:8604][0m
+[2022-10-07 20:49:47,311][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:8605][0m
+[2022-10-07 20:49:53,627][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.42, 127.0.0.1:8605][0m
+[2022-10-07 20:50:06,096][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:50:08,092][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:50:11,019][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:50:11,020][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:50:11,021][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:50:12,321][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/logout/ 200 [0.02, 127.0.0.1:8658][0m
+[2022-10-07 20:50:12,791][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.01, 127.0.0.1:8658][0m
+[2022-10-07 20:50:13,908][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/settings/ 200 [0.02, 127.0.0.1:8658][0m
+[2022-10-07 20:50:20,398][backend.utils.backends.authenticate():25] [INFO] superadmin 正在使用本地登录...
+[2022-10-07 20:50:21,242][django.channels.server.log_action():147] [INFO] [mHTTP POST /api/login/ 200 [0.85, 127.0.0.1:8658][0m
+[2022-10-07 20:50:21,302][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/init/dictionary/?dictionary_key=all 200 [0.04, 127.0.0.1:8658][0m
+[2022-10-07 20:50:21,305][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/menu/web_router/ 200 [0.04, 127.0.0.1:8682][0m
+[2022-10-07 20:50:27,291][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/login_log/?limit=20&page=1 200 [0.47, 127.0.0.1:8682][0m
+[2022-10-07 20:50:36,537][django.channels.server.log_action():147] [INFO] [mHTTP OPTIONS /api/system/operation_log/?limit=20&page=1 200 [0.00, 127.0.0.1:8711][0m
+[2022-10-07 20:50:36,576][django.channels.server.log_action():147] [INFO] [mHTTP GET /api/system/operation_log/?limit=20&page=1 200 [0.04, 127.0.0.1:8682][0m
+[2022-10-07 20:52:11,178][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\conf\env.py changed, reloading.
+[2022-10-07 20:52:13,162][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:52:15,947][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:52:15,948][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:52:15,949][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000
+[2022-10-07 20:52:22,154][django.utils.autoreload.trigger_reload():251] [INFO] D:\develop\django-vue\backend\backend\settings.py changed, reloading.
+[2022-10-07 20:52:23,987][django.utils.autoreload.run_with_reloader():637] [INFO] Watching for file changes with StatReloader
+[2022-10-07 20:52:26,725][daphne.server.run():114] [INFO] HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+[2022-10-07 20:52:26,726][daphne.server.run():122] [INFO] Configuring endpoint tcp:port=8000:interface=127.0.0.1
+[2022-10-07 20:52:26,726][daphne.server.listen_success():156] [INFO] Listening on TCP address 127.0.0.1:8000

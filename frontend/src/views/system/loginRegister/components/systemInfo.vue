@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-04 14:04:11
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:47:15
+ * @LastEditTime: 2022-10-06 12:44:21
  * @Description: 
 -->
 <template>
@@ -29,7 +29,7 @@ import useSettingStore from '@/stores/system-setting';
 import { computed } from 'vue';
 
 const settingStore = useSettingStore()
-settingStore.init()
+// settingStore.init()
 
 const siteLogo = computed(() => {
     return settingStore.systemInfo['login.site_logo'] || import.meta.glob('./image/dvadmin.png')

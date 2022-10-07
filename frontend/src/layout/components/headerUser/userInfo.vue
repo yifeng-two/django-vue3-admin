@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 10:54:34
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-02 14:39:29
+ * @LastEditTime: 2022-10-07 17:31:29
  * @Description: 
 -->
 <template>
@@ -88,7 +88,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import md5 from 'js-md5'
 import { AXIOS_BASE_URL } from '@/configs';
 import cookies from '@/utils/common/cookies';
-import * as api from "@/apis"
+import * as api from "@/apis/system"
 import useAccountStore from '@/stores/system-account';
 const accountStore = useAccountStore()
 

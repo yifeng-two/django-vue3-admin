@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-10-05 14:52:33
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 16:32:09
+ * @LastEditTime: 2022-10-07 17:31:10
  * @Description: 
  */
-import * as api from "@/apis";
+import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import {dict } from "@fast-crud/fast-crud";
 

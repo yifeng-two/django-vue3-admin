@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 22:34:03
+ * @LastEditTime: 2022-10-07 17:30:57
  * @Description: 
  */
-import * as api from "@/apis";
+import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
 // md5加密

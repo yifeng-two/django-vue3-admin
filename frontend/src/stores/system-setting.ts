@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-11 13:54:05
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:46:34
+ * @LastEditTime: 2022-10-07 17:31:53
  * @Description: 
  */
-import { getSysSettingInitInfo } from '@/apis'
+import { getSysSettingInitInfo } from '@/apis/system'
 import { defineStore } from 'pinia'
 import useDbStore from './system-db'
 
@@ -40,9 +40,9 @@ const useSettingStore = defineStore('system/setting', {
         async init() {
             const dbStore = useDbStore()
             // 请求配置
-            getSysSettingInitInfo().then(async (res) => {
+            getSysSettingInitInfo().then((res) => {
                 // 赋值
-                await dbStore.set({
+                dbStore.set({
                     dbName: 'sys',
                     path: 'settings.init',
                     value: res.data,

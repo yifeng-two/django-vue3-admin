@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from backend.conf.env import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w*(t$cvn10^82)v$!^f189t!r2h#k$&30i)j3f(jlia=tdy&0o'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = locals().get("DEBUG", True)
+ALLOWED_HOSTS = locals().get("ALLOWED_HOSTS", ["*"])
 
 # Application definition
 
@@ -51,45 +52,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    "backend.utils.apiLogMiddleware.ApiLogMiddleware",
 ]
-# 跨域配置
-# 允许全部来源
-CORS_ORIGIN_ALLOW_ALL = True
-# 添加访问白名单
-# CORS_ORIGIN_WHITELIST  =  [
-#     "https://www.example.com",
-#     "http：// localhost：8080",
-#     "http://127.0.0.1:7000"
-# ]
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_METHODS = (
-    'GET',
-    'PUT',
-    'POST',
-    'DELETE',
-    'OPTIONS',
-)
-
-CORS_ALLOW_HEADERS = (
-    'XMLHttpRequest',
-    'X_FILENAME',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-    'Pragma',
-)
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -121,12 +91,12 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'detect',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        "ENGINE": DATABASE_ENGINE,
+        "NAME": DATABASE_NAME,
+        "USER": DATABASE_USER,
+        "PASSWORD": DATABASE_PASSWORD,
+        "HOST": DATABASE_HOST,
+        "PORT": DATABASE_PORT,
     }
 }
 
@@ -184,19 +154,143 @@ MEDIA_URL = "/media/"  # 跟STATIC_URL类似，指定用户可以通过这个url
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 # ================================================= #
+# ********************* 跨域配置 ******************* #
+# ================================================= #
+
+# 允许全部来源
+CORS_ORIGIN_ALLOW_ALL = True
+# 添加访问白名单
+# CORS_ORIGIN_WHITELIST  =  [
+#     "https://www.example.com",
+#     "http：// localhost：8080",
+#     "http://127.0.0.1:7000"
+# ]
+
+# 允许cookie
+CORS_ALLOW_CREDENTIALS = True  # 指明在跨域访问中，后端是否支持对cookie的操作
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'PUT',
+    'POST',
+    'DELETE',
+    'OPTIONS',
+)
+
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)
+
+# ================================================= #
+# ********************* 日志配置 ******************* #
+# ================================================= #
+
+# log 配置部分BEGIN #
+SERVER_LOGS_FILE = os.path.join(BASE_DIR, "logs", "server.log")
+ERROR_LOGS_FILE = os.path.join(BASE_DIR, "logs", "error.log")
+if not os.path.exists(os.path.join(BASE_DIR, "logs")):
+    os.makedirs(os.path.join(BASE_DIR, "logs"))
+
+# 格式:[2020-04-22 23:33:01][micoservice.apps.ready():16] [INFO] 这是一条日志:
+# 格式:[日期][模块.函数名称():行号] [级别] 信息
+STANDARD_LOG_FORMAT = (
+    "[%(asctime)s][%(name)s.%(funcName)s():%(lineno)d] [%(levelname)s] %(message)s")
+CONSOLE_LOG_FORMAT = (
+    "[%(asctime)s][%(name)s.%(funcName)s():%(lineno)d] [%(levelname)s] %(message)s")
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {
+            "format": STANDARD_LOG_FORMAT
+        },
+        "console": {
+            "format": CONSOLE_LOG_FORMAT,
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+        "file": {
+            "format": CONSOLE_LOG_FORMAT,
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": SERVER_LOGS_FILE,
+            "maxBytes": 1024 * 1024 * 100,  # 100 MB
+            "backupCount": 5,  # 最多备份5个
+            "formatter": "standard",
+            "encoding": "utf-8",
+        },
+        "error": {
+            "level": "ERROR",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": ERROR_LOGS_FILE,
+            "maxBytes": 1024 * 1024 * 100,  # 100 MB
+            "backupCount": 3,  # 最多备份3个
+            "formatter": "standard",
+            "encoding": "utf-8",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+    },
+    "loggers": {
+        # default日志
+        "": {
+            "handlers": ["console", "error", "file"],
+            "level": "INFO",
+        },
+        "django": {
+            "handlers": ["console", "error", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "scripts": {
+            "handlers": ["console", "error", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # 数据库相关日志
+        "django.db.backends": {
+            "handlers": [],
+            "propagate": True,
+            "level": "INFO",
+        },
+    },
+}
+
+# ================================================= #
 # *************** REST_FRAMEWORK配置 *************** #
 # ================================================= #
 
 REST_FRAMEWORK = {
-    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",  # 日期时间格式配置
-    "DATE_FORMAT": "%Y-%m-%d",
+    "DATETIME_FORMAT":
+    "%Y-%m-%d %H:%M:%S",  # 日期时间格式配置
+    "DATE_FORMAT":
+    "%Y-%m-%d",
     "DEFAULT_FILTER_BACKENDS": (
         # 'django_filters.rest_framework.DjangoFilterBackend',
         "backend.utils.filters.CustomDjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ),
-    "DEFAULT_PAGINATION_CLASS": "backend.utils.pagination.CustomPagination",  # 自定义分页
+    "DEFAULT_PAGINATION_CLASS":
+    "backend.utils.pagination.CustomPagination",  # 自定义分页
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
@@ -226,7 +320,7 @@ SIMPLE_JWT = {
     # token刷新后的有效时间
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     # 设置前缀
-    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_TYPES": ("JWT", ),
     "ROTATE_REFRESH_TOKENS": True,
 }
 
@@ -260,7 +354,6 @@ SWAGGER_SETTINGS = {
     "DEFAULT_AUTO_SCHEMA_CLASS": "backend.utils.swagger.CustomSwaggerAutoSchema",
 }
 
-
 # ================================================= #
 # **************** 验证码配置  ******************* #
 # ================================================= #
@@ -278,12 +371,12 @@ CAPTCHA_NOISE_FUNCTIONS = (
 # CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge' #字母验证码
 CAPTCHA_CHALLENGE_FUNCT = "captcha.helpers.math_challenge"  # 加减乘除验证码
 
-
 # ================================================= #
 # ******************** 其他配置 ******************** #
 # ================================================= #
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

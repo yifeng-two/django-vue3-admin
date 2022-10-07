@@ -2,11 +2,11 @@
  * @Author: yifeng
  * @Date: 2022-09-13 21:52:00
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 13:01:23
+ * @LastEditTime: 2022-10-07 17:31:56
  * @Description: 
  */
 import { defineStore } from "pinia";
-import { getDictList, getInitDicts } from '@/apis'
+import { getDictList, getInitDicts } from '@/apis/system'
 import useDbStore from "./system-db";
 
 
@@ -22,7 +22,7 @@ export const BUTTON_VALUE_TO_COLOR_MAPPING = {
     Delete: 'danger' // 删除
 }
 
-export function getButtonSettings(type, objectSettings: any[]) {
+export function getButtonSettings(type: string, objectSettings: any[]) {
     if (type === "system_button") {
         return objectSettings.map(item => {
             return {
@@ -90,7 +90,7 @@ const useDictStore = defineStore('system/dictionary', {
             // store 赋值
             const newData: any = {}
             if (key === 'all') {
-                res.data.data.map(data => {
+                res.data.data.map((data: { children: any[]; value: string | number; }) => {
                     data.children.map((children: any) => {
                         switch (children.type) {
                             case 1:

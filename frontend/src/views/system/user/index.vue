@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:29:51
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-02 13:45:05
+ * @LastEditTime: 2022-10-07 17:30:56
  * @Description: 
 -->
 <template>
@@ -48,7 +48,7 @@ import useDictStore from '@/stores/system-dict'
 import { ElMessage, FormInstance } from "element-plus";
 // md5加密
 import md5 from 'js-md5'
-import * as api from "@/apis"
+import * as api from "@/apis/system"
 
 export default defineComponent({
   name: "userForm",

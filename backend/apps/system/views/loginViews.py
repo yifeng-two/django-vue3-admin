@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-09-04 18:23:28
 LastEditors: yifeng
-LastEditTime: 2022-09-04 18:34:35
+LastEditTime: 2022-10-07 20:34:03
 Description: 
 '''
 import base64
@@ -20,7 +20,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from apps.system.serializers.loginSerizalizer import (LoginSerializer, LoginTokenSerializer,
                                                       ApiLoginSerializer)
 from apps.system.config import dispatch
-
 from backend.utils.jsonResponse import ErrorResponse, DetailResponse
 
 

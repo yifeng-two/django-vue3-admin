@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-06 18:54:46
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-03 16:17:28
+ * @LastEditTime: 2022-10-06 00:05:13
  * @Description: 
 -->
 <template>
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, provide, ref } from "vue";
 import { useRouter } from 'vue-router'
 
 import usePageStore from "@/stores/system-page";
@@ -51,6 +51,7 @@ const showView = ref(true)  // 用于点击当前页的router时，刷新当前�
 const keepAlive = computed(() => {
   return pageStore.keepAlive
 })
+
 /**
  * 刷新页面
  */
@@ -60,6 +61,7 @@ const refreshView = () => {
     showView.value = true // DOM更新后再通过v-if添加router-view节点
   })
 }
+provide("refreshView", refreshView)
 /**
  * @description 用来实现带参路由的缓存
  */

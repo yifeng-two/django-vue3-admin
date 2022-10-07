@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:25:10
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-04 16:01:26
+ * @LastEditTime: 2022-10-06 16:14:51
  * @Description: 
  */
 import { database as getDatabase, dbGet, dbSet } from '@/utils/common/local.db'
@@ -19,7 +19,7 @@ const useDbStore = defineStore('system/db', {
      * @param {Object} payload value {*} 需要存储的值
      * @param {Object} payload user {Boolean} 是否区分用户
      */
-    set({dbName = 'database', path = '', value = '', user= false}:dbAcceptParma
+    set({ dbName = 'database', path = '', value = '', user = false }: dbAcceptParma
     ) {
       dbSet({ dbName, path, value, user })
     },
@@ -54,20 +54,20 @@ const useDbStore = defineStore('system/db', {
       })
     },
 
-    // /**
-    //  * @description 清空存储数据库对象
-    //  * @param {Object} context
-    //  * @param {Object} payload user {Boolean} 是否区分用户
-    //  */
-    // databaseClear ({
-    //   user = false
-    // } = {}) {
-    //   return getDatabase({
-    //     user,
-    //     validator: (parms) => false,
-    //     defaultValue: ''
-    //   })
-    // },
+    /**
+     * @description 清空存储数据库对象
+     * @param {Object} context
+     * @param {Object} payload user {Boolean} 是否区分用户
+     */
+    databaseClear({
+      user = false
+    } = {}) {
+      return getDatabase({
+        user:user,
+        validator: (value:any) => false,
+        defaultValue: {}
+      })
+    },
     // /**
     //  * @description 获取存储数据库对象 [ 区分页面 ]
     //  * @param {Object} context

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-07-17 17:01:36
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 22:34:29
+ * @LastEditTime: 2022-10-07 17:43:07
  * @Description: 
  */
 // appfront/src/api/api.js
@@ -12,9 +12,38 @@ import { get } from 'lodash'
 import axios, { AxiosInstance } from 'axios';
 import qs from 'qs'
 import { AXIOS_BASE_URL } from '../../configs';
+// import Adapter from 'axios-mock-adapter'
 import cookies from '../common/cookies';
 import router from '@/router';
-import { dataNotFound, errorCreate } from '../system/log';
+import { dataNotFound, errorCreate } from '../system/tools';
+
+
+function getErrorMessage(msg: any) {
+    if (typeof msg === 'string') {
+        return msg
+      }
+      if (typeof msg === 'object') {
+        if (msg.code === 'token_not_valid') {
+          cookies.remove('token')
+          cookies.remove('uuid')
+          router.push({ path: '/login' })
+          router.go(0)
+          return '登录超时，请重新登录！'
+        }
+        if (msg.code === 'user_not_found') {
+          cookies.remove('token')
+         cookies.remove('uuid')
+          router.push({ path: '/login' })
+          router.go(0)
+          return '用户无效，请重新登录！'
+        }
+        return Object.values(msg)
+      }
+      if (Object.prototype.toString.call(msg).slice(8, -1) === 'Array') {
+        return msg
+      }
+      return msg
+}
 
 // export interface AxiosResponse<T = any> {
 //   data: T; // 服务端返回的数据
@@ -199,8 +228,16 @@ function createRequestFunction(axiosService: AxiosInstance) {
     }
 }
 
-const axiosInstance = createRequestFunction(createAxiosService())
+export const axiosService = createAxiosService()
+export const axiosInstance = createRequestFunction(axiosService)
 export default axiosInstance
+
+// 用于模拟网络请求的实例和请求方法
+export const axiosServiceForMock = createAxiosService()
+export const axiosInstanceForMock = createRequestFunction(axiosServiceForMock)
+
+// 网络请求数据模拟工具
+// export const mock = new Adapter(serviceForMock)
 
 const refreshToken = function () {
     const refresh = cookies.get('refresh')
@@ -214,7 +251,4 @@ const refreshToken = function () {
 }
 
 
-function getErrorMessage(msg: any) {
-    throw new Error('Function not implemented.');
-}
 

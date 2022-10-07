@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-28 19:26:59
 LastEditors: yifeng
-LastEditTime: 2022-09-03 18:51:29
+LastEditTime: 2022-10-06 21:23:45
 Description: 
 '''
 from rest_framework.decorators import action
@@ -37,7 +37,7 @@ class MenuViewSet(CustomModelViewSet):
         user = request.user
         queryset = self.queryset.filter(status=1)
         if not user.is_superuser:
-            menuIds = user.role.values_list('menu__id', flat=True)
+            menuIds = user.roles.values_list('menu__id', flat=True)
             queryset = Menu.objects.filter(id__in=menuIds, status=1)
         serializer = WebRouterSerializer(queryset, many=True, request=request)
         data = serializer.data

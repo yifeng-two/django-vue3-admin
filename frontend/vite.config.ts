@@ -25,7 +25,9 @@ export default ({ mode })=> defineConfig({
   ],
   define: {
     // 'process.env': process.env
-    'process.env': {}
+    'process.env': {
+      'BASE_URL':"http://localhost:5173/"
+    }
   },
   resolve: {
     alias: {

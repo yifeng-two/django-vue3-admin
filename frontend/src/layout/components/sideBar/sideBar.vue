@@ -2,34 +2,13 @@
  * @Author: yifeng
  * @Date: 2022-08-04 22:12:49
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-03 10:19:31
+ * @LastEditTime: 2022-10-06 14:51:57
  * @Description: 
 -->
 <template>
-    <Logo :title_show=asideCollapse />
-    <!-- <el-menu :collapse="asideCollapse" :default-active="$route.path" class="el-menu-vertical-demo"
-        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <el-menu-item :index="item.index" v-for="item in fmenu" :key="item.title" @click="clickMenu(item)">
-            <el-icon>
-                <component :is="item.icon" />
-            </el-icon>
-            <span>{{ item.title }}</span>
-        </el-menu-item>
-        <el-sub-menu :index="item.title" v-for="(item, index) in smenu" :key="index">
-            <template #title>
-                <el-icon>
-                    <component :is="item.icon" />
-                </el-icon>
-                <span>{{ item.title }}</span>
-            </template>
-            <el-menu-item-group>
-                <el-menu-item :index="subItem.path" v-for="(subItem, subIndex) in item.children" :key="subIndex"
-                    @click="clickMenu(subItem)">{{ subItem.title }}</el-menu-item>
-            </el-menu-item-group>
-        </el-sub-menu>
-    </el-menu> -->
+    <logo :title_show=asideCollapse />
     <el-menu :collapse="asideCollapse" :default-active="$route.path" class="el-menu-vertical-demo"
-        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse-transition=false>
         <el-menu-item-group v-for="(menu,index) in menus" :key="index">
             <el-menu-item :index="index" v-if="!menu.children" :key="index" @click="clickMenu(menu)">
                 <el-icon>
@@ -126,7 +105,7 @@ const menus = menuStore.aside
 
 //跳转路由 根据名称跳转
 const router = useRouter();
-const clickMenu = (item)=> {
+const clickMenu = (item: { path: any; }) => {
     router.push({ path: item.path })
 }
 // 控制左侧显示
@@ -136,21 +115,6 @@ const asideCollapse = computed(() => {
 })
 </script>
 <style lang="scss" scoped>
-.logo {
-    color: #ffffff;
-    text-align: center;
-    line-height: 48px;
-    font-size: 18px;
-    font-family: sans-serif;
-    font-weight: bold;
-    display: flex;
-
-    .logo_img {
-        width: 50px;
-        height: 50px;
-    }
-}
-
 .el-menu {
     height: 100vh;
     border: none;
@@ -161,6 +125,22 @@ const asideCollapse = computed(() => {
     min-height: 400px;
     // height: 100vh; //添加此属性
 }
+
+/* 加过渡给侧边导航*/
+.el-aside {
+    overflow-x: hidden;
+    transition: width 0.25s;
+    -webkit-transition: width 0.25s;
+    -moz-transition: width 0.25s;
+    -webkit-transition: width 0.25s;
+    -o-transition: width 0.25s;
+}
+
+/*加快侧边栏文字消失的速度*/
+.el-menu {
+    transition: all 50ms;
+}
+
 
 // 折叠时宽度
 // .el-menu--collapse {

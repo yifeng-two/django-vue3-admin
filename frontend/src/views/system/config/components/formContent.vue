@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-04 22:06:40
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 14:50:45
+ * @LastEditTime: 2022-10-07 17:31:24
  * @Description: 
 -->
 <template>
@@ -19,26 +19,26 @@
                 <el-col :span="12" :offset="2">
                     <!--    文本      -->
                     <el-input :key="item.key" v-if="['text','textarea'].indexOf(item.form_item_type_label) >-1"
-                        :type="item.form_item_type_label" v-model="form[item.key]" :placeholder="item.placeholder"
+                        :type="item.form_item_type_label" v-model="configForm[item.key]" :placeholder="item.placeholder"
                         clearable></el-input>
 
                     <el-input-number :key="item.key" v-else-if="item.form_item_type_label === 'number'"
-                        v-model="form[item.key]" :min="0"></el-input-number>
+                        v-model="configForm[item.key]" :min="0"></el-input-number>
                     <!--     datetime、date、time     -->
                     <el-date-picker v-else-if="['datetime','date','time'].indexOf(item.form_item_type_label) >-1"
-                        v-model="form[item.key]" :key="index" :type="item.form_item_type_label"
+                        v-model="configForm[item.key]" :key="index" :type="item.form_item_type_label"
                         :placeholder="item.placeholder">
                     </el-date-picker>
                     <!--    select      -->
                     <el-select :key="item.key" v-else-if="item.form_item_type_label === 'select'"
-                        v-model="form[item.key]" :placeholder="item.placeholder" clearable>
+                        v-model="configForm[item.key]" :placeholder="item.placeholder" clearable>
                         <el-option v-for="item in dictionary(item.setting)  || []" :key="item.value" :label="item.label"
                             :value="item.value">
                         </el-option>
                     </el-select>
                     <!--    checkbox      -->
                     <el-checkbox-group :key="item.key" v-else-if="item.form_item_type_label === 'checkbox'"
-                        v-model="form[item.key]" :placeholder="item.placeholder">
+                        v-model="configForm[item.key]" :placeholder="item.placeholder">
                         <el-checkbox v-for="item in dictionary(item.setting)  || []" :key="item.value"
                             :label="item.value" :value="item.value">
                             {{ item.label }}
@@ -46,7 +46,7 @@
                     </el-checkbox-group>
                     <!--    radio      -->
                     <el-radio-group :key="item.key" v-else-if="item.form_item_type_label === 'radio'"
-                        v-model="form[item.key]" :placeholder="item.placeholder" clearable>
+                        v-model="configForm[item.key]" :placeholder="item.placeholder" clearable>
                         <el-radio v-for="item in dictionary(item.setting)  || []" :key="item.value" :label="item.label"
                             :value="item.value">
                             {{ item.label }}
@@ -54,7 +54,7 @@
                     </el-radio-group>
                     <!--    switch      -->
                     <el-switch :key="item.key" v-else-if="item.form_item_type_label === 'switch'"
-                        v-model="form[item.key]" active-color="#13ce66" inactive-color="#ff4949">
+                        v-model="configForm[item.key]" style="--el-switch-on-color: #13ce66">
                     </el-switch>
                     <!--     图片     -->
                     <div v-else-if="['img','imgs'].indexOf(item.form_item_type_label) >-1" :key="item.key">
@@ -66,8 +66,14 @@
                             :multiple="item.form_item_type_label!=='img'" :limit="item.form_item_type_label==='img'?1:5"
                             :ref="'imgUpload_'+item.key" :data-keyname="item.key" :file-list="item.value?item.value:[]"
                             list-type="picture-card">
-                            <i class="el-icon-plus"></i>
-                            <div slot="tip" class="el-upload__tip">选取图片后,需手动上传到服务器,并且只能上传jpg/png文件</div>
+                            <el-icon>
+                                <Plus />
+                            </el-icon>
+                            <template #tip>
+                                <div class="el-upload__tip">
+                                    选取图片后,需手动上传到服务器,并且只能上传jpg/png文件
+                                </div>
+                            </template>
                         </el-upload>
                         <el-dialog :visible.sync="dialogImgVisible">
                             <img width="100%" :src="dialogImageUrl" alt="">
@@ -82,8 +88,14 @@
                             :before-remove="(file, fileList)=>{beforeRemove(file, fileList, item.key)}" :limit="5"
                             :ref="'fileUpload_'+item.key" :data-keyname="item.key" :file-list="item.value"
                             list-type="picture-card">
-                            <i class="el-icon-plus"></i>
-                            <div slot="tip" class="el-upload__tip">选取图片后,需手动上传到服务器,并且只能上传jpg/png文件</div>
+                            <el-icon>
+                                <Plus />
+                            </el-icon>
+                            <template #tip>
+                                <div class="el-upload__tip">
+                                    选取图片后,需手动上传到服务器,并且只能上传jpg/png文件
+                                </div>
+                            </template>
                         </el-upload>
                         <el-dialog :visible.sync="dialogImgVisible">
                             <img width="100%" :src="dialogImageUrl" alt="">
@@ -100,7 +112,7 @@
                 }" :pagination="true" :multiple="item.form_item_type_label ==='manytomany'"></table-selector>
                     </div> -->
                     <!--   数组       -->
-                    <!-- <div v-else-if="item.form_item_type_label==='array'" :key="index">
+                    <div v-else-if="item.form_item_type_label==='array'" :key="item.index">
                         <vxe-table border resizable auto-resize show-overflow keep-source :ref="'xTable_'+item.key"
                             height="200" :edit-rules="validRules"
                             :edit-config="{trigger: 'click', mode: 'row', showStatus: true}">
@@ -137,12 +149,12 @@
                         <div>
                             <el-button size="mini" @click="onAppend('xTable_'+item.key)">追加</el-button>
                         </div>
-                    </div> -->
+                    </div>
                 </el-col>
                 <el-col :span="4" :offset="6">{{ props.editableTabsItem.key }}.{{ item.key }}</el-col>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">确定</el-button>
+                <el-button type="primary" @click="onSubmit(configFormRef)">确定</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -150,30 +162,32 @@
   
 <script lang="ts" setup>
 
-import { nextTick, onMounted, reactive, ref, toRefs, watch } from 'vue';
+import { getCurrentInstance, inject, reactive, ref, toRefs, watch } from 'vue';
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 
-import * as api from '@/apis'
+import * as api from '@/apis/system'
 import { AXIOS_BASE_URL } from '@/configs';
 import cookies from '@/utils/common/cookies';
 // import tableSelector from '@/components/table-selector/table-selector'
 
-// inject: ['refreshView'],
+const refreshView = inject['refreshView']
 const props = defineProps({
     options: {
         type: Object
     },
     editableTabsItem: {
         type: Object
-    }
+    },
+
 })
 
 const configFormState = reactive({
     configForm: {},
-    formList: []
+    formList: [] as any
 })
-const { configForm, formList } = toRefs(configFormState)
+const { configForm, formList } = { ...toRefs(configFormState) }
 const configFormRef = ref<FormInstance>()
+// const formShow =ref(props.show)
 const childTableData = ref([])
 const childRemoveVisible = ref(false)
 const validRules = reactive<FormRules>({
@@ -216,7 +230,7 @@ const getInit = async () => {
     const form = {}
     for (const item of data) {
         const key = item.key
-        if (item.value) {
+        if (item.value !== "" || item.value !== null || item.value !== undefined) {
             form[key] = item.value
         } else {
             if ([5, 12, 14].indexOf(item.form_item_type) !== -1) {
@@ -234,7 +248,10 @@ const getInit = async () => {
         // }
     }
     configFormState.configForm = JSON.parse(JSON.stringify(form))
+    // console.log('configForm',configFormState.configForm);
+    // console.log('formList',configFormState.formList);
 }
+
 watch(
     () => props.options,
     (newValue, oldValue) => {
@@ -243,14 +260,19 @@ watch(
         }
     }, { immediate: true }
 )
+
 // 提交数据
-const onSubmit = () => {
-    const that = this
-    const form = JSON.parse(JSON.stringify(this.form))
+const proxy = getCurrentInstance()
+const onSubmit = (formEl: FormInstance | undefined) => {
+    const form = JSON.parse(JSON.stringify(configForm.value))
+    // console.log('form',form);
     const keys = Object.keys(form)
     const values = Object.values(form)
-    for (const index in this.formList) {
-        const item = this.formList[index]
+    // console.log('keys',keys);
+    // console.log('values',values);
+    for (const index in formList.value) {
+        // console.log('formList22',formList.value);
+        const item = formList.value[index]
         // eslint-disable-next-line camelcase
         const form_item_type_label = item.form_item_type_label
 
@@ -258,19 +280,19 @@ const onSubmit = () => {
         if (form_item_type_label === 'array') {
             const parentId = item.id
             const tableName = 'xTable_' + item.key
-            const $table = this.$refs[tableName][0]
+            const $table = proxy.ctx.$refs[tableName][0]
             const { tableData } = $table.getTableData()
             for (const child of tableData) {
                 if (!child.id && child.key && child.value) {
                     child.parent = parentId
                     child.id = null
-                    this.formList.push(child)
+                    formList.value.push(child)
                 }
             }
             // 必填项的判断
             for (const arr of item.rule) {
                 if (arr.required && tableData.length === 0) {
-                    that.$message.error(item.title + '不能为空')
+                    ElMessage.error(item.title + '不能为空')
                     return
                 }
             }
@@ -286,7 +308,7 @@ const onSubmit = () => {
                 if (['img', 'imgs'].indexOf(item.form_item_type_label) > -1) {
                     for (const arr of item.rule) {
                         if (arr.required && item.value === null) {
-                            that.$message.error(item.title + '不能为空')
+                            ElMessage.error(item.title + '不能为空')
                             return
                         }
                     }
@@ -294,13 +316,14 @@ const onSubmit = () => {
             }
         })
     }
-    that.$refs.form.clearValidate()
-    that.$refs.form.validate((valid) => {
+    if (!formEl) return
+    formEl.clearValidate()
+    formEl.validate((valid) => {
         if (valid) {
-            api.saveContent(this.options.id,
-                this.formList).then(res => {
-                    this.$message.success('保存成功')
-                    this.refreshView()
+            api.saveContent(props.options.id,
+                formList.value).then(res => {
+                    ElMessage.success('保存成功')
+                    refreshView()
                 })
         } else {
             console.log('error submit!!')
