@@ -1,8 +1,9 @@
 import useLogStore from '@/stores/system-log'
 import Log from '@/utils/common/log.print'
+import { App } from 'vue'
 
 
-function install(app, options: any = {}) {
+function install(app:App<Element>, options: any = {}) {
 
   const logStore = useLogStore()
   // 快速打印 log

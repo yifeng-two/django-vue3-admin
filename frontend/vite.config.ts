@@ -23,12 +23,12 @@ export default ({ mode })=> defineConfig({
       /* PurgeIcons Options */
     })
   ],
-  define: {
-    // 'process.env': process.env
-    'process.env': {
-      'BASE_URL':"http://localhost:5173/"
-    }
-  },
+  // define: {
+  //   // 'process.env': process.env
+  //   'process.env': {
+  //     'BASE_URL':"http://localhost:5173/"
+  //   }
+  // },
   resolve: {
     alias: {
       '@': "/src/",

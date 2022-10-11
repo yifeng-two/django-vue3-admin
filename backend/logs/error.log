@@ -1,0 +1,673 @@
+[2022-10-10 20:00:39,578][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/role/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\cursors.py", line 210, in execute
+    res = self._query(query)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\cursors.py", line 325, in _query
+    db.query(q)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry 'test' for key 'system_role.key'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 64, in create
+    self.perform_create(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 24, in perform_create
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\roleSerializer.py", line 59, in save
+    data = super().save(**kwargs)
+  File "D:\develop\django-vue\backend\apps\system\serializers\customModelSerializer.py", line 59, in save
+    return super().save(**kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "D:\develop\django-vue\backend\apps\system\serializers\customModelSerializer.py", line 76, in create
+    return super().create(validated_data)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\base.py", line 921, in _do_insert
+    using=using, raw=raw,
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\cursors.py", line 210, in execute
+    res = self._query(query)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\cursors.py", line 325, in _query
+    db.query(q)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\MySQLdb\connections.py", line 259, in query
+    _mysql.connection.query(self, query)
+django.db.utils.IntegrityError: (1062, "Duplicate entry 'test' for key 'system_role.key'")
+[2022-10-10 20:00:39,590][django.channels.server.log_action():160] [ERROR] [35;1mHTTP POST /api/system/role/ 500 [1.62, 127.0.0.1:9546][0m
+[2022-10-10 21:31:25,261][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-10 21:31:25,267][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.10, 127.0.0.1:3265][0m
+[2022-10-10 21:38:06,961][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-10 21:38:06,967][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.08, 127.0.0.1:3698][0m
+[2022-10-10 21:46:15,438][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-10 21:46:15,442][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.09, 127.0.0.1:4211][0m
+[2022-10-10 21:46:36,481][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-10 21:46:36,485][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.07, 127.0.0.1:4211][0m
+[2022-10-11 20:16:38,109][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-11 20:16:38,117][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.38, 127.0.0.1:8810][0m
+[2022-10-11 20:24:44,541][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-11 20:24:44,546][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.07, 127.0.0.1:9290][0m
+[2022-10-11 20:40:32,205][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-11 20:40:32,212][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.08, 127.0.0.1:10272][0m
+[2022-10-11 20:40:46,644][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.post.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'post'
+[2022-10-11 20:40:46,649][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.08, 127.0.0.1:10272][0m
+[2022-10-11 20:48:52,418][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/4/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\develop\django-vue\backend\backend\utils\viewSet.py", line 89, in update
+    self.perform_update(serializer)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+  File "D:\develop\django-vue\backend\apps\system\serializers\userSerializer.py", line 115, in save
+    data.postion.set(self.initial_data.get("post", []))
+AttributeError: 'User' object has no attribute 'postion'
+[2022-10-11 20:48:52,427][django.channels.server.log_action():160] [ERROR] [35;1mHTTP PUT /api/system/user/4/ 500 [0.61, 127.0.0.1:10821][0m
+[2022-10-11 22:00:05,837][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/role/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:05,926][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/role/?limit=20&page=1 500 [0.28, 127.0.0.1:2280][0m
+[2022-10-11 22:00:07,826][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/dept/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:07,854][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/user/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:07,878][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/role/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:07,943][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/dept/ 500 [0.21, 127.0.0.1:2280][0m
+[2022-10-11 22:00:07,947][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/user/ 500 [0.21, 127.0.0.1:2285][0m
+[2022-10-11 22:00:07,949][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/role/?page=1&limit=10 500 [0.21, 127.0.0.1:2278][0m
+[2022-10-11 22:00:10,070][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/dept/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:10,097][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/dept_lazy_tree/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:10,102][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/dept/?limit=20&page=1 500 [0.12, 127.0.0.1:2285][0m
+[2022-10-11 22:00:10,119][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/dept_lazy_tree/ 500 [0.14, 127.0.0.1:2278][0m
+[2022-10-11 22:00:15,237][django.request.log_response():230] [ERROR] Internal Server Error: /api/system/role/
+Traceback (most recent call last):
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 472, in thread_handler
+    raise exc_info[1]
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\exception.py", line 38, in inner
+    response = await get_response(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\core\handlers\base.py", line 233, in _get_response_async
+    response = await wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 435, in __call__
+    ret = await asyncio.wait_for(future, timeout=None)
+  File "D:\Miniconda3\envs\pytorch\lib\asyncio\tasks.py", line 388, in wait_for
+    return await fut
+  File "D:\Miniconda3\envs\pytorch\lib\concurrent\futures\thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\asgiref\sync.py", line 476, in thread_handler
+    return func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 415, in initial
+    self.check_permissions(request)
+  File "D:\Miniconda3\envs\pytorch\lib\site-packages\rest_framework\views.py", line 332, in check_permissions
+    if not permission.has_permission(request, self):
+  File "D:\develop\django-vue\backend\backend\utils\permission.py", line 85, in has_permission
+    userApiList = request.user.role.values('permission__api',
+AttributeError: 'User' object has no attribute 'role'
+[2022-10-11 22:00:15,313][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/role/?limit=20&page=1 500 [0.13, 127.0.0.1:2278][0m

@@ -7,12 +7,15 @@
  * @文件介绍: 权限控制
  */
 import XEUtils from 'xe-utils'
-import router from '@/router'
+import { useRouter } from 'vue-router'
 export default {
-  hasPermissions (value) {
-    if (process.env.VUE_APP_PM_ENABLED) {
-      const path = router.history.current.path// 当前路由
-      let need = []
+  hasPermissions (value: any) {
+    const router = useRouter()
+    if (import.meta.env.VITE_APP_PM_ENABLED) {
+      const path = router.currentRoute.value.path;// 当前路由
+      console.log('path',path);
+      
+      let need: any[] = []
       if (typeof value === 'string') {
         need.push(value)
       } else if (value && value instanceof Array && value.length > 0) {
@@ -33,6 +36,8 @@ export default {
           }
         }
       }
+      console.log(permissionList.includes(path + ':' + value));
+      
       return permissionList.includes(path + ':' + value)
     }
     return true

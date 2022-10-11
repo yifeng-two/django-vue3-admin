@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-09-27 19:35:36
 LastEditors: yifeng
-LastEditTime: 2022-09-27 19:36:44
+LastEditTime: 2022-10-11 21:57:39
 Description: 
 '''
 import operator
@@ -95,7 +95,7 @@ class DataLevelPermissionsFilter(BaseFilterBackend):
                 return queryset
 
             # 2. 如果用户没有关联角色则返回本部门数据
-            if not hasattr(request.user, "role"):
+            if not hasattr(request.user, "roles"):
                 return queryset.filter(dept_belong_id=user_dept_id)
 
             # 3. 根据所有角色 获取所有权限范围
@@ -104,7 +104,7 @@ class DataLevelPermissionsFilter(BaseFilterBackend):
             # (2, "本部门数据权限"),
             # (3, "全部数据权限"),
             # (4, "自定数据权限")
-            role_list = request.user.role.filter(status=1).values("admin", "data_range")
+            role_list = request.user.roles.filter(status=1).values("admin", "data_range")
             dataScope_list = []  # 权限范围列表
             for ele in role_list:
                 # 判断用户是否为超级管理员角色/如果拥有[全部数据权限]则返回所有数据
@@ -124,7 +124,7 @@ class DataLevelPermissionsFilter(BaseFilterBackend):
             for ele in dataScope_list:
                 if ele == 4:
                     dept_list.extend(
-                        request.user.role.filter(status=1).values_list(
+                        request.user.roles.filter(status=1).values_list(
                             "dept__id", flat=True
                         )
                     )

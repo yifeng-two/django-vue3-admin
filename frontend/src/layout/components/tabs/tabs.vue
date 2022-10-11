@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-02 15:49:04
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-05 16:41:58
+ * @LastEditTime: 2022-10-11 21:21:32
  * @Description: 
 -->
 <template>
@@ -193,6 +193,8 @@ const handleTabRemove = (tagName: any) => {
     justify-content: space-between;
 }
 
+
+
 .tabs-context-left {
     height: 100%;
 
@@ -208,8 +210,11 @@ const handleTabRemove = (tagName: any) => {
         border-bottom-color: #fff;
     }
 
-    .multiple-page-context .el-tabs--card .el-tabs__header .el-tabs__nav {
-        border: 1px solid var(#384857);
+    .el-tabs--card>.el-tabs__header .el-tabs__nav {
+        border: 1px solid #555555;
+        border-bottom: none;
+        border-radius: 2px 2px 0 0;
+        box-sizing: border-box;
     }
 
     // .el-tabs--card>.el-tabs__header .el-tabs__nav {
@@ -218,6 +223,7 @@ const handleTabRemove = (tagName: any) => {
     //     border-radius: 2px 2px 0 0;
     //     box-sizing: border-box;
     // }
+
 
     .el-tabs__header {
         padding: 0;

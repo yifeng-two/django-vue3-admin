@@ -2,12 +2,15 @@
  * @Author: yifeng
  * @Date: 2022-07-30 22:21:45
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-06 21:44:04
+ * @LastEditTime: 2022-10-10 18:51:42
  * @Description: 
  */
 // 1. 从vue-router 中按需导入两个方法
 // 2. createRouter 方法用于创建路由的实例对象
 // 3. createHashHistory 用于指定路由的工作模式（hash 模式）
+// 进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'  // 导入样式，否则看不到效果
 import cookies from '@/utils/common/cookies'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { checkRouter, getMenu, handleAsideMenu, handleRouter } from '@/utils/system/menu'
@@ -15,10 +18,10 @@ import useMenuStore from '@/stores/system-menu'
 import usePageStore from '@/stores/system-page'
 import routes from '@/router/staticRoutes'
 import useDictStore from '@/stores/system-dict'
-// import.meta.env.VITE_APP_VERSION
-const router = createRouter({
+// console.log(import.meta.env);
 
-    history: createWebHashHistory(process.env.BASE_URL),
+const router = createRouter({
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes,
 })
 // console.log('process.env.BASE_URL',process.env.BASE_URL);
@@ -39,6 +42,8 @@ router.beforeEach((to, from, next) => {
     const whiteList = ['/login', '/auth-redirect', '/bind', '/register', '/oauth2']
     // 确认已经加载多标签页数据 https://github.com/d2-projects/d2-admin/issues/201
     pageStore.isLoaded()
+    // 进度条
+    NProgress.start()
     // 验证当前路由所有的匹配中是否需要有登录验证的
     // 这里将cookie里是否存有token作为验证是否登录的条件
     // 获取token
@@ -90,13 +95,13 @@ router.beforeEach((to, from, next) => {
                     redirect: to.fullPath
                 }
             })
-            // NProgress.done()
+            NProgress.done()
         }
     }
 })
 router.afterEach(to => {
     // 进度条
-    // NProgress.done()
+    NProgress.done()
     // 多页控制 打开新的页面
     // store.dispatch('d2admin/page/open', to)
     const pageStore = usePageStore()

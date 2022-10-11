@@ -57,7 +57,7 @@ class Dept(SoftModel):
         return self.name
 
 
-class Postion(SoftModel):
+class Position(SoftModel):
     """
     职位/岗位
     """
@@ -71,7 +71,7 @@ class Postion(SoftModel):
                                  help_text="岗位状态")
 
     class Meta:
-        db_table = "system_postion"
+        db_table = "system_position"
         verbose_name = "岗位表"
         verbose_name_plural = verbose_name
         ordering = ("sort", )
@@ -89,7 +89,7 @@ class Role(SoftModel):
     sort = models.IntegerField(default=1, verbose_name="角色顺序", help_text="角色顺序")
     status = models.BooleanField(default=True, verbose_name="角色状态", help_text="角色状态")
     admin = models.BooleanField(default=False, verbose_name="是否为admin", help_text="是否为admin")
-    datas = models.CharField('数据权限', max_length=50, choices=cfg.DATA_TYPE_CHOICES, default='本级及以下')
+    # datas = models.CharField('数据权限', max_length=50, choices=cfg.DATA_TYPE_CHOICES, default='本级及以下')
     dept = models.ManyToManyField(to="Dept",
                                   verbose_name="数据权限-关联部门",
                                   db_constraint=False,
@@ -159,7 +159,7 @@ class User(SoftModel, AbstractUser):
                              null=True,
                              blank=True,
                              help_text="关联部门")
-    position = models.ManyToManyField(to="Postion", blank=True, verbose_name='岗位')
+    position = models.ManyToManyField(to="Position", blank=True, verbose_name='岗位')
     roles = models.ManyToManyField(to="Role", blank=True, verbose_name='角色')
 
     def set_password(self, raw_password):

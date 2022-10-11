@@ -2,10 +2,10 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:44:38
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 14:07:27
+ * @LastEditTime: 2022-10-11 22:26:04
  * @Description: 
  */
-import { JSONFile, LocalStorage, LowSync } from 'lowdb'
+import { LocalStorage, LowSync } from 'lowdb'
 import cookies from './cookies'
 import lodash, { cloneDeep } from 'lodash'
 import { dbAcceptParma, DbSchema } from './structInterface'
@@ -19,13 +19,12 @@ const adapter = new LocalStorage<DbSchema>(`system-${import.meta.env.VITE_APP_VE
 // const db = new LowSync(adapter)
 const db = new LowWithLodash(adapter)
 
-db.data ||= {
-  sys: {},
-  database: {}
-}
-
-db.write()
-
+// db.data ||= {
+//   sys: {},
+//   database: {}
+// }
+// db.write()
+db.read()
 export default db
 
 /**
@@ -49,7 +48,7 @@ export function pathInit({
   const value = db.chain.get(currentPath).value()
   console.log(currentPath, value, validator(value), (value !== undefined && validator(value)));
   if (!(value !== undefined && validator(value))) {
-    console.log("data clear to init");
+    // console.log("data clear to init");
     db.chain.set(currentPath, defaultValue).value()
     db.write()
   }

@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-18 10:15:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 22:40:00
+ * @LastEditTime: 2022-10-09 21:22:53
  * @Description: 
  */
 // 引入fast-crud
@@ -12,9 +12,10 @@ import "@fast-crud/fast-crud/dist/style.css";
 import UiElement from "@fast-crud/ui-element";
 import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from "xe-utils";
+import { App } from "vue";
 // // 引入fast-crud
 
-function install(app, options: any = {}) {
+function install(app: App<Element>, options: any = {}) {
     // // 先安装ui
     app.use(UiElement);
     // 然后安装FastCrud

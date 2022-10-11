@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:30:57
+ * @LastEditTime: 2022-10-11 20:56:19
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -11,8 +11,10 @@ import { dict } from "@fast-crud/fast-crud";
 // md5加密
 import md5 from 'js-md5'
 import axiosInstance from '@/utils/net/axiosInstance'
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose }) {
+    const { proxy } = getCurrentInstance() // 使用proxy代替ctx，因为ctx只在开发环境有效
     const dictStore = useDictStore()
     // dictStore.load()
     // const remoteDict = dict({
@@ -58,6 +60,21 @@ export default function ({ expose }) {
             },
             rowHandle: {
                 width: 300,
+                view: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                edit: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                remove: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
                 // buttons: {
                 //     //自定义按钮，可以任意命名,任意数量
                 //     resetPassword: {

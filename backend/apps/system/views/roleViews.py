@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-09-01 23:58:14
 LastEditors: yifeng
-LastEditTime: 2022-09-03 18:52:06
+LastEditTime: 2022-10-10 20:17:42
 Description: 
 '''
 from rest_framework.decorators import action
@@ -10,7 +10,7 @@ from rest_framework.decorators import action
 from apps.system.models import Role, Menu
 from apps.system.serializers.roleSerializer import (RoleCreateUpdateSerializer, RoleSerializer,
                                                     MenuPermissonSerializer)
-from backend.utils.viewSet import CustomModelViewSet                                                   
+from backend.utils.viewSet import CustomModelViewSet
 from backend.utils.jsonResponse import SuccessResponse
 
 

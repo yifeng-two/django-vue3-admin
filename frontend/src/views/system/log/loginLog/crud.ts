@@ -2,17 +2,18 @@
  * @Author: yifeng
  * @Date: 2022-10-05 14:52:33
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:31:10
+ * @LastEditTime: 2022-10-10 20:58:59
  * @Description: 
  */
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import {dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose }) {
 
     const dictStore = useDictStore()
-
+    const { proxy } = getCurrentInstance()
     const pageRequest = async (query: any) => {
         const ret = await api.getSystemLogList(query);
         return ret
@@ -23,33 +24,24 @@ export default function ({ expose }) {
             request: {
                 pageRequest,
             },
-            // rowHandle: {
-            //     fixed: 'right',
-            //     view: {
-            //         thin: true,
-            //         text: '',
-            //         disabled() {
-            //             return !vm.hasPermissions('Retrieve')
-            //         }
-            //     },
-            //     width: 70,
-            //     edit: {
-            //         thin: true,
-            //         text: '',
-            //         show: false,
-            //         disabled() {
-            //             return !vm.hasPermissions('Update')
-            //         }
-            //     },
-            //     remove: {
-            //         thin: true,
-            //         text: '删除',
-            //         show: false,
-            //         disabled() {
-            //             return !vm.hasPermissions('Delete')
-            //         }
-            //     }
-            // },
+            rowHandle: {
+                width: 300,
+                view: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                edit: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                remove: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+            },
             form: {
                 col: { span: 12 },
                 display: "flex",

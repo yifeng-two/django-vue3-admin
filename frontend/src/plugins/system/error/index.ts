@@ -1,12 +1,13 @@
 import { get, isObject } from 'lodash'
 import Log from '@/utils/common/log.print'
 import useLogStore from '@/stores/system-log'
+import { nextTick } from 'vue'
 
 function install(app, options: any = {}) {
   const logStore = useLogStore()
   function writeLog (logType: string) {
     return (error, vm, info = '') => {
-      app.nextTick(() => {
+      nextTick(() => {
         logStore.push({
           message: `${info}: ${isObject(error) ? error.message : error}`,
           type: logType,

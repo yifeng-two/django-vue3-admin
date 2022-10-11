@@ -2,39 +2,43 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:29:04
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-01 21:52:54
+ * @LastEditTime: 2022-10-10 20:07:08
  * @Description: 
 -->
 <template>
     <fs-page>
         <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
             <template #cell-rowHandle-right="scope">
-                <el-button class="row-handle-btn" type="warning" :title="scope.row.id"
-                    @click="editPermission(scope)">
-                    权限管理</el-button>
-                <el-drawer title="角色授权" v-model="rolePermissionShow" direction="rtl" size="70%">
-                    <template slot="title">
+                <el-button class="row-handle-btn" type="warning" :title="scope.row.id" @click="editPermission(scope)">
+                    <el-icon>
+                        <Edit />
+                    </el-icon>权限管理
+                </el-button>
+            </template>
+            <el-drawer title="角色授权" v-model="rolePermissionShow" direction="rtl" size="70%" append-to-body="true">
+                    <template #title>
                         <div>
                             当前角色<el-tag>{{roleObj?roleObj.name:'无'}}</el-tag>
                         </div>
                     </template>
                     <div>
-                        <rolePermission v-if="rolePermissionShow" :role-obj="roleObj"></rolePermission>
+                        <role-permission v-show="rolePermissionShow" :role-obj="roleObj"></role-permission>
                     </div>
                 </el-drawer>
-            </template>
         </fs-crud>
     </fs-page>
 </template>
     
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
+import rolePermission from "@/views/system/rolePermission/rolePermission.vue"
 
 export default defineComponent({
     name: "roleForm",
+    components: { rolePermission },
     setup() {
         // crud组件的ref
         const crudRef = ref();
@@ -55,21 +59,19 @@ export default defineComponent({
         });
 
         // 授权
-        const rolePermissionShow = ref(false)
-        const editPermission = (scope:any) =>{
-            roleObj = scope.row
+        const roleObj = ref<any>({})
+        const rolePermissionShow = ref<boolean>(false)
+        const editPermission = (scope: any) => {
+            roleObj.value = scope.row
             rolePermissionShow.value = true
-            // this.$router.push({
-            //   name: 'rolePermission',
-            //   params: { id: scope.row.id }
-            // })
         }
 
         return {
             crudBinding,
             crudRef,
             rolePermissionShow,
-            editPermission
+            editPermission,
+            roleObj,
         };
 
     }

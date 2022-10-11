@@ -2,14 +2,16 @@
  * @Author: yifeng
  * @Date: 2022-09-25 18:19:53
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:30:58
+ * @LastEditTime: 2022-10-10 20:57:31
  * @Description: 
  */
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose }) {
+    const { proxy } = getCurrentInstance() // 使用proxy代替ctx，因为ctx只在开发环境有效
     const dictStore = useDictStore()
 
     const pageRequest = async (query: any) => {
@@ -34,6 +36,41 @@ export default function ({ expose }) {
                 addRequest,
                 editRequest,
                 delRequest
+            },
+            rowHandle: {
+                width: 300,
+                view: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                edit: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+                remove: {
+                    thin: true,
+                    text: '',
+                    show: proxy.hasPermissions('Retrieve')
+                },
+            },
+            table: { //表格配置，对应fs-table
+                // 对应 el-table / a-table的配置
+                border: true,
+                bordered: true,
+                height: "100%",
+                rowKey: 'id',
+                stripe: true,
+                children: 'children',
+                hasChild: 'hasChildren',
+                defaultExpandAll: true,
+                // 监听 el-table的单行选中事件
+                // onCurrentChange(currentRow) {
+                //     console.log("选中行", currentRow);
+                //     asideTableRef.value.setSearchFormData({ form: { gradeId: currentRow.id } });
+                //     asideTableRef.value.doRefresh();
+                // }
             },
             form: {
                 display: "flex",

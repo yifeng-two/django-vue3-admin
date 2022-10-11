@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-28 18:55:45
 LastEditors: yifeng
-LastEditTime: 2022-09-20 20:07:11
+LastEditTime: 2022-10-11 20:54:07
 Description: 
 '''
 import hashlib
@@ -43,7 +43,7 @@ class UserSerializer(CustomModelSerializer):
         read_only_fields = ["id"]
         exclude = ["password"]
         extra_kwargs = {
-            "post": {
+            "position": {
                 "required": False
             },
         }
@@ -79,7 +79,7 @@ class UserCreateSerializer(CustomModelSerializer):
         data = super().save(**kwargs)
         data.dept_belong_id = data.dept_id
         data.save()
-        data.position.set(self.initial_data.get("post", []))
+        data.position.set(self.initial_data.get("position", []))
         return data
 
     class Meta:
@@ -87,7 +87,7 @@ class UserCreateSerializer(CustomModelSerializer):
         fields = "__all__"
         read_only_fields = ["id"]
         extra_kwargs = {
-            "post": {
+            "position": {
                 "required": False
             },
         }
@@ -112,7 +112,7 @@ class UserUpdateSerializer(CustomModelSerializer):
         data = super().save(**kwargs)
         data.dept_belong_id = data.dept_id
         data.save()
-        data.post.set(self.initial_data.get("post", []))
+        data.position.set(self.initial_data.get("position", []))
         return data
 
     class Meta:
@@ -120,7 +120,7 @@ class UserUpdateSerializer(CustomModelSerializer):
         read_only_fields = ["id", "password"]
         fields = "__all__"
         extra_kwargs = {
-            "post": {
+            "position": {
                 "required": False,
                 "read_only": True
             },
@@ -172,7 +172,7 @@ class UserProfileImportSerializer(CustomModelSerializer):
         model = User
         exclude = (
             "password",
-            "post",
+            "position",
             "user_permissions",
             "groups",
             "is_superuser",

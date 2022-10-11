@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:24:56
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-29 19:55:16
+ * @LastEditTime: 2022-10-09 19:21:40
  * @Description: 
 -->
 <template>
@@ -20,9 +20,9 @@
                 size="50%">
                 <div slot="title">
                     <span>字典列表</span>
-                    <el-tag  style="margin-left: 10px" type="success">{{dictionaryRow.data.label}}</el-tag>
+                    <el-tag  style="margin-left: 10px" type="success">{{dictionaryRow.label}}</el-tag>
                 </div>
-                <sub-dictionary style="margin-top: 80px; padding-right: 20px;" :catagory-dict="dictionaryRow.data" />
+                <sub-dictionary style="margin-top: 80px; padding-right: 20px;" :catagory-dict="dictionaryRow" />
             </el-drawer>
         </fs-crud>
     </fs-page>
@@ -56,10 +56,10 @@ export default defineComponent({
             expose.doRefresh();
         });
         // 字典配置
-        const drawerStatus = ref(false)
-        let  dictionaryRow = reactive<object>({data: {}});//Ts写法
+        const drawerStatus = ref<boolean>(false)
+        let  dictionaryRow = ref<any>({});//Ts写法
         const editDictbyCatagory = (scope: any) => {
-            dictionaryRow.data = scope.row
+            dictionaryRow.value = scope.row
             drawerStatus.value = true
             // console.log(dictionaryRow);
         }

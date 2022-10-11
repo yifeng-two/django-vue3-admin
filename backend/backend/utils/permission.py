@@ -3,7 +3,7 @@
 Author: yifeng
 Date: 2022-08-29 22:09:41
 LastEditors: yifeng
-LastEditTime: 2022-09-04 18:35:12
+LastEditTime: 2022-10-11 22:00:00
 Description: 
 '''
 import re
@@ -79,10 +79,10 @@ class CustomPermission(BasePermission):
             #     if item.get('permission__api')
             # ]
             # ********#
-            if not hasattr(request.user, "role"):
+            if not hasattr(request.user, "roles"):
                 return False
             # 获取当前用户的角色拥有的所有接口
-            userApiList = request.user.role.values('permission__api',
+            userApiList = request.user.roles.values('permission__api',
                                                    'permission__method')  
             ApiList = [
                 str(item.get('permission__api').replace('{id}', '([a-zA-Z0-9-]+)')) + ":" +

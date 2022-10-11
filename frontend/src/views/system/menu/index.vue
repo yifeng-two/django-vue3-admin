@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:24:23
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-30 20:36:44
+ * @LastEditTime: 2022-10-09 19:18:45
  * @Description: 
 -->
 <template>
@@ -19,9 +19,9 @@
             <el-drawer v-model="drawerStatus" title="菜单按钮配置" :with-header="false" append-to-body="true" size="50%">
                 <div slot="title">
                     <span>菜单按钮列表</span>
-                    <el-tag style="margin-left: 10px" type="success">{{menuRow.data.name}}</el-tag>
+                    <el-tag style="margin-left: 10px" type="success">{{menuRow.name}}</el-tag>
                 </div>
-                <menu-button style="margin-top: 80px; padding-right: 20px;" :meun-catagory="menuRow.data" />
+                <menu-button style="margin-top: 80px; padding-right: 20px;" :meun-catagory="menuRow" />
             </el-drawer>
         </fs-crud>
     </fs-page>
@@ -60,11 +60,11 @@ export default defineComponent({
 
         // 菜单按钮设置
         const drawerStatus = ref(false)
-        let  menuRow = reactive<object>({data: {}});//Ts写法
+        let  menuRow = ref<any>({});//Ts写法
         const editmenuButton = (scope:any) => {
             console.log(scope);
             drawerStatus.value = true
-            menuRow.data = scope.row
+            menuRow.value = scope.row
         }
         return {
             crudBinding,

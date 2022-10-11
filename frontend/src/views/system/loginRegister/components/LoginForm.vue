@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-22 22:31:30
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:31:25
+ * @LastEditTime: 2022-10-11 21:58:18
  * @Description: 
 -->
 <template>
@@ -126,6 +126,10 @@ const users = ref([
   {
     name: '管理员',
     username: 'admin',
+    password: 'admin123456'
+  },{
+    name: 'test',
+    username: 'test',
     password: 'admin123456'
   }
 ])
