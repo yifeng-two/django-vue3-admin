@@ -2,20 +2,23 @@
  * @Author: yifeng
  * @Date: 2022-08-24 20:43:59
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-24 23:15:19
+ * @LastEditTime: 2022-10-15 21:39:07
  * @Description: 
  */
-import { FormInstance } from "element-plus";
 import { ref } from "vue";
 
 interface User {
   username: string;
   password: string;
+  captcha?: string,
+  captchaKey?:string
 }
 
 export const loginUser = ref<User>({
-  username: "",
-  password: "",
+  username: '',
+  password: '',
+  captcha: '',
+  captchaKey:'',
 });
 
 interface usernameRule {

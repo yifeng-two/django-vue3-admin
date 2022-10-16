@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-03 22:52:01
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-03 23:05:39
+ * @LastEditTime: 2022-10-15 21:58:56
  * @Description: 
 -->
 <template>
@@ -21,9 +21,5 @@ export default {
         
     // }
 }
-
 </script>
-<style scoped>
-
-</style>
   

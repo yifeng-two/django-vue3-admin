@@ -2,15 +2,18 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-10 20:03:43
+ * @LastEditTime: 2022-10-12 20:25:10
  * @Description: 
  */
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
+import {assign} from "lodash"
 
 export default function ({ expose }) {
     const dictStore = useDictStore()
+    const { proxy } = getCurrentInstance()
     const pageRequest = async (query) => {
         query.is_value = false
         const ret = await api.getDictList(query)
@@ -36,6 +39,26 @@ export default function ({ expose }) {
                 addRequest,
                 editRequest,
                 delRequest
+            },
+            rowHandle: {
+                width: 300,
+                buttons: {
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
             },
             form: {
                 col: { span: 24 },

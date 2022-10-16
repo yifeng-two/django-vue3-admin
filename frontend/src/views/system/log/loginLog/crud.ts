@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-05 14:52:33
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-10 20:58:59
+ * @LastEditTime: 2022-10-12 18:27:49
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -26,21 +26,23 @@ export default function ({ expose }) {
             },
             rowHandle: {
                 width: 300,
-                view: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                edit: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                remove: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
+                buttons:{
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
             },
             form: {
                 col: { span: 12 },

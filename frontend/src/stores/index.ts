@@ -2,12 +2,12 @@
  * @Author: yifeng
  * @Date: 2022-08-06 21:18:11
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 13:41:18
+ * @LastEditTime: 2022-10-12 18:19:21
  * @Description: 
  */
 import { createPinia } from "pinia";
+import { App } from "vue";
 import useAccountStore from "./system-account";
-import useDictStore from "./system-dict";
 import useMenuStore from "./system-menu";
 import usePageStore from "./system-page";
 import useSettingStore from "./system-setting";
@@ -33,14 +33,13 @@ export const registerStore = () => {
 
 };
 // export default appStore;
-function install(app, options: any = {}) {
+function install(app:App<Element>, options: any = {}) {
   app.use(createPinia());
   const settingStore =useSettingStore()
   const accountStore = useAccountStore()
-  console.log('store load dict,setting,and account start1111111111111111111111111111');
   settingStore.load()
   accountStore.load()
-  console.log('store load dict,setting,and account1111111111111111111111111111');
+
 }
 
 export default {

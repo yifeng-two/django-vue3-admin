@@ -1,7 +1,9 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { createHtmlPlugin } from "vite-plugin-html";
-import PurgeIcons from 'vite-plugin-purge-icons'
+import PurgeIcons from 'vite-plugin-purge-icons';
+
+import vueJsx from '@vitejs/plugin-vue-jsx';
 //这个配置 为了在html中使用 环境变量
 // const getViteEnv = (mode, target) => {
 //   return loadEnv(mode, process.cwd())[target];
@@ -11,6 +13,7 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 export default ({ mode })=> defineConfig({
   plugins: [
     vue(),
+    vueJsx(),
     // createHtmlPlugin({
     //   inject: {
     //     data: {

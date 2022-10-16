@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-10-02 15:49:04
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-11 21:21:32
+ * @LastEditTime: 2022-10-16 14:37:51
  * @Description: 
 -->
 <template>
@@ -216,14 +216,6 @@ const handleTabRemove = (tagName: any) => {
         border-radius: 2px 2px 0 0;
         box-sizing: border-box;
     }
-
-    // .el-tabs--card>.el-tabs__header .el-tabs__nav {
-    //     border: 1px solid var(#384857);
-    //     border-bottom: none;
-    //     border-radius: 2px 2px 0 0;
-    //     box-sizing: border-box;
-    // }
-
 
     .el-tabs__header {
         padding: 0;

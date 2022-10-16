@@ -2,17 +2,18 @@
  * @Author: yifeng
  * @Date: 2022-10-05 15:20:55
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 18:46:11
+ * @LastEditTime: 2022-10-12 18:29:34
  * @Description: 
  */
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose }) {
 
     const dictStore = useDictStore()
-
+    const {proxy} = getCurrentInstance()
     const pageRequest = async (query: any) => {
         const ret = await api.getOperationLogList(query);
         return ret
@@ -23,33 +24,26 @@ export default function ({ expose }) {
             request: {
                 pageRequest,
             },
-            // rowHandle: {
-            //     fixed: 'right',
-            //     view: {
-            //         thin: true,
-            //         text: '',
-            //         disabled() {
-            //             return !vm.hasPermissions('Retrieve')
-            //         }
-            //     },
-            //     width: 70,
-            //     edit: {
-            //         thin: true,
-            //         text: '',
-            //         show: false,
-            //         disabled() {
-            //             return !vm.hasPermissions('Update')
-            //         }
-            //     },
-            //     remove: {
-            //         thin: true,
-            //         text: '删除',
-            //         show: false,
-            //         disabled() {
-            //             return !vm.hasPermissions('Delete')
-            //         }
-            //     }
-            // },
+            rowHandle: {
+                width: 300,
+                buttons: {
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
+            },
             form: {
                 col: { span: 12 },
                 display: "flex",
@@ -96,8 +90,8 @@ export default function ({ expose }) {
                 request_modular: {
                     title: '请求模块',
                     type: 'input',
-                    search:{
-                        show:true
+                    search: {
+                        show: true
                     },
                     column: {
                         width: 140,
@@ -145,8 +139,8 @@ export default function ({ expose }) {
                 request_method: {
                     title: '请求方法',
                     type: 'input',
-                    search:{
-                        show:true
+                    search: {
+                        show: true
                     },
                     column: {
                         width: 100,
@@ -162,7 +156,7 @@ export default function ({ expose }) {
                 request_msg: {
                     title: '操作说明',
                     column: {
-                        show:false,
+                        show: false,
                     },
                     form: {
                         component: {
@@ -175,10 +169,10 @@ export default function ({ expose }) {
                     type: 'input',
                     column: {
                         width: 130,
-                        show:false,
+                        show: false,
                     },
                     form: {
-                        show:false,
+                        show: false,
                         component: {
                             placeholder: '请输入IP地址'
                         }
@@ -192,7 +186,7 @@ export default function ({ expose }) {
                         width: 180,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     },
                     component: { props: { color: 'auto' } } // 自动染色
                 },
@@ -203,7 +197,7 @@ export default function ({ expose }) {
                         width: 80,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     },
                     component: { props: { color: 'auto' } } // 自动染色
                 },
@@ -212,10 +206,10 @@ export default function ({ expose }) {
                     type: 'input',
                     column: {
                         width: 80,
-                        show:false,
+                        show: false,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     },
                     component: { props: { color: 'auto' } } // 自动染色
                 },
@@ -227,7 +221,7 @@ export default function ({ expose }) {
                         minWidth: 240,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     },
                     component: { props: { color: 'auto' } } // 自动染色
                 },
@@ -237,7 +231,7 @@ export default function ({ expose }) {
                         width: 100,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     }
                 },
                 update_datetime: {
@@ -248,7 +242,7 @@ export default function ({ expose }) {
                         show: false,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     }
                 },
                 create_datetime: {
@@ -259,7 +253,7 @@ export default function ({ expose }) {
                         width: 160,
                     },
                     form: {
-                        show:false,
+                        show: false,
                     }
                 }
 

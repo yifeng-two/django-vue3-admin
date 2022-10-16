@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-30 20:02:29
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:30:59
+ * @LastEditTime: 2022-10-12 18:35:06
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -10,10 +10,11 @@ import useDictStore from "@/stores/system-dict";
 import axiosInstance from "@/utils/net/axiosInstance";
 import { dict } from "@fast-crud/fast-crud";
 import { ElAlert } from "element-plus";
-import { render, h } from "vue";
+import { h, getCurrentInstance } from "vue";
 
 export default function ({ expose, props, ctx }) {
     const dictStore = useDictStore()
+    const {proxy} =getCurrentInstance()
     // const menuNameDict = dict({
     //     cloneable:false,
     //     data:[
@@ -57,6 +58,26 @@ export default function ({ expose, props, ctx }) {
                 editRequest,
                 delRequest
             },
+            rowHandle: {
+                width: 240,
+                buttons:{
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
+            },
             form: {
                 col: { span: 24 },
                 display: "flex",
@@ -77,9 +98,6 @@ export default function ({ expose, props, ctx }) {
                 rowKey: 'id',
                 stripe: true,
                 slots: {}    // 对应el-table ,a-table的插槽
-            },
-            rowHandle: {
-                width: 200
             },
             columns: {
                 _index: {

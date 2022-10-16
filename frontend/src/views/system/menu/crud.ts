@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-28 21:46:49
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:31:00
+ * @LastEditTime: 2022-10-16 15:00:54
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -10,7 +10,7 @@ import useDictStore from "@/stores/system-dict";
 import { compute, dict } from "@fast-crud/fast-crud";
 import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from 'xe-utils'
-import { h } from "vue";
+import { getCurrentInstance, h } from "vue";
 import { ElAlert } from "element-plus";
 
 export default function ({ expose }) {
@@ -51,7 +51,7 @@ export default function ({ expose }) {
     }
 
     const dictStore = useDictStore()
-
+    const {proxy} = getCurrentInstance()
     const pageRequest = async (query: any) => {
         const ret = await api.getMenuList(query);
         ret.data.data = XEUtils.toArrayTree(ret.data.data, { parentKey: 'parent' })
@@ -77,6 +77,26 @@ export default function ({ expose }) {
                 editRequest,
                 delRequest
             },
+            rowHandle: {
+                width: 300,
+                buttons:{
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
+            },
             form: {
                 col: { span: 12 },
                 display: "flex",
@@ -90,7 +110,7 @@ export default function ({ expose }) {
                 bordered: true,
                 height: "100%",
                 rowKey: 'id',
-                // defaultExpandAll: true,
+                defaultExpandAll: true,
                 indent: "30"
             },
             columns: {
@@ -205,18 +225,19 @@ export default function ({ expose }) {
                 },
                 icon: {
                     title: '图标',
-                    type: "text",
+                    type: "icon-select",
                     column: {
                         width: 80,
                         align: 'center',
                         component: {
-                            name: "fs-icon",
+                            // name: "fs-icon",
                             vModel: "icon",
                             style: "font-size:18px"
                         }
                     },
                     form: {
                         component: {
+                            disabled:false,
                             placeholder: '请输入图标'
                         }
                     }

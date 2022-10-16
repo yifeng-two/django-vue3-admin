@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:44:38
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-11 22:26:04
+ * @LastEditTime: 2022-10-12 18:16:26
  * @Description: 
  */
 import { LocalStorage, LowSync } from 'lowdb'
@@ -46,7 +46,7 @@ export function pathInit({
   const uuid = cookies.get('uuid') || 'ghost-uuid'
   const currentPath = `${dbName}.${user ? `user.${uuid}` : 'public'}${path ? `.${path}` : ''}`
   const value = db.chain.get(currentPath).value()
-  console.log(currentPath, value, validator(value), (value !== undefined && validator(value)));
+  // console.log(currentPath, value, validator(value), (value !== undefined && validator(value)));
   if (!(value !== undefined && validator(value))) {
     // console.log("data clear to init");
     db.chain.set(currentPath, defaultValue).value()
@@ -64,7 +64,7 @@ export function pathInit({
  * @param {Object} payload user {Boolean} 是否区分用户
  */
 export function dbSet({ dbName = 'database', path = '', value = '', user = false }: dbAcceptParma) {
-  console.log("start write data from local")
+  // console.log("start write data from local")
   
   db.chain.set(pathInit({
     dbName,
@@ -73,7 +73,7 @@ export function dbSet({ dbName = 'database', path = '', value = '', user = false
   }), value).value()
   db.write()
   
-  console.log('write data to loacl end')
+  // console.log('write data to loacl end')
 }
 
 /**
@@ -90,14 +90,14 @@ export function dbGet({
   defaultValue = {},
   user = false
 }) {
-  console.log("start get data from local");
+  // console.log("start get data from local");
   const data = cloneDeep(db.chain.get(pathInit({
     dbName,
     path,
     user,
     defaultValue
   })).value())
-  console.log('get data from loacl end',data)
+  // console.log('get data from loacl end',data)
   return  data
 }
 

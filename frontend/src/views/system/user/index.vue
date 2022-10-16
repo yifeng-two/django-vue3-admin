@@ -2,14 +2,14 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:29:51
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:30:56
+ * @LastEditTime: 2022-10-12 19:09:15
  * @Description: 
 -->
 <template>
   <fs-page>
     <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
       <template #cell-rowHandle-right="scope">
-        <el-button class="row-handle-btn" type="danger" :title="scope.row.id" @click="resetPassword(scope.row.id)">
+        <el-button class="row-handle-btn" type="danger" v-show="resetPwdButtonShow" :title="scope.row.id" @click="resetPassword(scope.row.id)">
           <el-icon>
             <RefreshLeft />
           </el-icon>
@@ -40,7 +40,7 @@
 </template>
   
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive } from "vue";
+import { defineComponent, ref, onMounted, reactive, getCurrentInstance } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
@@ -73,6 +73,10 @@ export default defineComponent({
       expose.doRefresh();
     });
     // 重置密码
+    const { proxy } = getCurrentInstance()
+    const resetPwdButtonShow = ref<boolean>(proxy.hasPermissions('ResetPassword'))
+    console.log('resetPwdButtonShow',resetPwdButtonShow);
+    
     const selectResetDialogVisible = ref(false)
     const resetPwdFormRef = ref<FormInstance>()
     let resetPwdForm = reactive({
@@ -157,6 +161,7 @@ export default defineComponent({
       pwd2Rule,
       resetPwdForm,
       resetPwdFormRef,
+      resetPwdButtonShow,
       resetPassword,
       resetPwdSubmit
     };

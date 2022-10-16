@@ -671,3 +671,9 @@ Traceback (most recent call last):
     userApiList = request.user.role.values('permission__api',
 AttributeError: 'User' object has no attribute 'role'
 [2022-10-11 22:00:15,313][django.channels.server.log_action():160] [ERROR] [35;1mHTTP GET /api/system/role/?limit=20&page=1 500 [0.13, 127.0.0.1:2278][0m
+[2022-10-15 22:37:47,579][django.request.log_response():230] [ERROR] Internal Server Error: /api/login/
+[2022-10-15 22:37:47,633][django.channels.server.log_action():160] [ERROR] [35;1mHTTP POST /api/login/ 500 [0.06, 127.0.0.1:13815][0m
+[2022-10-15 22:37:54,290][django.request.log_response():230] [ERROR] Internal Server Error: /api/login/
+[2022-10-15 22:37:54,291][django.channels.server.log_action():160] [ERROR] [35;1mHTTP POST /api/login/ 500 [0.02, 127.0.0.1:13815][0m
+[2022-10-15 22:38:25,278][django.request.log_response():230] [ERROR] Internal Server Error: /api/login/
+[2022-10-15 22:38:25,280][django.channels.server.log_action():160] [ERROR] [35;1mHTTP POST /api/login/ 500 [0.02, 127.0.0.1:13815][0m

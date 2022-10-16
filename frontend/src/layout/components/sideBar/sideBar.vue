@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-04 22:12:49
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-06 14:51:57
+ * @LastEditTime: 2022-10-16 14:31:21
  * @Description: 
 -->
 <template>
@@ -11,23 +11,26 @@
         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse-transition=false>
         <el-menu-item-group v-for="(menu,index) in menus" :key="index">
             <el-menu-item :index="index" v-if="!menu.children" :key="index" @click="clickMenu(menu)">
-                <el-icon>
+                <!-- <el-icon>
                     <component :is="menu.icon" />
-                </el-icon>
+                </el-icon> -->
+                <fs-single-icon :icon="menu.icon"></fs-single-icon>
                 <span v-show="!asideCollapse">{{ menu.title }}</span>
             </el-menu-item>
             <el-sub-menu :index="index" v-if="menu.children">
                 <template #title>
-                    <el-icon>
+                    <!-- <el-icon>
                         <component :is="menu.icon" />
-                    </el-icon>
+                    </el-icon> -->
+                    <fs-single-icon :icon="menu.icon"></fs-single-icon>
                     <span v-show="!asideCollapse">{{ menu.title }}</span>
                 </template>
                 <el-menu-item :index="subMenu.path" v-for="(subMenu, subIndex) in menu.children" :key="subIndex"
                     @click="clickMenu(subMenu)">
-                    <el-icon>
+                    <!-- <el-icon>
                         <component :is="subMenu.icon" />
-                    </el-icon>
+                    </el-icon> -->
+                    <fs-single-icon :icon="subMenu.icon"></fs-single-icon>
                     <span>{{ subMenu.title }}</span>
                 </el-menu-item>
             </el-sub-menu>
@@ -40,6 +43,7 @@ import useMenuStore from '@/stores/system-menu'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Logo from "../logo/logo.vue"
+
 // const menus = reactive(
 //     [{
 //         path: '/',

@@ -8,10 +8,11 @@
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose, props, ctx }) {
     const dictStore = useDictStore()
-
+    const {proxy} =getCurrentInstance()
     const pageRequest = async (query) => {
         query.is_value = true
         query.parent = props.catagoryDict.id
@@ -37,6 +38,26 @@ export default function ({ expose, props, ctx }) {
                 addRequest,
                 editRequest,
                 delRequest
+            },
+            rowHandle: {
+                width: 240,
+                buttons:{
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
             },
             form: {
                 col: { span: 24 },
@@ -64,9 +85,6 @@ export default function ({ expose, props, ctx }) {
                 //     asideTableRef.value.doRefresh();
                 // }
                 slots: {}    // 对应el-table ,a-table的插槽
-            },
-            rowHandle: {
-                width: 200
             },
             columns: {
                 _index: {

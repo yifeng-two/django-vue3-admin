@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 00:21:03
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-03 23:08:26
+ * @LastEditTime: 2022-10-15 22:01:16
  * @Description: 
  */
 import layoutHeaderAside from '@/layout/layout.vue'
@@ -36,6 +36,13 @@ const frameIn = [{
             name: 'refresh',
             hidden: true,
             component: import('@/views/system/function/refresh.vue')
+        },
+        // 页面重定向 必须保留
+        {
+            path: 'redirect/:route*',
+            name: 'redirect',
+            hidden: true,
+            component: import('@/views/system/function/redirect.vue')
         },
         {
             path: '/home',

@@ -2,14 +2,14 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:29:04
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-10 20:07:08
+ * @LastEditTime: 2022-10-12 19:08:08
  * @Description: 
 -->
 <template>
     <fs-page>
         <fs-crud ref="crudRef" custom-class="page-layout" v-bind="crudBinding">
             <template #cell-rowHandle-right="scope">
-                <el-button class="row-handle-btn" type="warning" :title="scope.row.id" @click="editPermission(scope)">
+                <el-button class="row-handle-btn" type="warning" v-show="editPermissionShow" :title="scope.row.id" @click="editPermission(scope)">
                     <el-icon>
                         <Edit />
                     </el-icon>权限管理
@@ -30,7 +30,7 @@
 </template>
     
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, getCurrentInstance } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
@@ -40,6 +40,16 @@ export default defineComponent({
     name: "roleForm",
     components: { rolePermission },
     setup() {
+        // 授权
+        const {proxy} =getCurrentInstance()
+        const editPermissionShow = ref<boolean>(proxy.hasPermissions('Update'))
+        const roleObj = ref<any>({})
+        const rolePermissionShow = ref<boolean>(false)
+        const editPermission = (scope: any) => {
+            roleObj.value = scope.row
+            rolePermissionShow.value = true
+        }
+        
         // crud组件的ref
         const crudRef = ref();
         // crud 配置的ref
@@ -47,7 +57,7 @@ export default defineComponent({
         // 暴露的方法
         const { expose } = useExpose({ crudRef, crudBinding });
         // 你的crud配置
-        const { crudOptions } = createCrudOptions({ expose });
+        const { crudOptions } = createCrudOptions({ expose});
         // 初始化crud配置
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
         const { resetCrudOptions } = useCrud({ expose, crudOptions });
@@ -58,17 +68,10 @@ export default defineComponent({
             expose.doRefresh();
         });
 
-        // 授权
-        const roleObj = ref<any>({})
-        const rolePermissionShow = ref<boolean>(false)
-        const editPermission = (scope: any) => {
-            roleObj.value = scope.row
-            rolePermissionShow.value = true
-        }
-
         return {
             crudBinding,
             crudRef,
+            editPermissionShow,
             rolePermissionShow,
             editPermission,
             roleObj,

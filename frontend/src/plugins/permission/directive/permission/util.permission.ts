@@ -13,7 +13,7 @@ export default {
     const router = useRouter()
     if (import.meta.env.VITE_APP_PM_ENABLED) {
       const path = router.currentRoute.value.path;// 当前路由
-      console.log('path',path);
+      // console.log('path',path);
       
       let need: any[] = []
       if (typeof value === 'string') {
@@ -36,7 +36,7 @@ export default {
           }
         }
       }
-      console.log(permissionList.includes(path + ':' + value));
+      // console.log(permissionList.includes(path + ':' + value));
       
       return permissionList.includes(path + ':' + value)
     }

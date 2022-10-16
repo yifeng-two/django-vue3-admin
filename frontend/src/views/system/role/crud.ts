@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-25 18:19:53
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-10 20:57:31
+ * @LastEditTime: 2022-10-12 19:01:11
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -10,7 +10,7 @@ import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
 import { getCurrentInstance } from "vue";
 
-export default function ({ expose }) {
+export default function ({ expose}) {
     const { proxy } = getCurrentInstance() // 使用proxy代替ctx，因为ctx只在开发环境有效
     const dictStore = useDictStore()
 
@@ -39,21 +39,34 @@ export default function ({ expose }) {
             },
             rowHandle: {
                 width: 300,
-                view: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                edit: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                remove: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
+                buttons: {
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                    // custom: {
+                    //     text: "权限管理1",
+                    //     icon: "Edit", //图标
+                    //     type: "warning",
+                    //     order: 4,
+                    //     show: proxy.hasPermissions('Update'),
+                    //     emit:'editPermission'
+                    //     // click(context: any) {
+                    //     //     editPermission()
+                    //     // }
+                    // }
+                }
             },
             table: { //表格配置，对应fs-table
                 // 对应 el-table / a-table的配置
@@ -158,7 +171,7 @@ export default function ({ expose }) {
                 sort: {
                     title: '排序',
                     type: 'number',
-                    column:{
+                    column: {
                         sortable: true,
                         width: 80,
                     },

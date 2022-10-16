@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-08-06 18:54:46
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-06 00:05:13
+ * @LastEditTime: 2022-10-16 16:13:51
  * @Description: 
 -->
 <template>
@@ -20,17 +20,15 @@
         <tabs />
       </div>
       <el-main>
-        <!-- <div ref="main-container-body">
-          <keep-alive :include="keepAlive" v-if="showView">
-            <router-view :key="routerViewKey" />
-          </keep-alive>
-        </div> -->
         <el-scrollbar>
           <keep-alive :include="keepAlive" v-if="showView">
             <router-view :key="routerViewKey" />
           </keep-alive>
         </el-scrollbar>
       </el-main>
+      <el-footer>
+
+      </el-footer>
     </el-container>
   </el-container>
 </template>
@@ -108,7 +106,7 @@ const routerViewKey = () => {
   background-color: #384857;
   /* color: var(--el-text-color-primary); */
   /* color: #fff; */
-  
+
 }
 
 /* 
@@ -116,7 +114,8 @@ const routerViewKey = () => {
   border-right: none;
 } */
 
-/* .home-container .el-main {
+.home-container .el-main {
   padding: 0;
-} */
+  /* margin-bottom: 40px; */
+}
 </style>

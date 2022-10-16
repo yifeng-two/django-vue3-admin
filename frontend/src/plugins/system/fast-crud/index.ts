@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-18 10:15:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-09 21:22:53
+ * @LastEditTime: 2022-10-13 21:38:08
  * @Description: 
  */
 // 引入fast-crud
@@ -13,8 +13,10 @@ import UiElement from "@fast-crud/ui-element";
 import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from "xe-utils";
 import { App } from "vue";
-// // 引入fast-crud
+import {commonEndColumns} from './commonCols'
+import {FsExtendsIconSelect} from './icon-selector'
 
+// // 引入fast-crud
 function install(app: App<Element>, options: any = {}) {
     // // 先安装ui
     app.use(UiElement);
@@ -49,7 +51,7 @@ function install(app: App<Element>, options: any = {}) {
                         view: {
                             text: null,
                             icon: "ion:eye-outline",
-                            size: "default"
+                            size: "default",
                         },
                         edit: {
                             text: null,
@@ -115,6 +117,8 @@ function install(app: App<Element>, options: any = {}) {
             }
         },
     })
+    // app.config.globalProperties.commonEndColumns = commonEndColumns()
+    app.use(FsExtendsIconSelect)
 };
 
 export default {

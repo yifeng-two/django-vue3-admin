@@ -2,16 +2,17 @@
  * @Author: yifeng
  * @Date: 2022-09-25 21:33:02
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:31:16
+ * @LastEditTime: 2022-10-12 18:30:46
  * @Description: 
  */
 import * as api from "@/apis/system";
 import useDictStore from "@/stores/system-dict";
 import { dict } from "@fast-crud/fast-crud";
+import { getCurrentInstance } from "vue";
 
 export default function ({ expose }) {
     const dictStore = useDictStore()
-
+    const { proxy } = getCurrentInstance()
     const pageRequest = async (query: any) => {
         // query.lazy = true
         return await api.getDeptList(query);
@@ -42,7 +43,7 @@ export default function ({ expose }) {
                 height: "100%",
                 rowKey: 'id',
                 stripe: true,
-                defaultExpandAll:true,
+                defaultExpandAll: true,
                 slots: {}    // 对应el-table ,a-table的插槽
             },
             form: {
@@ -51,20 +52,37 @@ export default function ({ expose }) {
                 labelWidth: "100px", //
             },
             rowHandle: {
-                width: 240
+                width: 240,
+                buttons: {
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
             },
             columns: {
                 _index: {
                     title: "序号",
-                    form: { 
+                    form: {
                         show: false,
-                     },
+                    },
                     column: {
                         type: "index",
                         align: "center",
                         width: "55px",
                         columnSetDisabled: true, //禁止在列设置中选择
-                        formatter: (context:any) => {
+                        formatter: (context: any) => {
                             //计算序号,你可以自定义计算规则，此处为翻页累加
                             const index = context.index ?? 1;
                             const pagination = expose.crudBinding.value.pagination;
@@ -88,7 +106,7 @@ export default function ({ expose }) {
                             const ret = await api.deptLazyLoad();
                             return ret.data;
                         },
-                        getNodes(scope:any) {
+                        getNodes(scope: any) {
                             // 配置行展示远程获取nodes
                             return new Promise((resolve, reject) => {
                                 const row = scope.row
@@ -106,7 +124,7 @@ export default function ({ expose }) {
                         ],
                         component: {
                             placeholder: '请输入上级部门',
-                            name:'el-tree-select',
+                            name: 'el-tree-select',
                             props: {
                                 multiple: false,
                                 select: {
@@ -116,7 +134,7 @@ export default function ({ expose }) {
                                     valueKey: "id"
                                 },
                                 lazy: true,
-                                highlightCurrent:true,
+                                highlightCurrent: true,
                                 children: 'has_children',
                                 load(node, resolve) {
                                     // 懒加载
@@ -161,7 +179,7 @@ export default function ({ expose }) {
                 owner: {
                     title: '负责人',
                     search: { show: true },
-                    column:{
+                    column: {
                         sortable: true,
                     },
                     form: {
@@ -176,7 +194,7 @@ export default function ({ expose }) {
                 },
                 phone: {
                     title: '联系电话',
-                    column:{
+                    column: {
                         sortable: true,
                     },
                     form: {
@@ -191,7 +209,7 @@ export default function ({ expose }) {
                 },
                 email: {
                     title: '邮箱',
-                    column:{
+                    column: {
                         sortable: true,
                     },
                     form: {

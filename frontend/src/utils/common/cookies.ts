@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-11 14:55:30
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-09 22:30:21
+ * @LastEditTime: 2022-10-16 11:24:38
  * @Description: 
  */
 import Cookies from 'js-cookie'
@@ -20,7 +20,7 @@ interface cookieMethod {
      * @description 拿到 cookie 值
      * @param {String} name cookie name
      */
-    get(name: string): string;
+    get(name: string): string | null;
 
     /**
      * @description 拿到 cookie 全部的值
@@ -31,7 +31,7 @@ interface cookieMethod {
      * @description 删除 cookie
      * @param {String} name cookie name
      */
-    remove(name: string): string;
+    remove(name: string): string ;
 }
 
 class cookieClass implements cookieMethod {

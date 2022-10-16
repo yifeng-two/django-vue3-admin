@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-17 22:58:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-11 20:56:19
+ * @LastEditTime: 2022-10-12 18:36:02
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -60,21 +60,23 @@ export default function ({ expose }) {
             },
             rowHandle: {
                 width: 300,
-                view: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                edit: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
-                remove: {
-                    thin: true,
-                    text: '',
-                    show: proxy.hasPermissions('Retrieve')
-                },
+                buttons:{
+                    view: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Retrieve')
+                    },
+                    edit: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Update')
+                    },
+                    remove: {
+                        thin: true,
+                        text: '',
+                        show: proxy.hasPermissions('Delete')
+                    },
+                }
                 // buttons: {
                 //     //自定义按钮，可以任意命名,任意数量
                 //     resetPassword: {

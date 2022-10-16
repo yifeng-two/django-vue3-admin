@@ -2,13 +2,13 @@
  * @Author: yifeng
  * @Date: 2022-09-25 21:33:19
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 22:34:05
+ * @LastEditTime: 2022-10-12 19:57:58
  * @Description: 
  */
 import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from 'xe-utils';
 
-const deptBaseUrl = "/api/system/dept/";
+export const deptBaseUrl = "/api/system/dept/";
 
 /**
  * 列表查询
