@@ -2,11 +2,11 @@
 Author: yifeng
 Date: 2022-08-10 20:56:03
 LastEditors: yifeng
-LastEditTime: 2022-10-07 18:56:15
+LastEditTime: 2022-10-17 21:06:38
 Description: 
 '''
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter, SimpleRouter
+from django.urls import path
+from rest_framework.routers import SimpleRouter
 from apps.system.views.deptViews import DeptViewSet
 from apps.system.views.menuButtonViews import MenuButtonViewSet
 from apps.system.views.menuViews import MenuViewSet
@@ -17,6 +17,7 @@ from apps.system.views.systemConfigViews import SystemConfigViewSet
 from apps.system.views.fileViews import FileViewSet
 from apps.system.views.loginLogViews import LoginLogViewSet
 from apps.system.views.operationLogViews import OperationLogViewSet
+from apps.system.views.apiWhiteListViews import ApiWhiteListViewSet
 
 # system_router = DefaultRouter()
 system_router = SimpleRouter()
@@ -30,7 +31,7 @@ system_router.register(r'system_config', SystemConfigViewSet)
 system_router.register(r'operation_log', OperationLogViewSet)
 # system_router.register(r'area', AreaViewSet)
 system_router.register(r'file', FileViewSet)
-# system_router.register(r'api_white_list', ApiWhiteListViewSet)
+system_router.register(r'api_white_list', ApiWhiteListViewSet)
 # system_router.register(r'message_center',MessageCenterViewSet)
 
 urlpatterns = [

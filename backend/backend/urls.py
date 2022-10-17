@@ -27,6 +27,7 @@ from rest_framework_simplejwt.views import (
 from apps.system.views.loginViews import ApiLogin, CaptchaView, LoginView, LogoutView
 from apps.system.serializers.dictionarySerializer import InitDictionaryViewSet
 from apps.system.views.systemConfigViews import InitSettingsViewSet
+from backend.utils.swagger import CustomOpenAPISchemaGenerator
 
 from backend import settings
 
@@ -49,7 +50,7 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny, ),
     # 登录后才可以访问API文档，登录路径“/apiLogin”
     # permission_classes=(permissions.IsAuthenticated, ),
-    # generator_class=CustomOpenAPISchemaGenerator,
+    generator_class=CustomOpenAPISchemaGenerator,
 )
 # =========== swagger api 配置 =================
 

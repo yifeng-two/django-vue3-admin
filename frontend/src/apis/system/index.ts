@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-07-17 17:01:45
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-07 17:31:31
+ * @LastEditTime: 2022-10-16 21:33:01
  * @Description: 
  */
 // appfront/src/api/index.js
@@ -18,3 +18,4 @@ export * from './menuButton'
 
 export * from './systemConfig'
 export * from './systemLog'
+export  * from './apiWhiteList'

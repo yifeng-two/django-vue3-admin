@@ -3,7 +3,7 @@
 Author: yifeng
 Date: 2022-08-29 22:09:41
 LastEditors: yifeng
-LastEditTime: 2022-10-11 22:00:00
+LastEditTime: 2022-10-17 21:22:51
 Description: 
 '''
 import re
@@ -11,7 +11,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.db.models import F
 from rest_framework.permissions import BasePermission
 
-# from dvadmin.system.models import ApiWhiteList
+from apps.system.models import ApiWhiteList
 
 
 def ValidationApi(reqApi, validApi):
@@ -71,26 +71,25 @@ class CustomPermission(BasePermission):
             methodList = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
             method = methodList.index(method)
             # ***接口白名单***
-            # api_white_list = ApiWhiteList.objects.values(permission__api=F('url'),
-            #                                              permission__method=F('method'))
-            # api_white_list = [
-            #     str(item.get('permission__api').replace('{id}', '([a-zA-Z0-9-]+)')) + ":" +
-            #     str(item.get('permission__method')) + '$' for item in api_white_list
-            #     if item.get('permission__api')
-            # ]
+            api_white_list = ApiWhiteList.objects.values(permission__api=F('url'),
+                                                         permission__method=F('method'))
+            api_white_list = [
+                str(item.get('permission__api').replace('{id}', '([a-zA-Z0-9-]+)')) + ":" +
+                str(item.get('permission__method')) + '$' for item in api_white_list
+                if item.get('permission__api')
+            ]
             # ********#
             if not hasattr(request.user, "roles"):
                 return False
             # 获取当前用户的角色拥有的所有接口
-            userApiList = request.user.roles.values('permission__api',
-                                                   'permission__method')  
+            userApiList = request.user.roles.values('permission__api', 'permission__method')
             ApiList = [
                 str(item.get('permission__api').replace('{id}', '([a-zA-Z0-9-]+)')) + ":" +
                 str(item.get('permission__method')) + '$' for item in userApiList
                 if item.get('permission__api')
             ]
-            # new_api_ist = api_white_list + ApiList
-            new_api_ist = ApiList
+            new_api_ist = api_white_list + ApiList
+            # new_api_ist = ApiList
             new_api = api + ":" + str(method)
             for item in new_api_ist:
                 matchObj = re.match(item, new_api, re.M | re.I)
