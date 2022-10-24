@@ -133,5 +133,5 @@ docker-compose up -d --build
 
 - 二维码
 
-![image-01](https://images.gitee.com/uploads/images/2022/0530/234137_b58c8f98_5074988.png)
+![image-01](https://github.com/yifeng-two/django-vue3-admin/blob/main/images/%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 
