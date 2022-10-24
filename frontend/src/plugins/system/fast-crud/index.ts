@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-18 10:15:09
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-13 21:38:08
+ * @LastEditTime: 2022-10-18 21:23:44
  * @Description: 
  */
 // 引入fast-crud
@@ -13,8 +13,9 @@ import UiElement from "@fast-crud/ui-element";
 import axiosInstance from '@/utils/net/axiosInstance'
 import XEUtils from "xe-utils";
 import { App } from "vue";
-import {commonEndColumns} from './commonCols'
-import {FsExtendsIconSelect} from './icon-selector'
+import { commonEndColumns } from './commonCols'
+import { FsExtendsIconSelect } from './icon-selector'
+import { FsExtendsAreaSelect } from './area-selector'
 
 // // 引入fast-crud
 function install(app: App<Element>, options: any = {}) {
@@ -95,7 +96,7 @@ function install(app: App<Element>, options: any = {}) {
                         //     sort
                         // };
                         //改造成你的后端所能接受的参数结构
-                        return {  limit: limit,page: currentPage, ...form };
+                        return { limit: limit, page: currentPage, ...form };
                     },
                     transformRes: ({ res }) => {
                         //将pageRequest的返回数据，转换为fast-crud所需要的格式
@@ -119,6 +120,7 @@ function install(app: App<Element>, options: any = {}) {
     })
     // app.config.globalProperties.commonEndColumns = commonEndColumns()
     app.use(FsExtendsIconSelect)
+    app.use(FsExtendsAreaSelect)
 };
 
 export default {

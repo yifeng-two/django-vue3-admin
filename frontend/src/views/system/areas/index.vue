@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-15 20:24:23
  * @LastEditors: yifeng
- * @LastEditTime: 2022-09-28 22:27:20
+ * @LastEditTime: 2022-10-18 19:18:18
  * @Description: 
 -->
 <template>
@@ -13,13 +13,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { useCrud } from "@fast-crud/fast-crud";
 import createCrudOptions from "./crud";
 import { useExpose } from "@fast-crud/fast-crud";
 
 export default defineComponent({
-    name: "menuForm",
+    name: "areaForm",
     setup() {
         // crud组件的ref
         const crudRef = ref();

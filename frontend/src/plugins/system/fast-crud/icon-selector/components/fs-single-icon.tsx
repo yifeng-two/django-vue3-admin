@@ -89,8 +89,7 @@ export default defineComponent({
     });
     //render icon
     return () => {
-      console.log("computedRenderFunc",computedRenderFunc);
-      
+      // console.log("computedRenderFunc",computedRenderFunc);
       return computedRenderFunc.value();
     };
   }

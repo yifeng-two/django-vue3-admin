@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-28 21:46:49
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-16 15:00:54
+ * @LastEditTime: 2022-10-18 20:07:18
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -432,7 +432,6 @@ export default function ({ expose }) {
                             { required: true, message: '请输入组件名称' }
                         ],
                         component: {
-                           
                             props: {
                                 clearable: true
                             },

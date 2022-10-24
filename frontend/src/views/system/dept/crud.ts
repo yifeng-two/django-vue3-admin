@@ -2,7 +2,7 @@
  * @Author: yifeng
  * @Date: 2022-09-25 21:33:02
  * @LastEditors: yifeng
- * @LastEditTime: 2022-10-12 18:30:46
+ * @LastEditTime: 2022-10-18 21:49:57
  * @Description: 
  */
 import * as api from "@/apis/system";
@@ -43,7 +43,7 @@ export default function ({ expose }) {
                 height: "100%",
                 rowKey: 'id',
                 stripe: true,
-                defaultExpandAll: true,
+                // defaultExpandAll: true,
                 slots: {}    // 对应el-table ,a-table的插槽
             },
             form: {
@@ -106,13 +106,13 @@ export default function ({ expose }) {
                             const ret = await api.deptLazyLoad();
                             return ret.data;
                         },
-                        getNodes(scope: any) {
-                            // 配置行展示远程获取nodes
-                            return new Promise((resolve, reject) => {
-                                const row = scope.row
-                                resolve(row.parent !== null ? [{ name: row.parent_name, id: row.parent }] : [])
-                            })
-                        }
+                        // getNodes(scope: any) {
+                        //     // 配置行展示远程获取nodes
+                        //     return new Promise((resolve, reject) => {
+                        //         const row = scope.row
+                        //         resolve(row.parent !== null ? [{ name: row.parent_name, id: row.parent }] : [])
+                        //     })
+                        // }
                     }),
                     form: {
                         helper: '默认留空为根节点',

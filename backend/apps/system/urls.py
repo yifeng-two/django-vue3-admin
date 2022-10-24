@@ -2,7 +2,7 @@
 Author: yifeng
 Date: 2022-08-10 20:56:03
 LastEditors: yifeng
-LastEditTime: 2022-10-17 21:06:38
+LastEditTime: 2022-10-18 19:12:03
 Description: 
 '''
 from django.urls import path
@@ -18,6 +18,7 @@ from apps.system.views.fileViews import FileViewSet
 from apps.system.views.loginLogViews import LoginLogViewSet
 from apps.system.views.operationLogViews import OperationLogViewSet
 from apps.system.views.apiWhiteListViews import ApiWhiteListViewSet
+from apps.system.views.areaViews import AreaViewSet
 
 # system_router = DefaultRouter()
 system_router = SimpleRouter()
@@ -29,7 +30,7 @@ system_router.register(r'user', UserViewSet)
 system_router.register(r'dictionary', DictionaryViewSet)
 system_router.register(r'system_config', SystemConfigViewSet)
 system_router.register(r'operation_log', OperationLogViewSet)
-# system_router.register(r'area', AreaViewSet)
+system_router.register(r'area', AreaViewSet)
 system_router.register(r'file', FileViewSet)
 system_router.register(r'api_white_list', ApiWhiteListViewSet)
 # system_router.register(r'message_center',MessageCenterViewSet)
