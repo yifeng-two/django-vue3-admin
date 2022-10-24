@@ -1,3 +1,5 @@
 frontend/node_modules/
 frontend-vcli/node_modules/
-images/
+images/correct
+images/detected
+images/orgin
